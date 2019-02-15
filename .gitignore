@@ -8,6 +8,11 @@
 out
 gen
 
+# Eclipse
+.classpath
+.project
+.settings/
+
 # Maven
 target/
 
