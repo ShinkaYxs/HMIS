@@ -21,6 +21,7 @@
     <!--<mvc:resources location="/styles/" mapping="/styles/**"/>-->
     <mvc:resources location="/js/" mapping="/js/**"/>
     <mvc:resources location="/layui/" mapping="/layui/**"/>
+    <!--<mvc:resources location="/download/" mapping="/download/**"/>-->
 
     <!-- Configures the @Controller programming model
     <mvc:annotation-driven />-->
@@ -111,5 +112,6 @@
     <!-- 定义无Controller的path<->view直接映射 -->
     <!-- <mvc:view-controller path="/" view-name="redirect:/" /> -->
 
+    <mvc:default-servlet-handler />
 
 </beans>
