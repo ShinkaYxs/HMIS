@@ -6,7 +6,7 @@
     <properties resource="generator.properties"/>
 
     <classPathEntry
-            location="D:\Program File\Java\apache-maven-3.5.4\repository\mysql\mysql-connector-java\5.1.29\mysql-connector-java-5.1.29.jar" />
+            location="D:\Program Files\Java\apache-maven-3.5.4\repository\mysql\mysql-connector-java\5.1.29\mysql-connector-java-5.1.29.jar" />
     <context id="context1">
         <!-- 注释 -->
         <commentGenerator>
@@ -27,7 +27,8 @@
 
         <javaModelGenerator targetPackage="${modelPackage}"
                             targetProject="${modelProject}" />
-        <sqlMapGenerator targetPackage="${sqlPackage}" targetProject="${sqlProject}" />
+        <sqlMapGenerator targetPackage="${sqlPackage}"
+                            targetProject="${sqlProject}" />
         <javaClientGenerator targetPackage="${mapperPackage}"
                              targetProject="${mapperProject}" type="XMLMAPPER" />
 
