@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmis.login.mapper.AdminInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hmis.login.dto.AdminInfo">
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_passwd" jdbcType="VARCHAR" property="userPasswd" />
+  </resultMap>
+
+  <select id="queryCountForLogin" resultMap="BaseResultMap">
+    select a.user_name
+      from admin_info a
+    <where>
+        AND a.user_name = #{dto.userName,jdbcType=VARCHAR}
+        AND a.user_passwd = #{dto.userPasswd,jdbcType=VARCHAR}
+    </where>
+  </select>
+
+  <insert id="insert" parameterType="com.hmis.login.dto.AdminInfo">
+    insert into admin_info (user_name, user_passwd)
+    values (#{userName,jdbcType=VARCHAR}, #{userPasswd,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.hmis.login.dto.AdminInfo">
+    insert into admin_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userPasswd != null">
+        user_passwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPasswd != null">
+        #{userPasswd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
