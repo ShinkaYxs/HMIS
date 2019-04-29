@@ -7,7 +7,7 @@
   </resultMap>
 
   <select id="queryCountForLogin" resultMap="BaseResultMap">
-    select a.user_name,a.user_passwd
+    select a.user_name
       from admin_info a
     <where>
         AND a.user_name = #{dto.userName,jdbcType=VARCHAR}

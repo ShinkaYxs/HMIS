@@ -14,9 +14,8 @@
     <link rel="stylesheet" href="/css/login/login.css" media="all" />
 </head>
 <body>
-<video class="video-player" preload="auto" autoplay="autoplay" loop="loop" data-height="1080" data-width="1920" height="1080" width="1920">
+<video class="video-player" preload="auto" autoplay="autoplay" loop="loop">
     <source src="/images/loginBackGround.mp4" type="video/mp4">
-    <!-- 此视频文件为支付宝所有,，在此仅供样式参考，如用到商业用途，请自行更换为其他视频或图片，否则造成的任何问题使用者本人承担，谢谢 -->
 </video>
 <div class="video_mask"></div>
 <div class="login">
@@ -44,37 +43,27 @@
     </form>
 </div>
 <script type="text/javascript" src="/layui/layui.js"></script>
-<%--<script type="text/javascript" src="/js/login/login.js"></script>--%>
 <script>
-    // layui.config({
-    //   base : "js/"
-    // }).
     layui.use(['form','layer'],function(){
         var form = layui.form,
             layer = parent.layer === undefined ? layui.layer : parent.layer,
             $ = layui.jquery;
-        //video
+
+        //登录页面的视频背景
         $(window).resize(function(){
             if($(".video-player").width() > $(window).width()){
                 $(".video-player").css({"height":$(window).height(),"width":"auto","left":-($(".video-player").width()-$(window).width())/2});
             }else{
-                $(".video-player").css({"width":$(window).width(),"height":"auto","left":-($(".video-player").width()-$(window).width())/2});
+                //本项目所使用的背景视频尺寸较小，执行else中的语句
+                $(".video-player").css({"width":$(window).width(),"height":"auto","left":0});
             }
         }).resize();
 
-        //
-        // form.on("submit(login)",function(data){
-        //   window.location.href = "/main.jsp";
-        //   return false;
-        // })
-
+        //监听登录按钮
         form.on('submit(loginFormButton)', function(data){
             var param = data.field;
             var dataJson = JSON.stringify(param);
-            // var param = {userName:userName,userPasswd:userPasswd};
             // console.log(JSON.stringify(param));//是否获取到表单数据，调试模式下在页面控制台查看
-            // alert(JSON.stringify(param))
-            debugger
             $.ajax({
                 url:"/adminLogin",
                 method:'post',
@@ -85,15 +74,14 @@
                     // debugger
                     if (data.success) {
                         layer.msg( "登录成功" ,{offset: '60px',icon: 6,anim: 6,time: 1000});
-                        window.location.href='/views/admin/main.jsp';
+                        window.location.href='/page/views/admin/main';
                     }else{
-                        refreshImg();
                         console.log("错误信息是: " + data.msg);
                         layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});
                     }
                 }
             });
-            return false;
+            return false;   //使用Ajax提交，此语句阻止LayUI的form表单进行第二次提交
         });
     })
 
