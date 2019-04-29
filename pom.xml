@@ -189,7 +189,7 @@
       <version>3.1</version>
     </dependency>
     <dependency>
-      <groupId>commons-codec</groupId>
+      <groupId>commons-codec</groupId>F
       <artifactId>commons-codec</artifactId>
       <version>1.9</version>
     </dependency>
@@ -216,11 +216,11 @@
     </dependency>
     <!-- 日志文件管理包 -->
     <!-- log start -->
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>${log4j.version}</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>log4j</groupId>-->
+<!--      <artifactId>log4j</artifactId>-->
+<!--      <version>${log4j.version}</version>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
