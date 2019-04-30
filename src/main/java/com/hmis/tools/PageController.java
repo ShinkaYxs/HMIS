@@ -21,18 +21,25 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/page")
 @Controller
 public class PageController {
+
     @RequestMapping("/views/admin/{pageName}")
-    public String toPage(@PathVariable("pageName") String pageName){
+    public String toAdminPage(@PathVariable("pageName") String pageName){
         return "views/admin/" + pageName;
     }
+
+    @RequestMapping("/views/worker/{pageName}")
+    public String toWorkerPage(@PathVariable("pageName") String pageName){
+        return "views/worker/" + pageName;
+    }
+
 }
 
 
 //@RequestMapping("/page")
 //@Controller
 //public class PageController {
-//    //    @RequestMapping("/views/admin/{pageName}")
-//    @RequestMapping(value = "/views/admin/main")
+//    //    @RequestMapping("/views/worker/{pageName}")
+//    @RequestMapping(value = "/views/worker/main")
 //    public void toPage(@PathVariable("pageName") String pageName, HttpServletRequest request, HttpServletResponse response) throws Exception{
 //        request.getRequestDispatcher(pageName).forward(request,response);
 //    }

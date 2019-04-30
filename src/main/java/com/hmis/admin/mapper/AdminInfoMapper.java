@@ -1,6 +1,6 @@
-package com.hmis.login.mapper;
+package com.hmis.admin.mapper;
 
-import com.hmis.login.dto.AdminInfo;
+import com.hmis.admin.dto.AdminInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

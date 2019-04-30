@@ -3,10 +3,10 @@
  * 描述：管理员登录
  */
 
-package com.hmis.login.controller;
+package com.hmis.admin.controller;
 
-import com.hmis.login.dto.AdminInfo;
-import com.hmis.login.service.AdminInfoService;
+import com.hmis.admin.dto.AdminInfo;
+import com.hmis.admin.service.AdminInfoService;
 import com.hmis.tools.PojoMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +24,7 @@ import java.util.List;
  * @date 2019/4/24 14:50
  */
 @Controller
+@RequestMapping(value = "/admin")
 public class AdminInfoController {
 
     @Autowired

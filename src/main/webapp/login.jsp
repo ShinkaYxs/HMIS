@@ -34,9 +34,17 @@
             <input name="code" class="layui-input" placeholder="验证码" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">
             <div class="code" ><img src="https://www.oschina.net/action/user/captcha" width="116" height="36"></div>
         </div>
+        <div class="layui-form-item" style="color: #fff">
+            <label class="layui-form-label" style="text-align:center;font-weight: bold;">登录角色</label>
+            <div class="layui-input-block">
+                <input type="radio" name="role" value="admin" title="管理员" checked>
+                <input type="radio" name="role" value="worker" title="工作人员">
+                <input type="radio" name="role" value="user" title="用户">
+            </div>
+        </div>
         <div class="layui-form-item" style="margin-bottom: 20px;">
             <input type="checkbox" name="remember" lay-skin="primary" title="记住密码">
-            <a href="register.html" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">注册帐号</a>
+            <a href="/user_register.html" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">注册帐号</a>
             <a href="forget.html" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？&nbsp;&nbsp;&nbsp;</a>
         </div>
         <button id="loginFormButton" class="layui-btn login_btn" lay-submit="" lay-filter="loginFormButton">登录</button>
@@ -59,13 +67,42 @@
             }
         }).resize();
 
+        //删除Json中指定的元素
+        function JsonDelItem(JSONArray, index){
+            for(var key in JSONArray){
+                if(key == index || JSONArray[key] == index){
+                    delete JSONArray[key];
+                    break;
+                }
+            }
+        }
+
         //监听登录按钮
         form.on('submit(loginFormButton)', function(data){
-            var param = data.field;
-            var dataJson = JSON.stringify(param);
-            // console.log(JSON.stringify(param));//是否获取到表单数据，调试模式下在页面控制台查看
+            var param = data.field;                 //表单数据
+            var roleType = param.role;              //role元素角色选择
+            JsonDelItem(param,"role");              //把表单数据除去role元素
+            var dataJson = JSON.stringify(param);   //转成Json
+            // console.log(JSON.stringify(param));  //调试模式下在页面控制台查看
+
+            //定义三种角色要访问的Controller和登录成功后的url
+            var urlController = "";
+            var urlJumpPage = "";
+            if(roleType == "admin"){
+                urlController = "/admin/adminLogin";
+                urlJumpPage = '/page/views/admin/adminMain';
+            }else if(roleType == "worker"){
+                urlController = "/worker/workerLogin";
+                urlJumpPage = "/page/views/worker/workerMain";
+            }else if(roleType == "user"){
+                urlController = "/user/userLogin";
+                urlJumpPage = "/page/views/user/userMain";
+            }else{
+                layer.msg("错误" ,{offset: '60px',icon: 5,anim: 6,time: 3000});
+            }
+
             $.ajax({
-                url:"/adminLogin",
+                url:urlController,
                 method:'post',
                 contentType: "application/json;charset=utf-8",
                 data:dataJson,
@@ -74,7 +111,7 @@
                     // debugger
                     if (data.success) {
                         layer.msg( "登录成功" ,{offset: '60px',icon: 6,anim: 6,time: 1000});
-                        window.location.href='/page/views/admin/main';
+                        window.location.href = urlJumpPage;
                     }else{
                         console.log("错误信息是: " + data.msg);
                         layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});

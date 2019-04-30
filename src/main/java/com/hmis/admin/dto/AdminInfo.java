@@ -1,6 +1,4 @@
-package com.hmis.login.dto;
-
-import java.beans.Transient;
+package com.hmis.admin.dto;
 
 public class AdminInfo {
 
