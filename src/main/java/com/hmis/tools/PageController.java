@@ -32,11 +32,15 @@ public class PageController {
         return "views/worker/" + pageName;
     }
 
+    @RequestMapping("/views/user/{pageName}")
+    public String toUserPage(@PathVariable("pageName") String pageName){
+        return "views/user/" + pageName;
+    }
 }
 
 
 //@RequestMapping("/page")
-//@Controller
+//@controller
 //public class PageController {
 //    //    @RequestMapping("/views/worker/{pageName}")
 //    @RequestMapping(value = "/views/worker/main")

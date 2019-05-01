@@ -20,7 +20,7 @@
     <mvc:resources location="/js/" mapping="/js/**"/>
     <mvc:resources location="/layui/" mapping="/layui/**"/>
 
-    <!-- Configures the @Controller programming model <mvc:annotation-driven /> -->
+    <!-- Configures the @controller programming model <mvc:annotation-driven /> -->
     <!-- ②：启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <property name="messageConverters">
