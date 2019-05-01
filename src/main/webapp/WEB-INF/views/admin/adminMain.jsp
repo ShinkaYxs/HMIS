@@ -36,7 +36,7 @@
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退了</a></li>
+            <li class="layui-nav-item"><a href="/login.jsp">退出</a></li>
         </ul>
     </div>
 
@@ -86,7 +86,7 @@
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        © layui.com - 底部固定区域
+        © 小型动物救助中心 - 版权所有
     </div>
 </div>
 <script src="/layui/layui.js"></script>

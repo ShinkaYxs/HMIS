@@ -51,7 +51,7 @@ public class UserInfoController {
             }
             return pojoMsg;
         }else{
-            pojoMsg.setSuccess(true);
+            pojoMsg.setSuccess(false);
             pojoMsg.setMsg("用户名或密码错误！");
             return pojoMsg;
         }

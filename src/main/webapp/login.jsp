@@ -32,7 +32,8 @@
         <div class="layui-form-item form_code">
             <label class="layadmin-user-login-icon layui-icon layui-icon-vercode"  style="left: auto"></label>
             <input name="code" class="layui-input" placeholder="验证码" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">
-            <div class="code" ><img src="https://www.oschina.net/action/user/captcha" width="116" height="36"></div>
+            <%--<div class="code" ><img src="https://www.oschina.net/action/user/captcha" width="116" height="36"></div>--%>
+            <div class="code" ><img onclick="javascript:this.src='/captcha/imagesOutToPage?id='+Math.random();" lay-filter="codeDivClick" id="LAY-user-get-vercode" src="/captcha/imagesOutToPage" width="116" height="36"></div>
         </div>
         <div class="layui-form-item" style="color: #fff">
             <label class="layui-form-label" style="text-align:center;font-weight: bold;">登录角色</label>
@@ -57,6 +58,8 @@
             layer = parent.layer === undefined ? layui.layer : parent.layer,
             $ = layui.jquery;
 
+        // form.render();
+
         //登录页面的视频背景
         $(window).resize(function(){
             if($(".video-player").width() > $(window).width()){
@@ -75,7 +78,7 @@
                     break;
                 }
             }
-        }
+        };
 
         //监听登录按钮
         form.on('submit(loginFormButton)', function(data){

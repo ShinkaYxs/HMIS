@@ -27,7 +27,23 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
+  <!-- EasyCaptcha验证码 -->
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+
   <dependencies>
+
+    <!-- EasyCaptcha验证码 码云地址https://gitee.com/whvse/EasyCaptcha -->
+    <dependency>
+      <groupId>com.github.whvcse</groupId>
+      <artifactId>EasyCaptcha</artifactId>
+      <version>1.5.0</version>
+    </dependency>
+
     <!-- spring核心包 -->
     <!-- springframe start -->
     <dependency>

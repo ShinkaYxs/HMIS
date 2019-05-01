@@ -8,6 +8,7 @@ package com.hmis.admin.controller;
 import com.hmis.admin.dto.AdminInfo;
 import com.hmis.admin.service.AdminInfoService;
 import com.hmis.tools.PojoMsg;
+import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,6 +42,15 @@ public class AdminInfoController {
         List<AdminInfo> adminInfoList = adminInfoService.adminLogin(adminInfo);
         PojoMsg pojoMsg = new PojoMsg();
         if (adminInfoList.size() == 1){
+
+            //判断验证码是否正确
+            if (!CaptchaUtil.ver(adminInfo.getCode(), request)) {
+                CaptchaUtil.clear(request);
+                pojoMsg.setSuccess(false);
+                pojoMsg.setMsg("验证码错误！");
+                return pojoMsg;
+            }
+
             pojoMsg.setSuccess(true);
             pojoMsg.setMsg("登录成功！");
 
@@ -56,7 +66,7 @@ public class AdminInfoController {
             }
             return pojoMsg;
         }else{
-            pojoMsg.setSuccess(true);
+            pojoMsg.setSuccess(false);
             pojoMsg.setMsg("用户名或密码错误！");
             return pojoMsg;
         }
