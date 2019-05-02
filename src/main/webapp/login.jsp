@@ -32,15 +32,15 @@
         <div class="layui-form-item form_code">
             <label class="layadmin-user-login-icon layui-icon layui-icon-vercode"  style="left: auto"></label>
             <input name="code" class="layui-input" placeholder="验证码" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">
-            <%--<div class="code" ><img src="https://www.oschina.net/action/user/captcha" width="116" height="36"></div>--%>
-            <div class="code" ><img onclick="javascript:this.src='/captcha/imagesOutToPage?id='+Math.random();" lay-filter="codeDivClick" id="LAY-user-get-vercode" src="/captcha/imagesOutToPage" width="116" height="36"></div>
+            <%--<div class="code" ><img onclick="javascript:this.src='/captcha/imagesOutToPage?id='+Math.random();" src="/captcha/imagesOutToPage" width="116" height="36"></div>--%>
+            <div class="code" ><img id="codeImg" onclick="javascript:changeCodeImg();" src="/captcha/imagesOutToPage" width="116" height="36"></div>
         </div>
         <div class="layui-form-item" style="color: #fff">
-            <label class="layui-form-label" style="text-align:center;font-weight: bold;">登录角色</label>
-            <div class="layui-input-block">
+            <label class="layui-form-label" style="text-align:center;font-weight: bold;padding: 10px 0px">角色</label>
+            <div class="layui-input-block" style="margin-left: 60px;margin-right: 0px;!important">
                 <input type="radio" name="role" value="admin" title="管理员" checked>
-                <input type="radio" name="role" value="worker" title="工作人员">
-                <input type="radio" name="role" value="user" title="用户">
+                <input type="radio" name="role" value="worker" title="工作人员" >
+                <input type="radio" name="role" value="user" title="普通用户" >
             </div>
         </div>
         <div class="layui-form-item" style="margin-bottom: 20px;">
@@ -53,6 +53,11 @@
 </div>
 <script type="text/javascript" src="/layui/layui.js"></script>
 <script>
+    //刷新验证码图片
+    function changeCodeImg(){
+        document.getElementById("codeImg").src='/captcha/imagesOutToPage?id='+Math.random();
+    }
+
     layui.use(['form','layer'],function(){
         var form = layui.form,
             layer = parent.layer === undefined ? layui.layer : parent.layer,
@@ -111,18 +116,23 @@
                 data:dataJson,
                 dataType:"JSON",
                 success:function(data){
-                    // debugger
                     if (data.success) {
-                        layer.msg( "登录成功" ,{offset: '60px',icon: 6,anim: 6,time: 1000});
+                        layer.msg( "登录成功" ,{offset: '60px',icon: 6,anim: 6,time: 2000});
                         window.location.href = urlJumpPage;
                     }else{
                         console.log("错误信息是: " + data.msg);
                         layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});
+                        changeCodeImg();
                     }
+                },
+                error:function(data){
+                    layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});
+                    changeCodeImg();
                 }
             });
             return false;   //使用Ajax提交，此语句阻止LayUI的form表单进行第二次提交
         });
+
     })
 
 </script>
