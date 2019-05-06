@@ -9,6 +9,7 @@ package com.hmis.worker.controller;
 import com.hmis.tools.PojoMsg;
 import com.hmis.worker.dto.WorkerInfo;
 import com.hmis.worker.service.WorkerInfoService;
+import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,6 +42,14 @@ public class WorkerInfoController {
     @ResponseBody
     public PojoMsg workerLogin(@RequestBody WorkerInfo workerInfo, HttpServletRequest request){
         PojoMsg pojoMsg = new PojoMsg();
+        //判断验证码是否正确
+        if (!CaptchaUtil.ver(workerInfo.getCode(), request)) {
+            CaptchaUtil.clear(request);
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("验证码错误！");
+            return pojoMsg;
+        }
+
         List<WorkerInfo> workerInfoList = workerInfoService.workerLogin(workerInfo);
         if (workerInfoList.size() == 1){
             pojoMsg.setSuccess(true);
