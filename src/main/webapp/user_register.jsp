@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,22 +34,14 @@
             <label class="control-label col-sm-3">真实姓名*</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" placeholder="请输入姓名"
-                       name="patient_name" id="patient_name" onblur="check()"/>
+                       name="userName" id="userName" onblur="check()"/>
             </div>
             <div id="div1" class="col-sm-3" style="display:inline;color: red;"></div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-3">身份证号*</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="如有英文字母请大写"
-                       name="patient_id" id="patient_id"/>
-            </div>
-            <div id="div2" class="col-sm-3" style="display:inline;color: red;"></div>
-        </div>
-        <div class="form-group">
             <label class="control-label col-sm-3">性别*</label>
             <div class="col-sm-6">
-                <select class="form-control" name="patient_sex">
+                <select class="form-control" name="userSex">
                     <option value="男">男</option>
                     <option value="女">女</option>
                 </select>
@@ -57,7 +50,7 @@
         <div class="form-group">
             <label class="control-label col-sm-3">年龄*</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="patient_age" id="patient_age"/>
+                <input type="text" class="form-control" name="userAge" id="userAge"/>
             </div>
             <div id="div3" style="display:inline;color: red;"></div>
         </div>
@@ -65,7 +58,7 @@
             <label class="control-label col-sm-3">联系电话*</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" placeholder="请输入您正在使用的电话号码"
-                       name="patient_tel" id="patient_tel"/>
+                       name="userTel" id="userTel"/>
             </div>
             <div id="div4" class="col-sm-3" style="display:inline;color: red;"></div>
         </div>
@@ -73,7 +66,7 @@
             <label class="control-label col-sm-3">电子邮箱*</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" placeholder="请输入电子邮箱"
-                       name="patient_email" id="patient_email"/>
+                       name="userEmail" id="userEmail"/>
             </div>
             <div id="div5" class="col-sm-3" style="display:inline;color: red;"></div>
         </div>
@@ -81,7 +74,7 @@
             <label class="control-label col-sm-3">输入密码*</label>
             <div class="col-sm-6">
                 <input type="password" class="form-control" placeholder="输入密码"
-                       name="patient_password" id="patient_password" onblur="check()"/>
+                       name="userPwd" id="userPwd" onblur="check()"/>
             </div>
             <div id="div6" class="col-sm-3" style="display:inline;color: red;"></div>
         </div>
@@ -89,25 +82,10 @@
             <label class="control-label col-sm-3">确认密码*</label>
             <div class="col-sm-6">
                 <input type="password" class="form-control" placeholder="再次输入密码"
-                       name="patient_repassword" id="patient_repassword" onblur="check()"/>
+                       name="userRepwd" id="userRepwd" onblur="check()"/>
             </div>
             <div id="div7" class="col-sm-3" style="display:inline;color: red;"></div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-3">过敏药物</label>
-            <div class="col-sm-6">
-						<textarea id="patient_g" class="form-control" id="patient_guomin"
-                                  name="patient_guomin" rows="2" cols="30"
-                                  placeholder="请填写您已知的对您过敏的药物"></textarea>
-            </div>
-        </div>
-<!--        <div class="form-group">-->
-<!--            <label class="control-label col-sm-3">家庭住址</label>-->
-<!--            <div class="col-sm-6">-->
-<!--                <input type="text" class="form-control" placeholder="请输入详细地址"-->
-<!--                       name="patient_addr" id="patient_addr"/>-->
-<!--            </div>-->
-<!--        </div>-->
         <div class="form-group text-center">
             <div>标记为*为您必填的项目，注册后您的账号为手机号或者邮箱账号</div>
             <button class="btn btn-lg btn-default" type="submit" id="submit" diabaled="">注册</button>
@@ -124,37 +102,20 @@
 <script type="application/javascript">
     function checkName()
     {
-        var n=jQuery("#patient_name").val();
+        var n=jQuery("#userName").val();
         if(!n)
         {
-            jQuery("#div1").html("用户不能为空!");
+            jQuery("#div1").html("用户名不能为空!");
             return false;
         }
         jQuery("#div1").html("√");
         jQuery("#div1").css("color","green");
         return true; 的
     }
-    function checkId()
-    {
-        var Id=jQuery("#patient_id").val();
-        var p=/^[0-9]{17}[0-9X]$/;
-        if(Id){
-            if(p.test(Id))
-            {
-                jQuery("#div2").html("√");
-                jQuery("#div2").css("color","green");
-                return true;
-            }
-            jQuery("#div2").html("身份证格式有误!");
-        }
-        else{
-            jQuery("#div2").html("身份证号不能为空!");
-        }
-        return false;
-    }
+
     function checkAge()
     {
-        var age=jQuery("#patient_age").val();
+        var age=jQuery("#userAge").val();
         if(!age)
         {
             jQuery("#div3").html("年龄不能为空!");
@@ -165,7 +126,7 @@
         return true;
     }
     function checkTel(){
-        var tel=jQuery("#patient_tel").val();
+        var tel=jQuery("#userTel").val();
         var p=/^1[34578]\d{9}$/;
         if(tel){
             if(p.test(tel)){
@@ -181,7 +142,7 @@
         return false;
     }
     function checkEmail(){
-        var email=jQuery("#patient_email").val();
+        var email=jQuery("#userEmail").val();
         var p=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
         if(email&&(p.test(email))){
             jQuery("#div5").html("√");
@@ -192,7 +153,7 @@
         return false;
     }
     function checkpassword(){
-        var p1=jQuery("#patient_password").val();
+        var p1=jQuery("#userPwd").val();
         if(p1){
             jQuery("#div6").html("√");
             jQuery("#div6").css("color","green");
@@ -202,8 +163,8 @@
         return false;
     }
     function checkRepassword(){
-        var p1=jQuery("#patient_password").val();
-        var p2=jQuery("#patient_repassword").val();
+        var p1=jQuery("#userPwd").val();
+        var p2=jQuery("#userRepwd").val();
         if(p1==p2){
             jQuery("#div7").html("√");
             jQuery("#div7").css("color","green");
@@ -214,12 +175,47 @@
     }
     function checkForm()
     {
-        if(checkName()&&checkId()&&checkAge()&&checkTel()&&checkEmail()&&checkpassword()&&checkRepassword()){
+        if(checkName()&&checkAge()&&checkTel()&&checkEmail()&&checkpassword()&&checkRepassword()){
             return true;
         }
         else {
             return false;
         }
     }
+</script>
+<script type="text/javascript" src="/layui/layui.js"></script>
+<script>
+
+
+    layui.use(['form','layer'],function(){
+        var form = layui.form,
+            layer = parent.layer === undefined ? layui.layer : parent.layer,
+            $ = layui.jquery;
+
+        // form.render();
+
+            $.ajax({
+                url:'/user/userRegister',
+                method:'post',
+                contentType: "application/json;charset=utf-8",
+                data:dataJson,
+                dataType:"JSON",
+                success:function(data){
+                    if (data.success) {
+                        // layer.msg( "登录成功" ,{offset: '60px',icon: 6,anim: 6,time: 2000});
+                         window.location.href = "/login.jsp";
+                    }else{
+                         console.log("错误信息是: " + data.msg);
+                         layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});
+                         changeCodeImg();
+                    }
+                },
+                error:function(data){
+                    layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});
+                    changeCodeImg();
+                }
+            });
+            return false;   //使用Ajax提交，此语句阻止LayUI的form表单进行第二次提交
+        })
 </script>
 </html>

@@ -12,4 +12,5 @@ import java.util.List;
 public interface UserInfoService {
 
     List<UserInfo> userLogin(UserInfo userInfo);
+    List<UserInfo> userRegister(UserInfo userInfo);
 }

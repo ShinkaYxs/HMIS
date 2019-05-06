@@ -40,10 +40,10 @@
     where user_id = #{userId,jdbcType=CHAR}
   </delete>
 
-  <insert id="insert" parameterType="com.hmis.user.dto.UserInfo">
+  <insert id="userRegister" parameterType="com.hmis.user.dto.UserInfo">
     insert into user_info (user_id, user_name, user_sex, 
       user_age, user_tel, user_email, 
-      user_pwd, head_portrait)
+      user_pwd)
     values (#{userId,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{userSex,jdbcType=CHAR}, 
       #{userAge,jdbcType=INTEGER}, #{userTel,jdbcType=CHAR}, #{userEmail,jdbcType=VARCHAR}, 
       #{userPwd,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR})

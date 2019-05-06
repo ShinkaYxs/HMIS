@@ -29,4 +29,8 @@ public class UserInfoServiceImpl implements UserInfoService {
     public List<UserInfo> userLogin(UserInfo userInfo) {
         return userInfoMapper.queryCountForLogin(userInfo);
     }
+    @Override
+    public List<UserInfo> userRegister(UserInfo userInfo) {
+        return userInfoMapper.queryCountForRegister(userInfo);
+    }
 }

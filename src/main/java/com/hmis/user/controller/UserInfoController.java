@@ -56,6 +56,33 @@ public class UserInfoController {
             return pojoMsg;
         }
     }
+    @RequestMapping(value = "/userRegister")
+    @ResponseBody
+    public PojoMsg userRegister(@RequestBody UserInfo userInfo, HttpServletRequest request){
+
+
+        List<UserInfo> userInfoList = userInfoService.userRegister(userInfo);
+        PojoMsg pojoMsg = new PojoMsg();
+        if (userInfoList.size() == 1){
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("登录成功！");
+
+            //将用户除密码外的所有信息放入session中
+            HttpSession session = request.getSession();
+            session.setAttribute("userInfo",userInfoList.get(0));
+
+            //执行成功后返回给登录页面的数据，实际上拿到这些数据也不用，所以不放入这些信息也行
+            int count = 0;
+            for(UserInfo userInfo_elem : userInfoList){
+                pojoMsg.add(String.valueOf(count++),userInfo_elem);
+            }
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("用户名或密码错误！");
+            return pojoMsg;
+        }
+    }
 
 }
 
