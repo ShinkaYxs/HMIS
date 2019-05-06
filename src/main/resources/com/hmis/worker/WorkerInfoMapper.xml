@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmis.worker.mapper.WorkerInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hmis.worker.dto.WorkerInfo">
+    <id column="worker_no" jdbcType="INTEGER" property="workerNo" />
+    <result column="worker_id" jdbcType="CHAR" property="workerId" />
+    <result column="worker_name" jdbcType="VARCHAR" property="workerName" />
+    <result column="worker_sex" jdbcType="CHAR" property="workerSex" />
+    <result column="worker_age" jdbcType="TINYINT" property="workerAge" />
+    <result column="department_id" jdbcType="CHAR" property="departmentId" />
+    <result column="worker_tel" jdbcType="CHAR" property="workerTel" />
+    <result column="worker_email" jdbcType="VARCHAR" property="workerEmail" />
+    <result column="worker_pwd" jdbcType="VARCHAR" property="workerPwd" />
+    <result column="head_portrait" jdbcType="VARCHAR" property="headPortrait" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    worker_no, worker_id, worker_name, worker_sex, worker_age, department_id, worker_tel, worker_email,
+    head_portrait
+  </sql>
+
+  <select id="queryCountForLogin" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from worker_info a
+    <where>
+      AND (a.worker_id = #{dto.userName,jdbcType=CHAR}
+          OR a.worker_tel = #{dto.userName,jdbcType=CHAR}
+          OR a.worker_email = #{dto.userName,jdbcType=CHAR})
+      AND a.worker_pwd = #{dto.userPasswd,jdbcType=VARCHAR}
+    </where>
+  </select>
+
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from worker_info
+    where worker_id = #{workerId,jdbcType=CHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from worker_info
+    where worker_id = #{workerId,jdbcType=CHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.hmis.worker.dto.WorkerInfo">
+    insert into worker_info (worker_id, worker_name, worker_sex, 
+      worker_age, department_id, worker_tel, 
+      worker_email, worker_pwd, head_portrait
+      )
+    values (#{workerId,jdbcType=CHAR}, #{workerName,jdbcType=VARCHAR}, #{workerSex,jdbcType=CHAR}, 
+      #{workerAge,jdbcType=TINYINT}, #{departmentId,jdbcType=CHAR}, #{workerTel,jdbcType=CHAR}, 
+      #{workerEmail,jdbcType=VARCHAR}, #{workerPwd,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
+    insert into worker_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="workerId != null">
+        worker_id,
+      </if>
+      <if test="workerName != null">
+        worker_name,
+      </if>
+      <if test="workerSex != null">
+        worker_sex,
+      </if>
+      <if test="workerAge != null">
+        worker_age,
+      </if>
+      <if test="departmentId != null">
+        department_id,
+      </if>
+      <if test="workerTel != null">
+        worker_tel,
+      </if>
+      <if test="workerEmail != null">
+        worker_email,
+      </if>
+      <if test="workerPwd != null">
+        worker_pwd,
+      </if>
+      <if test="headPortrait != null">
+        head_portrait,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="workerId != null">
+        #{workerId,jdbcType=CHAR},
+      </if>
+      <if test="workerName != null">
+        #{workerName,jdbcType=VARCHAR},
+      </if>
+      <if test="workerSex != null">
+        #{workerSex,jdbcType=CHAR},
+      </if>
+      <if test="workerAge != null">
+        #{workerAge,jdbcType=TINYINT},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=CHAR},
+      </if>
+      <if test="workerTel != null">
+        #{workerTel,jdbcType=CHAR},
+      </if>
+      <if test="workerEmail != null">
+        #{workerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="workerPwd != null">
+        #{workerPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortrait != null">
+        #{headPortrait,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByIdSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
+    update worker_info
+    <set>
+      <if test="dto.workerName != null">
+        worker_name = #{dto.workerName,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.workerSex != null">
+        worker_sex = #{dto.workerSex,jdbcType=CHAR},
+      </if>
+      <if test="dto.workerAge != null">
+        worker_age = #{dto.workerAge,jdbcType=TINYINT},
+      </if>
+      <if test="dto.departmentId != null">
+        department_id = #{dto.departmentId,jdbcType=CHAR},
+      </if>
+      <if test="dto.workerTel != null">
+        worker_tel = #{dto.workerTel,jdbcType=CHAR},
+      </if>
+      <if test="dto.workerEmail != null">
+        worker_email = #{dto.workerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.workerPwd != null">
+        worker_pwd = #{dto.workerPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.headPortrait != null">
+        head_portrait = #{dto.headPortrait,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where worker_id = #{dto.workerId,jdbcType=CHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.hmis.worker.dto.WorkerInfo">
+    update worker_info
+    set worker_name = #{workerName,jdbcType=VARCHAR},
+      worker_sex = #{workerSex,jdbcType=CHAR},
+      worker_age = #{workerAge,jdbcType=TINYINT},
+      department_id = #{departmentId,jdbcType=CHAR},
+      worker_tel = #{workerTel,jdbcType=CHAR},
+      worker_email = #{workerEmail,jdbcType=VARCHAR},
+      worker_pwd = #{workerPwd,jdbcType=VARCHAR},
+      head_portrait = #{headPortrait,jdbcType=VARCHAR}
+    where worker_id = #{workerId,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -3,11 +3,12 @@
  * 描述：管理员登录
  */
 
-package com.hmis.login.controller;
+package com.hmis.admin.controller;
 
-import com.hmis.login.dto.AdminInfo;
-import com.hmis.login.service.AdminInfoService;
+import com.hmis.admin.dto.AdminInfo;
+import com.hmis.admin.service.AdminInfoService;
 import com.hmis.tools.PojoMsg;
+import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +25,7 @@ import java.util.List;
  * @date 2019/4/24 14:50
  */
 @Controller
+@RequestMapping(value = "/admin")
 public class AdminInfoController {
 
     @Autowired
@@ -37,8 +39,16 @@ public class AdminInfoController {
     @RequestMapping(value = "/adminLogin")
     @ResponseBody
     public PojoMsg adminLogin(@RequestBody AdminInfo adminInfo,HttpServletRequest request){
-        List<AdminInfo> adminInfoList = adminInfoService.adminLogin(adminInfo);
         PojoMsg pojoMsg = new PojoMsg();
+        //判断验证码是否正确
+        if (!CaptchaUtil.ver(adminInfo.getCode(), request)) {
+            CaptchaUtil.clear(request);
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("验证码错误！");
+            return pojoMsg;
+        }
+
+        List<AdminInfo> adminInfoList = adminInfoService.adminLogin(adminInfo);
         if (adminInfoList.size() == 1){
             pojoMsg.setSuccess(true);
             pojoMsg.setMsg("登录成功！");
@@ -55,7 +65,7 @@ public class AdminInfoController {
             }
             return pojoMsg;
         }else{
-            pojoMsg.setSuccess(true);
+            pojoMsg.setSuccess(false);
             pojoMsg.setMsg("用户名或密码错误！");
             return pojoMsg;
         }
