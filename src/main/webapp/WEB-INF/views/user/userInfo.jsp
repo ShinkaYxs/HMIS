@@ -16,7 +16,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="/layui/css/layui.css" media="all" />
-    <%--<link rel="stylesheet" href="../../css/user.css" media="all" />--%>
     <style type="text/css">
         form input.layui-input[disabled]{ background:#f2f2f2; color:#595963!important; }
         .user_left{ width:45%; float: left; margin:20px 0 0 5%; }
@@ -56,37 +55,37 @@
         <div class="layui-form-item">
             <label class="layui-form-label">工号</label>
             <div class="layui-input-block">
-                <input type="text" value=${sessionScope.userInfo.userId} disabled class="layui-input layui-disabled">
+                <input type="text" name="userId" value=${sessionScope.userInfo.userId} disabled class="layui-input layui-disabled">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
-                <input type="text" value=${sessionScope.userInfo.userName} disabled class="layui-input layui-disabled">
+                <input type="text" name="userName" value=${sessionScope.userInfo.userName} disabled class="layui-input layui-disabled">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">性别</label>
             <div class="layui-input-block">
-                <input type="text" value=${sessionScope.userInfo.userSex} disabled class="layui-input layui-disabled">
+                <input type="text" name="userSex" value=${sessionScope.userInfo.userSex} disabled class="layui-input layui-disabled">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">年龄</label>
             <div class="layui-input-block">
-                <input type="tel" value=${sessionScope.userInfo.userAge} placeholder="请输入年龄" lay-verify="required|number" class="layui-input">
+                <input type="tel" name="userAge" value=${sessionScope.userInfo.userAge} placeholder="请输入年龄" lay-verify="required|number" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">手机号码</label>
             <div class="layui-input-block">
-                <input type="tel" value=${sessionScope.userInfo.userTel} placeholder="请输入手机号码" lay-verify="required|phone" class="layui-input">
+                <input type="tel" name="userTel" value=${sessionScope.userInfo.userTel} placeholder="请输入手机号码" lay-verify="required|phone" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">邮箱</label>
             <div class="layui-input-block">
-                <input type="text" value=${sessionScope.userInfo.userEmail} placeholder="请输入邮箱" lay-verify="required|email" class="layui-input">
+                <input type="text" name="userEmail" value=${sessionScope.userInfo.userEmail} placeholder="请输入邮箱" lay-verify="required|email" class="layui-input">
             </div>
         </div>
     </div>
@@ -101,14 +100,12 @@
     </div>
     <div class="layui-form-item" style="margin-left: 5%;">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="changeUser">立即提交</button>
+            <button class="layui-btn" lay-submit="" lay-filter="changeUser">确认修改</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
 </form>
 <script type="text/javascript" src="/layui/layui.js"></script>
-<script type="text/javascript" src="/js/address.js"></script>
-<script type="text/javascript" src="/js/user.js"></script>
 <script>
     layui.use(['upload','form','layer'], function(){
         var upload = layui.upload;
@@ -126,6 +123,46 @@
             ,error: function(){
                 //请求异常回调
             }
+        });
+
+        //删除Json中指定的元素
+        function JsonDelItem(JSONArray, index){
+            for(var key in JSONArray){
+                if(key == index || JSONArray[key] == index){
+                    delete JSONArray[key];
+                    break;
+                }
+            }
+        };
+
+        //监听确认提交按钮
+        form.on('submit(changeUser)', function(data){
+            var param = data.field;                 //表单数据
+            JsonDelItem(param,"file");
+            var dataJson = JSON.stringify(param);   //转成Json
+
+            $.ajax({
+                url:'/user/userChange',
+                method:'post',
+                contentType: "application/json;charset=utf-8",
+                data:dataJson,
+                dataType:"JSON",
+                success:function(data){
+                    if (data.success) {
+                        layer.msg( "修改成功" ,{offset: '60px',icon: 6,anim: 6,time: 2000, end: function (){
+                                location.href = ''}});
+                    }else{
+                        console.log("错误信息是: " + data.msg);
+                        layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});
+                        changeCodeImg();
+                    }
+                },
+                error:function(data){
+                    layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});
+                    changeCodeImg();
+                }
+            });
+            return false;   //使用Ajax提交，此语句阻止LayUI的form表单进行第二次提交
         });
     });
 </script>

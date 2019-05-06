@@ -7,6 +7,11 @@ import java.util.List;
 
 public interface UserInfoMapper {
 
+    /**
+     * 普通用户登录
+     * @param userInfo
+     * @return
+     */
     List<UserInfo> queryCountForLogin(@Param("dto") UserInfo userInfo);
 
     int deleteByPrimaryKey(String userId);
@@ -15,9 +20,19 @@ public interface UserInfoMapper {
 
     int insertSelective(UserInfo record);
 
-    UserInfo selectByPrimaryKey(String userId);
+    /**
+     * 普通用户修改个人资料之后重新查询该人的个人资料
+     * @param userId
+     * @return
+     */
+    UserInfo selectById(String userId);
 
-    int updateByPrimaryKeySelective(UserInfo record);
+    /**
+     * 普通用户-个人资料修改
+     * @param record
+     * @return
+     */
+    int updateByIdSelective(@Param("dto") UserInfo record);
 
     int updateByPrimaryKey(UserInfo record);
 }

@@ -31,6 +31,12 @@ public class UserInfoController {
     @Autowired
     private UserInfoService userInfoService;
 
+    /**
+     * 普通用户登录
+     * @param userInfo
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/userLogin")
     @ResponseBody
     public PojoMsg workerLogin(@RequestBody UserInfo userInfo, HttpServletRequest request){
@@ -53,6 +59,38 @@ public class UserInfoController {
         }else{
             pojoMsg.setSuccess(false);
             pojoMsg.setMsg("用户名或密码错误！");
+            return pojoMsg;
+        }
+    }
+
+    /**
+     * 普通用户-个人资料修改
+     * @param userInfo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/userChange")
+    @ResponseBody
+    public PojoMsg userChange(@RequestBody UserInfo userInfo, HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+        int userChangeResult = userInfoService.updateByIdSelective(userInfo);
+        if (userChangeResult == 1){
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("登录成功！");
+
+            //重新查询一遍普通用户的信息
+            UserInfo userInfoselectById = userInfoService.selectById(userInfo.getUserId());
+
+            //将用户除密码外的所有信息放入session中
+            HttpSession session = request.getSession();
+            session.setAttribute("userInfo",userInfoselectById);
+
+            //执行成功后返回给登录页面的数据，实际上拿到这些数据也不用，所以不放入这些信息也行
+            pojoMsg.add(String.valueOf(0),userInfoselectById);
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("更新信息时发生错误！");
             return pojoMsg;
         }
     }
