@@ -49,22 +49,21 @@
         <url-pattern>*.md</url-pattern>
     </servlet-mapping>
 
-
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value> classpath:spring/applicationContext.xml</param-value>
-  </context-param>
-  <!-- 欢迎页面-->
-  <welcome-file-list>
-    <welcome-file>/index.html</welcome-file>
-  </welcome-file-list>
-  <!--404错误展示页面，可自行配置-->
-  <!--<error-page>-->
-  <!--<error-code>404</error-code>-->
-  <!--<location>/WEB-INF/views/404.jsp</location>-->
-  <!--</error-page>-->
-  <!--设置session失效时间为30分钟 -->
-  <session-config>
-    <session-timeout>600</session-timeout>
-  </session-config>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value> classpath:spring/applicationContext.xml</param-value>
+    </context-param>
+    <!-- 欢迎页面-->
+    <welcome-file-list>
+        <welcome-file>/index.html</welcome-file>
+    </welcome-file-list>
+    <!--404错误展示页面，可自行配置-->
+    <!--<error-page>-->
+        <!--<error-code>404</error-code>-->
+        <!--<location>/WEB-INF/views/404.jsp</location>-->
+    <!--</error-page>-->
+    <!--设置session失效时间为30分钟 -->
+    <session-config>
+        <session-timeout>600</session-timeout>
+    </session-config>
 </web-app>

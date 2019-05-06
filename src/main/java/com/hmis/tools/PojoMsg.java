@@ -19,19 +19,11 @@ public class PojoMsg {
     private Map<String,Object> extend = new HashMap<String,Object>();    //用户返回给浏览器的数据
 
     public PojoMsg success() {
-//        PojoMsg result = new PojoMsg();
-//        result.setSuccess(true);
-//        result.setMsg("成功!");
-//        return result;
         this.setSuccess(true);
         this.setMsg("成功!");
         return this;
     }
     public PojoMsg fail() {
-//        PojoMsg result = new PojoMsg();
-//        result.setSuccess(false);
-//        result.setMsg("失败!");
-//        return result;
         setSuccess(false);
         setMsg("失败!");
         return this;
