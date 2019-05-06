@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hmis.worker.mapper.WorkerInfoMapper">
   <resultMap id="BaseResultMap" type="com.hmis.worker.dto.WorkerInfo">
-    <id column="worker_id" jdbcType="CHAR" property="workerId" />
+    <id column="worker_no" jdbcType="INTEGER" property="workerNo" />
+    <result column="worker_id" jdbcType="CHAR" property="workerId" />
     <result column="worker_name" jdbcType="VARCHAR" property="workerName" />
     <result column="worker_sex" jdbcType="CHAR" property="workerSex" />
     <result column="worker_age" jdbcType="TINYINT" property="workerAge" />
@@ -14,7 +15,7 @@
   </resultMap>
 
   <sql id="Base_Column_List">
-    worker_id, worker_name, worker_sex, worker_age, department_id, worker_tel, worker_email, 
+    worker_no, worker_id, worker_name, worker_sex, worker_age, department_id, worker_tel, worker_email,
     head_portrait
   </sql>
 
