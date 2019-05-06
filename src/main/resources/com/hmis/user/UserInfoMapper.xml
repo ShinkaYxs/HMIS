@@ -45,9 +45,9 @@
     insert into user_info (user_id, user_name, user_sex, 
       user_age, user_tel, user_email, 
       user_pwd)
-    values (#{userId,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{userSex,jdbcType=CHAR},
-      #{userAge,jdbcType=INTEGER}, #{userTel,jdbcType=CHAR}, #{userEmail,jdbcType=VARCHAR}, 
-      #{userPwd,jdbcType=VARCHAR})
+    values (#{dto.userId,jdbcType=CHAR}, #{dto.userName,jdbcType=VARCHAR}, #{dto.userSex,jdbcType=CHAR},
+      #{dto.userAge,jdbcType=INTEGER}, #{dto.userTel,jdbcType=CHAR}, #{dto.userEmail,jdbcType=VARCHAR},
+      #{dto.userPwd,jdbcType=VARCHAR})
   </insert>
 
   <insert id="insertSelective" parameterType="com.hmis.user.dto.UserInfo">

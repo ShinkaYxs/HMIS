@@ -4,222 +4,126 @@
 <head>
     <meta charset="UTF-8">
     <title>用户注册</title>
-    <link rel="stylesheet" href="/css/index/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/index/drag.css" />
-    <style type="text/css">
-        *{
-            padding: 0px;
-            margin: 0px;
-        }
-        body{
-            background-image: url(/images/index/ba_20.png);
-            background-size:cover;
-        }
-        h1{
-            font-style: initial;
-            font-weight: bold;
-        }
-    </style>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/css/login/login.css" media="all" />
+
 </head>
 <body>
-<!-- 		患者注册需要填写的信息 -->
-<div id="register">
-<!--   <form action="" method="" class="form-horizontal" name="register"-->
-<!--         onsubmit="return checkForm();">-->
-    <form class="form-horizontal">
-        <div>
-            <h1 class="text-center">用户注册</h1>
+<video class="video-player" preload="auto" autoplay="autoplay" loop="loop">
+    <source src="/images/loginBackGround.mp4" type="video/mp4">
+</video>
+<div class="video_mask"></div>
+<!-- 		用户注册需要填写的信息 -->
+<div class="login" style="height:600px;width:500px;padding: 20px;background-color:rgba(0,0,0,0.5);border-radius: 4px;position:absolute;left: 50%;top: 50%; margin:-280px 0 0 -200px;z-index:99;">
+    <h1>注册</h1>
+    <form id="formId" class="layui-form">
+        <div class="layui-form-item">
+            <input lay-verify="required" name="userName" class="layui-input" placeholder="姓名" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-3">真实姓名*</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="请输入姓名"
-                       name="userName" id="userName" onblur="check()"/>
+        <div class="layui-form-item">
+            <input name="userId" class="layui-input" placeholder="编号" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">
+        </div>
+        <div class="layui-form-item">
+            <input lay-verify="required|number"name="userAge" class="layui-input" placeholder="年龄" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">
+        </div>
+        <div class="layui-form-item">
+        <input lay-verify="required|phone|number" name="userTel" class="layui-input" placeholder="手机号" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">
+        </div>
+        <div class="layui-form-item">
+            <input lay-verify="email" name="userEmail" class="layui-input" placeholder="邮箱号" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">
+        </div>
+        <div class="layui-form-item">
+            <input lay-verify="pass" name="userPwd" class="layui-input" placeholder="密码" lay-verify="required" type="password" autocomplete="off" style="padding-left: 40px;">
+        </div>
+        <div class="layui-form-item">
+            <input lay-verify="pass|repass" name="userRePwd" class="layui-input" placeholder="确认密码" lay-verify="required" type="password" autocomplete="off" style="padding-left: 40px;">
+        </div>
+        <div class="layui-form-item" style="color: #fff">
+            <label class="layui-form-label" style="text-align:center;font-weight: bold;padding: 10px 0px">性别</label>
+            <div class="layui-input-block" style="margin-left: 60px;margin-right: 0px;!important">
+<%--                <input type="radio" name="userSex" value="男" title="男" checked>--%>
+<%--                <input type="radio" name="userSex" value="女" title="女" >--%>
+    <input type="radio" name="userSex" value="男" title="男"checked>
+    <input type="radio" name="userSex" value="女" title="女" >
+
             </div>
-            <div id="div1" class="col-sm-3" style="display:inline;color: red;"></div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-3">性别*</label>
-            <div class="col-sm-6">
-                <select class="form-control" name="userSex">
-                    <option value="男">男</option>
-                    <option value="女">女</option>
-                </select>
-            </div>
+        <div class="layui-form-item form_code">
+            <label class="layadmin-user-login-icon layui-icon layui-icon-vercode"  style="left: auto"></label>
+            <input name="code" class="layui-input" placeholder="验证码" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">
+            <%--<div class="code" ><img onclick="javascript:this.src='/captcha/imagesOutToPage?id='+Math.random();" src="/captcha/imagesOutToPage" width="116" height="36"></div>--%>
+            <div class="code" ><img id="codeImg" onclick="javascript:changeCodeImg();" src="/captcha/imagesOutToPage" width="116" height="36"></div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-3">年龄*</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" name="userAge" id="userAge"/>
-            </div>
-            <div id="div3" style="display:inline;color: red;"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-3">联系电话*</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="请输入您正在使用的电话号码"
-                       name="userTel" id="userTel"/>
-            </div>
-            <div id="div4" class="col-sm-3" style="display:inline;color: red;"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-3">电子邮箱*</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="请输入电子邮箱"
-                       name="userEmail" id="userEmail"/>
-            </div>
-            <div id="div5" class="col-sm-3" style="display:inline;color: red;"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-3">输入密码*</label>
-            <div class="col-sm-6">
-                <input type="password" class="form-control" placeholder="输入密码"
-                       name="userPwd" id="userPwd" onblur="check()"/>
-            </div>
-            <div id="div6" class="col-sm-3" style="display:inline;color: red;"></div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-3">确认密码*</label>
-            <div class="col-sm-6">
-                <input type="password" class="form-control" placeholder="再次输入密码"
-                       name="userRepwd" id="userRepwd" onblur="check()"/>
-            </div>
-            <div id="div7" class="col-sm-3" style="display:inline;color: red;"></div>
-        </div>
-        <div class="form-group text-center">
-            <div>标记为*为您必填的项目，注册后您的账号为手机号或者邮箱账号</div>
-<%--            <button class="btn btn-lg btn-default" type="submit" id="submit" diabaled="">注册</button>--%>
-            <button id="registerFormButton" class="layui-btn login_btn" lay-submit="" lay-filter="registerFormButton">注册</button>
-            <button class="btn btn-lg btn-default" type="reset">重置</button>
-        </div>
+        <button id="RegisterFormButton" class="layui-btn login_btn" type="submit" lay-submit="" lay-filter="RegisterFormButton">注册</button>
     </form>
 </div>
 </body>
-<script type="text/javascript" src="/js/index/jquery-3.2.1.min.js" ></script>
-<script type="text/javascript" src="/js/index/drag.js" ></script>
-<script type="text/javascript" src="/js/index/bootstrap.min.js" ></script>
-<script type="application/javascript">
-</script>
-<script type="application/javascript">
-    function checkName()
-    {
-        var n=jQuery("#userName").val();
-        if(!n)
-        {
-            jQuery("#div1").html("用户名不能为空!");
-            return false;
-        }
-        jQuery("#div1").html("√");
-        jQuery("#div1").css("color","green");
-        return true; 的
-    }
 
-    function checkAge()
-    {
-        var age=jQuery("#userAge").val();
-        if(!age)
-        {
-            jQuery("#div3").html("年龄不能为空!");
-            return false;
-        }
-        jQuery("#div3").html("√");
-        jQuery("#div3").css("color","green");
-        return true;
-    }
-    function checkTel(){
-        var tel=jQuery("#userTel").val();
-        var p=/^1[34578]\d{9}$/;
-        if(tel){
-            if(p.test(tel)){
-                jQuery("#div4").html("√");
-                jQuery("#div4").css("color","green");
-                return true;
-            }
-            jQuery("#div4").html("请输入有效的手机号码!");
-        }
-        else {
-            jQuery("#div4").html("手机号不能为空!");
-        }
-        return false;
-    }
-    function checkEmail(){
-        var email=jQuery("#userEmail").val();
-        var p=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-        if(email&&(p.test(email))){
-            jQuery("#div5").html("√");
-            jQuery("#div5").css("color","green");
-            return true;
-        }
-        jQuery("#div5").html("请输入有效的邮箱地址!");
-        return false;
-    }
-    function checkpassword(){
-        var p1=jQuery("#userPwd").val();
-        if(p1){
-            jQuery("#div6").html("√");
-            jQuery("#div6").css("color","green");
-            return true;
-        }
-        jQuery("#div6").html("密码不能为空!");
-        return false;
-    }
-    function checkRepassword(){
-        var p1=jQuery("#userPwd").val();
-        var p2=jQuery("#userRepwd").val();
-        if(p1==p2){
-            jQuery("#div7").html("√");
-            jQuery("#div7").css("color","green");
-            return true;
-        }
-        jQuery("#div7").html("密码输入不一致!");
-        return false;
-    }
-    function checkForm()
-    {
-        if(checkName()&&checkAge()&&checkTel()&&checkEmail()&&checkpassword()&&checkRepassword()){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-</script>
 <script type="text/javascript" src="/layui/layui.js"></script>
+
 <script>
 
 
-    layui.use(['form','layer'],function() {
+    //刷新验证码图片
+    function changeCodeImg(){
+        document.getElementById("codeImg").src='/captcha/imagesOutToPage?id='+Math.random();
+    }
+    layui.use(['form','layer'],function(){
         var form = layui.form,
             layer = parent.layer === undefined ? layui.layer : parent.layer,
             $ = layui.jquery;
+        //form.render();
 
-        // form.render();
+        form.verify({
+            pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且两次密码要相同'
+            ]
+            ,repass: function(value, item){ //value：表单的值、item：表单的DOM对象
+                if(value !=layui.$('input[name="userPwd"]').val()){
+                    return '密码不相同请重新输入！'}
+            }
+        });
+
+        //监听登录按钮
+        form.on('submit(RegisterFormButton)', function(data){
+            
+            var param = data.field;                 //表单数
+            var dataJson = JSON.stringify(param);   //转成Json
 
 
-        form.on('submit(registerFormButton)', function (data) {
             $.ajax({
-                url: '/user/userRegister',
-                method: 'post',
+                url:'/user/userRegister',
+                method:'post',
                 contentType: "application/json;charset=utf-8",
-                data: dataJson,
-                dataType: "JSON",
-                success: function (data) {
+                data:dataJson,
+                dataType:"JSON",
+                success:function(data){
                     if (data.success) {
-                        // layer.msg( "登录成功" ,{offset: '60px',icon: 6,anim: 6,time: 2000});
+                        layer.msg( "注册成功" ,{offset: '60px',icon: 6,anim: 6,time: 2000});
                         window.location.href = "/login.jsp";
-                    } else {
+                    }else{
                         console.log("错误信息是: " + data.msg);
-                        layer.msg(data.msg, {offset: '60px', icon: 5, anim: 6, time: 3000});
+                        layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});
                         changeCodeImg();
                     }
                 },
-                error: function (data) {
-                    layer.msg(data.msg, {offset: '60px', icon: 5, anim: 6, time: 3000});
+                error:function(data){
+                    layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});
                     changeCodeImg();
                 }
             });
             return false;   //使用Ajax提交，此语句阻止LayUI的form表单进行第二次提交
-        })
-    });
+        });
+
+    })
+
 </script>
+
 </html>
