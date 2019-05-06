@@ -32,7 +32,13 @@
                     ${sessionScope.workerInfo.workerName}
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
+                    <%--<dd><a data-url="/page/views/worker/workerInfo" class="site-demo-active" data-type="tabAdd" href="/page/views/worker/workerInfo">个人资料</a></dd>--%>
+                    <dd><a data-url="/page/views/worker/workerInfo"
+                       data-id="workerInfo"
+                       data-title="个人资料"
+                       href="#"
+                       class="site-demo-active"
+                       data-type="tabAdd" >个人资料</a></dd>
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
@@ -47,7 +53,9 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">所有商品</a>
                     <dl class="layui-nav-child">
-                        <dd><a data-url="/index.html" data-id="testId" data-title="这里是选项a" href="#"
+                        <%--<dd><a data-url="/index.html" data-id="testId" data-title="这里是选项a" href="#"--%>
+                               <%--class="site-demo-active" data-type="tabAdd">选项a</a></dd>--%>
+                        <dd><a data-url="/page/views/worker/workerMain" data-id="testId" data-title="这里是选项a" href="#"
                                class="site-demo-active" data-type="tabAdd">选项a</a></dd>
                         <dd><a href="javascript:;">列表一</a></dd>
                         <dd><a href="javascript:;">列表二</a></dd>

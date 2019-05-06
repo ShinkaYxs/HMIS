@@ -32,7 +32,7 @@
                     ${sessionScope.userName}
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">个人资料</a></dd>
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>

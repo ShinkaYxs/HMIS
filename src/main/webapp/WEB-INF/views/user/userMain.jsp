@@ -32,7 +32,12 @@
                     ${sessionScope.userInfo.userName}
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
+                    <dd><a data-url="/page/views/user/userInfo"
+                           data-id="userInfo"
+                           data-title="个人资料"
+                           href="#"
+                           class="site-demo-active"
+                           data-type="tabAdd" >个人资料</a></dd>
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
