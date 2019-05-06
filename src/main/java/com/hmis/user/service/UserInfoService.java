@@ -17,9 +17,8 @@ public interface UserInfoService {
      * @return
      */
     List<UserInfo> userLogin(UserInfo userInfo);
-<<<<<<< HEAD
+
     int userRegister(UserInfo userInfo);
-=======
 
     /**
      * 普通用户-个人资料修改
@@ -34,5 +33,4 @@ public interface UserInfoService {
      * @return
      */
     UserInfo selectById(String userId);
->>>>>>> dev
 }
