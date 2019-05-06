@@ -39,7 +39,12 @@
                        href="#"
                        class="site-demo-active"
                        data-type="tabAdd" >个人资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
+                    <dd><a data-url="/page/views/worker/workerChangePwd"
+                           data-id="workerChangePwd"
+                           data-title="修改密码"
+                           href="#"
+                           class="site-demo-active"
+                           data-type="tabAdd" >修改密码</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="/login.jsp">退出</a></li>
