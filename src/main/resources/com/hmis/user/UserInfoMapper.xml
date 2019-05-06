@@ -2,11 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hmis.user.mapper.UserInfoMapper">
   <resultMap id="BaseResultMap" type="com.hmis.user.dto.UserInfo">
-<<<<<<< HEAD
-    <id column="user_no" javaType="INTEGER" property="userNO"/>
-=======
     <id column="user_no" jdbcType="INTEGER" property="userNo" />
->>>>>>> dev
     <result column="user_id" jdbcType="CHAR" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_sex" jdbcType="CHAR" property="userSex" />
