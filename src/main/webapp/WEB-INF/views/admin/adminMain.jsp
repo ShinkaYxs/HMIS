@@ -32,8 +32,13 @@
                     ${sessionScope.userName}
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
+                    <%--<dd><a href="">个人资料</a></dd>--%>
+                    <dd><a data-url="/page/views/admin/adminChangePwd"
+                           data-id="adminChangePwd"
+                           data-title="修改密码"
+                           href="#"
+                           class="site-demo-active"
+                           data-type="tabAdd" >修改密码</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="/login.jsp">退出</a></li>

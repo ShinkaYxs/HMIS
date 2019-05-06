@@ -25,12 +25,39 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Resource
     private UserInfoMapper userInfoMapper;
 
+    /**
+     * 普通用户登录
+     * @param userInfo
+     * @return
+     */
     @Override
     public List<UserInfo> userLogin(UserInfo userInfo) {
         return userInfoMapper.queryCountForLogin(userInfo);
     }
+<<<<<<< HEAD
     @Override
     public int userRegister(UserInfo userInfo) {
         return userInfoMapper.insertCountForRegister(userInfo);
+=======
+
+    /**
+     * 普通用户-个人资料修改
+     * @param userInfo
+     * @return
+     */
+    @Override
+    public int updateByIdSelective(UserInfo userInfo) {
+        return userInfoMapper.updateByIdSelective(userInfo);
+    }
+
+    /**
+     * 普通用户修改个人资料之后重新查询该人的个人资料
+     * @param userId
+     * @return
+     */
+    @Override
+    public UserInfo selectById(String userId) {
+        return userInfoMapper.selectById(userId);
+>>>>>>> dev
     }
 }

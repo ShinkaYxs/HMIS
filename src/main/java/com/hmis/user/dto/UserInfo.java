@@ -1,6 +1,9 @@
 package com.hmis.user.dto;
 
 public class UserInfo {
+
+    private Integer userNo;
+
     private String userId;
 
     private String userName;
@@ -101,5 +104,13 @@ public class UserInfo {
 
     public void setUserPasswd(String userPasswd) {
         this.userPasswd = userPasswd;
+    }
+
+    public Integer getUserNo() {
+        return userNo;
+    }
+
+    public void setUserNo(Integer userNo) {
+        this.userNo = userNo;
     }
 }

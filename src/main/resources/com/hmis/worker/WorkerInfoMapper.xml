@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hmis.worker.mapper.WorkerInfoMapper">
   <resultMap id="BaseResultMap" type="com.hmis.worker.dto.WorkerInfo">
-    <id column="worker_id" jdbcType="CHAR" property="workerId" />
+    <id column="worker_no" jdbcType="INTEGER" property="workerNo" />
+    <result column="worker_id" jdbcType="CHAR" property="workerId" />
     <result column="worker_name" jdbcType="VARCHAR" property="workerName" />
     <result column="worker_sex" jdbcType="CHAR" property="workerSex" />
     <result column="worker_age" jdbcType="TINYINT" property="workerAge" />
@@ -14,7 +15,7 @@
   </resultMap>
 
   <sql id="Base_Column_List">
-    worker_id, worker_name, worker_sex, worker_age, department_id, worker_tel, worker_email, 
+    worker_no, worker_id, worker_name, worker_sex, worker_age, department_id, worker_tel, worker_email,
     head_portrait
   </sql>
 
@@ -30,7 +31,7 @@
     </where>
   </select>
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from worker_info
@@ -115,35 +116,35 @@
     </trim>
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.hmis.worker.dto.WorkerInfo">
+  <update id="updateByIdSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
     update worker_info
     <set>
-      <if test="workerName != null">
-        worker_name = #{workerName,jdbcType=VARCHAR},
+      <if test="dto.workerName != null">
+        worker_name = #{dto.workerName,jdbcType=VARCHAR},
       </if>
-      <if test="workerSex != null">
-        worker_sex = #{workerSex,jdbcType=CHAR},
+      <if test="dto.workerSex != null">
+        worker_sex = #{dto.workerSex,jdbcType=CHAR},
       </if>
-      <if test="workerAge != null">
-        worker_age = #{workerAge,jdbcType=TINYINT},
+      <if test="dto.workerAge != null">
+        worker_age = #{dto.workerAge,jdbcType=TINYINT},
       </if>
-      <if test="departmentId != null">
-        department_id = #{departmentId,jdbcType=CHAR},
+      <if test="dto.departmentId != null">
+        department_id = #{dto.departmentId,jdbcType=CHAR},
       </if>
-      <if test="workerTel != null">
-        worker_tel = #{workerTel,jdbcType=CHAR},
+      <if test="dto.workerTel != null">
+        worker_tel = #{dto.workerTel,jdbcType=CHAR},
       </if>
-      <if test="workerEmail != null">
-        worker_email = #{workerEmail,jdbcType=VARCHAR},
+      <if test="dto.workerEmail != null">
+        worker_email = #{dto.workerEmail,jdbcType=VARCHAR},
       </if>
-      <if test="workerPwd != null">
-        worker_pwd = #{workerPwd,jdbcType=VARCHAR},
+      <if test="dto.workerPwd != null">
+        worker_pwd = #{dto.workerPwd,jdbcType=VARCHAR},
       </if>
-      <if test="headPortrait != null">
-        head_portrait = #{headPortrait,jdbcType=VARCHAR},
+      <if test="dto.headPortrait != null">
+        head_portrait = #{dto.headPortrait,jdbcType=VARCHAR},
       </if>
     </set>
-    where worker_id = #{workerId,jdbcType=CHAR}
+    where worker_id = #{dto.workerId,jdbcType=CHAR}
   </update>
 
   <update id="updateByPrimaryKey" parameterType="com.hmis.worker.dto.WorkerInfo">

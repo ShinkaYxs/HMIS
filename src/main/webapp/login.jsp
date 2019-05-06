@@ -117,8 +117,9 @@
                 dataType:"JSON",
                 success:function(data){
                     if (data.success) {
-                        layer.msg( "登录成功" ,{offset: '60px',icon: 6,anim: 6,time: 2000});
-                        window.location.href = urlJumpPage;
+                        layer.msg( "登录成功" ,{offset: '60px',icon: 6,anim: 6,time: 1000, end: function (){
+                                                location.href = urlJumpPage}});
+                        // window.location.href = urlJumpPage;
                     }else{
                         console.log("错误信息是: " + data.msg);
                         layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});

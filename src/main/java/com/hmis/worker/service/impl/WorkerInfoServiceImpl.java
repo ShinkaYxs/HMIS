@@ -24,9 +24,33 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
     @Resource
     private WorkerInfoMapper workerInfoMapper;
 
+    /**
+     * 工作人员登录
+     * @param workerInfo
+     * @return
+     */
     @Override
     public List<WorkerInfo> workerLogin(WorkerInfo workerInfo){
         return workerInfoMapper.queryCountForLogin(workerInfo);
     }
 
+    /**
+     * 工作人员-个人资料修改
+     * @param workerInfo
+     * @return
+     */
+    @Override
+    public int updateByIdSelective(WorkerInfo workerInfo) {
+        return workerInfoMapper.updateByIdSelective(workerInfo);
+    }
+
+    /**
+     * 工作人员修改个人资料之后重新查询该人的个人资料
+     * @param workerId
+     * @return
+     */
+    @Override
+    public WorkerInfo selectById(String workerId) {
+        return workerInfoMapper.selectById(workerId);
+    }
 }

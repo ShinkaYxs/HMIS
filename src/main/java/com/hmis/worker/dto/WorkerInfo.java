@@ -1,6 +1,9 @@
 package com.hmis.worker.dto;
 
 public class WorkerInfo {
+
+    private Integer workerNo;
+
     private String workerId;
 
     private String workerName;
@@ -122,5 +125,13 @@ public class WorkerInfo {
 
     public void setUserPasswd(String userPasswd) {
         this.userPasswd = userPasswd;
+    }
+
+    public Integer getWorkerNo() {
+        return workerNo;
+    }
+
+    public void setWorkerNo(Integer workerNo) {
+        this.workerNo = workerNo;
     }
 }

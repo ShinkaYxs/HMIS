@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hmis.user.mapper.UserInfoMapper">
   <resultMap id="BaseResultMap" type="com.hmis.user.dto.UserInfo">
+<<<<<<< HEAD
     <id column="user_no" javaType="INTEGER" property="userNO"/>
+=======
+    <id column="user_no" jdbcType="INTEGER" property="userNo" />
+>>>>>>> dev
     <result column="user_id" jdbcType="CHAR" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_sex" jdbcType="CHAR" property="userSex" />
@@ -14,7 +18,7 @@
   </resultMap>
 
   <sql id="Base_Column_List">
-    user_id, user_name, user_sex, user_age, user_tel, user_email, head_portrait
+    user_no, user_id, user_name, user_sex, user_age, user_tel, user_email, head_portrait
   </sql>
 
   <select id="queryCountForLogin" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -29,7 +33,7 @@
     </where>
   </select>
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user_info
@@ -106,32 +110,32 @@
     </trim>
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.hmis.user.dto.UserInfo">
+  <update id="updateByIdSelective" parameterType="com.hmis.user.dto.UserInfo">
     update user_info
     <set>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
+      <if test="dto.userName != null">
+        user_name = #{dto.userName,jdbcType=VARCHAR},
       </if>
-      <if test="userSex != null">
-        user_sex = #{userSex,jdbcType=CHAR},
+      <if test="dto.userSex != null">
+        user_sex = #{dto.userSex,jdbcType=CHAR},
       </if>
-      <if test="userAge != null">
-        user_age = #{userAge,jdbcType=INTEGER},
+      <if test="dto.userAge != null">
+        user_age = #{dto.userAge,jdbcType=INTEGER},
       </if>
-      <if test="userTel != null">
-        user_tel = #{userTel,jdbcType=CHAR},
+      <if test="dto.userTel != null">
+        user_tel = #{dto.userTel,jdbcType=CHAR},
       </if>
-      <if test="userEmail != null">
-        user_email = #{userEmail,jdbcType=VARCHAR},
+      <if test="dto.userEmail != null">
+        user_email = #{dto.userEmail,jdbcType=VARCHAR},
       </if>
-      <if test="userPwd != null">
-        user_pwd = #{userPwd,jdbcType=VARCHAR},
+      <if test="dto.userPwd != null">
+        user_pwd = #{dto.userPwd,jdbcType=VARCHAR},
       </if>
-      <if test="headPortrait != null">
-        head_portrait = #{headPortrait,jdbcType=VARCHAR},
+      <if test="dto.headPortrait != null">
+        head_portrait = #{dto.headPortrait,jdbcType=VARCHAR},
       </if>
     </set>
-    where user_id = #{userId,jdbcType=CHAR}
+    where user_id = #{dto.userId,jdbcType=CHAR}
   </update>
 
   <update id="updateByPrimaryKey" parameterType="com.hmis.user.dto.UserInfo">

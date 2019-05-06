@@ -39,18 +39,17 @@ public class AdminInfoController {
     @RequestMapping(value = "/adminLogin")
     @ResponseBody
     public PojoMsg adminLogin(@RequestBody AdminInfo adminInfo,HttpServletRequest request){
-        List<AdminInfo> adminInfoList = adminInfoService.adminLogin(adminInfo);
         PojoMsg pojoMsg = new PojoMsg();
+        //判断验证码是否正确
+        if (!CaptchaUtil.ver(adminInfo.getCode(), request)) {
+            CaptchaUtil.clear(request);
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("验证码错误！");
+            return pojoMsg;
+        }
+
+        List<AdminInfo> adminInfoList = adminInfoService.adminLogin(adminInfo);
         if (adminInfoList.size() == 1){
-
-            //判断验证码是否正确
-            if (!CaptchaUtil.ver(adminInfo.getCode(), request)) {
-                CaptchaUtil.clear(request);
-                pojoMsg.setSuccess(false);
-                pojoMsg.setMsg("验证码错误！");
-                return pojoMsg;
-            }
-
             pojoMsg.setSuccess(true);
             pojoMsg.setMsg("登录成功！");
 
