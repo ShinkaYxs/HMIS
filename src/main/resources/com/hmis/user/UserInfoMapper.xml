@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hmis.user.mapper.UserInfoMapper">
   <resultMap id="BaseResultMap" type="com.hmis.user.dto.UserInfo">
-    <id column="user_id" jdbcType="CHAR" property="userId" />
+    <id column="user_no" javaType="INTEGER" property="userNO"/>
+    <result column="user_id" jdbcType="CHAR" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_sex" jdbcType="CHAR" property="userSex" />
     <result column="user_age" jdbcType="INTEGER" property="userAge" />
@@ -40,13 +41,13 @@
     where user_id = #{userId,jdbcType=CHAR}
   </delete>
 
-  <insert id="userRegister" parameterType="com.hmis.user.dto.UserInfo">
+  <insert id="insertCountForRegister" parameterType="com.hmis.user.dto.UserInfo">
     insert into user_info (user_id, user_name, user_sex, 
       user_age, user_tel, user_email, 
       user_pwd)
-    values (#{userId,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{userSex,jdbcType=CHAR}, 
+    values (#{userId,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{userSex,jdbcType=CHAR},
       #{userAge,jdbcType=INTEGER}, #{userTel,jdbcType=CHAR}, #{userEmail,jdbcType=VARCHAR}, 
-      #{userPwd,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR})
+      #{userPwd,jdbcType=VARCHAR})
   </insert>
 
   <insert id="insertSelective" parameterType="com.hmis.user.dto.UserInfo">
@@ -73,9 +74,9 @@
       <if test="userPwd != null">
         user_pwd,
       </if>
-      <if test="headPortrait != null">
-        head_portrait,
-      </if>
+<!--      <if test="headPortrait != null">-->
+<!--        head_portrait,-->
+<!--      </if>-->
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -99,9 +100,9 @@
       <if test="userPwd != null">
         #{userPwd,jdbcType=VARCHAR},
       </if>
-      <if test="headPortrait != null">
-        #{headPortrait,jdbcType=VARCHAR},
-      </if>
+<!--      <if test="headPortrait != null">-->
+<!--        #{headPortrait,jdbcType=VARCHAR},-->
+<!--      </if>-->
     </trim>
   </insert>
 

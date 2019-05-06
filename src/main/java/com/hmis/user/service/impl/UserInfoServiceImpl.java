@@ -31,6 +31,6 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
     @Override
     public List<UserInfo> userRegister(UserInfo userInfo) {
-        return userInfoMapper.queryCountForRegister(userInfo);
+        return userInfoMapper.insertCountForRegister(userInfo);
     }
 }

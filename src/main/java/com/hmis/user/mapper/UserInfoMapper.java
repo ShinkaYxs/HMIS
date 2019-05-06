@@ -21,5 +21,5 @@ public interface UserInfoMapper {
 
     int updateByPrimaryKey(UserInfo record);
 
-    List<UserInfo> queryCountForRegister(@Param("dto") UserInfo userInfo);
+    List<UserInfo> insertCountForRegister(@Param("dto") UserInfo userInfo);
 }

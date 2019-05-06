@@ -88,7 +88,8 @@
         </div>
         <div class="form-group text-center">
             <div>标记为*为您必填的项目，注册后您的账号为手机号或者邮箱账号</div>
-            <button class="btn btn-lg btn-default" type="submit" id="submit" diabaled="">注册</button>
+<%--            <button class="btn btn-lg btn-default" type="submit" id="submit" diabaled="">注册</button>--%>
+            <button id="registerFormButton" class="layui-btn login_btn" lay-submit="" lay-filter="registerFormButton">注册</button>
             <button class="btn btn-lg btn-default" type="reset">重置</button>
         </div>
     </form>
@@ -187,35 +188,38 @@
 <script>
 
 
-    layui.use(['form','layer'],function(){
+    layui.use(['form','layer'],function() {
         var form = layui.form,
             layer = parent.layer === undefined ? layui.layer : parent.layer,
             $ = layui.jquery;
 
         // form.render();
 
+
+        form.on('submit(registerFormButton)', function (data) {
             $.ajax({
-                url:'/user/userRegister',
-                method:'post',
+                url: '/user/userRegister',
+                method: 'post',
                 contentType: "application/json;charset=utf-8",
-                data:dataJson,
-                dataType:"JSON",
-                success:function(data){
+                data: dataJson,
+                dataType: "JSON",
+                success: function (data) {
                     if (data.success) {
                         // layer.msg( "登录成功" ,{offset: '60px',icon: 6,anim: 6,time: 2000});
-                         window.location.href = "/login.jsp";
-                    }else{
-                         console.log("错误信息是: " + data.msg);
-                         layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});
-                         changeCodeImg();
+                        window.location.href = "/login.jsp";
+                    } else {
+                        console.log("错误信息是: " + data.msg);
+                        layer.msg(data.msg, {offset: '60px', icon: 5, anim: 6, time: 3000});
+                        changeCodeImg();
                     }
                 },
-                error:function(data){
-                    layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});
+                error: function (data) {
+                    layer.msg(data.msg, {offset: '60px', icon: 5, anim: 6, time: 3000});
                     changeCodeImg();
                 }
             });
             return false;   //使用Ajax提交，此语句阻止LayUI的form表单进行第二次提交
         })
+    });
 </script>
 </html>
