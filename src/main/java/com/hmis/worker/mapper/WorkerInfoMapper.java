@@ -22,10 +22,10 @@ public interface WorkerInfoMapper {
 
     /**
      * 工作人员修改个人资料之后重新查询该人的个人资料
-     * @param workerId
+     * @param workerNo
      * @return
      */
-    WorkerInfo selectById(String workerId);
+    WorkerInfo selectById(int workerNo);
 
     /**
      * 工作人员-个人资料修改

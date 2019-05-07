@@ -90,14 +90,14 @@ public class WorkerInfoController {
             pojoMsg.setMsg("登录成功！");
 
             //重新查询一遍工作人员的信息
-            WorkerInfo workerInfoSelectById = workerInfoService.selectById(workerInfo.getWorkerId());
+            WorkerInfo workerInfoSelectByNo = workerInfoService.selectByNo(workerInfo.getWorkerNo());
 
             //将除密码外的所有信息放入session中
             HttpSession session = request.getSession();
-            session.setAttribute("workerInfo",workerInfoSelectById);
+            session.setAttribute("workerInfo",workerInfoSelectByNo);
 
             //执行成功后返回给页面的数据，实际上拿到这些数据也不用，所以不放入这些信息也行
-            pojoMsg.add(String.valueOf(0),workerInfoSelectById);
+            pojoMsg.add(String.valueOf(0),workerInfoSelectByNo);
             return pojoMsg;
         }else{
             pojoMsg.setSuccess(false);

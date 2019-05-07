@@ -28,10 +28,10 @@ public interface WorkerInfoService {
 
     /**
      * 工作人员修改个人资料之后重新查询该人的个人资料
-     * @param workerId
+     * @param workerNo
      * @return
      */
-    WorkerInfo selectById(String workerId);
+    WorkerInfo selectByNo(int workerNo);
 
 }
 

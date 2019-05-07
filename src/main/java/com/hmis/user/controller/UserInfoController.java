@@ -82,6 +82,9 @@ public class UserInfoController {
             pojoMsg.setMsg("验证码错误！");
             return pojoMsg;
         }
+
+
+
         int userInfoList = userInfoService.userRegister(userInfo);
         if (userInfoList == 1){
 
@@ -114,14 +117,14 @@ public class UserInfoController {
             pojoMsg.setMsg("登录成功！");
 
             //重新查询一遍普通用户的信息
-            UserInfo userInfoselectById = userInfoService.selectById(userInfo.getUserId());
+            UserInfo userInfoselectByNo = userInfoService.selectByNo(userInfo.getUserNo());
 
             //将用户除密码外的所有信息放入session中
             HttpSession session = request.getSession();
-            session.setAttribute("userInfo",userInfoselectById);
+            session.setAttribute("userInfo",userInfoselectByNo);
 
             //执行成功后返回给登录页面的数据，实际上拿到这些数据也不用，所以不放入这些信息也行
-            pojoMsg.add(String.valueOf(0),userInfoselectById);
+            pojoMsg.add(String.valueOf(0),userInfoselectByNo);
             return pojoMsg;
         }else{
             pojoMsg.setSuccess(false);

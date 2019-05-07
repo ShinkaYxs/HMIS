@@ -29,8 +29,8 @@ public interface UserInfoService {
 
     /**
      * 普通用户修改个人资料之后重新查询该人的个人资料
-     * @param userId
+     * @param userNo
      * @return
      */
-    UserInfo selectById(String userId);
+    UserInfo selectByNo(int userNo);
 }

@@ -46,11 +46,11 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
 
     /**
      * 工作人员修改个人资料之后重新查询该人的个人资料
-     * @param workerId
+     * @param workerNo
      * @return
      */
     @Override
-    public WorkerInfo selectById(String workerId) {
-        return workerInfoMapper.selectById(workerId);
+    public WorkerInfo selectByNo(int workerNo) {
+        return workerInfoMapper.selectById(workerNo);
     }
 }
