@@ -79,7 +79,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">部门</label>
             <div class="layui-input-block">
-                <input type="text" name="departmentId" value=${sessionScope.workerInfo.departmentId} disabled class="layui-input layui-disabled">
+                <input type="text" name="departmentNo" value=${sessionScope.workerInfo.departmentNo} disabled class="layui-input layui-disabled">
             </div>
         </div>
         <div class="layui-form-item">

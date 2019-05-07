@@ -24,7 +24,7 @@ public interface WorkerInfoService {
      * @param workerInfo
      * @return
      */
-    int updateByIdSelective(WorkerInfo workerInfo);
+    int updateByNoSelective(WorkerInfo workerInfo);
 
     /**
      * 工作人员修改个人资料之后重新查询该人的个人资料

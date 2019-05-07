@@ -28,7 +28,7 @@ public interface WorkerInfoMapper {
      * @param workerInfo
      * @return
      */
-    int updateByIdSelective(@Param("dto") WorkerInfo workerInfo);
+    int updateByNoSelective(@Param("dto") WorkerInfo workerInfo);
 
 
 

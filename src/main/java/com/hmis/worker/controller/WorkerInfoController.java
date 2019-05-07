@@ -84,7 +84,7 @@ public class WorkerInfoController {
     @ResponseBody
     public PojoMsg workerChange(@RequestBody WorkerInfo workerInfo, HttpServletRequest request){
         PojoMsg pojoMsg = new PojoMsg();
-        int workerChangeResult = workerInfoService.updateByIdSelective(workerInfo);
+        int workerChangeResult = workerInfoService.updateByNoSelective(workerInfo);
         if (workerChangeResult == 1){
             pojoMsg.setSuccess(true);
             pojoMsg.setMsg("登录成功！");
@@ -117,7 +117,7 @@ public class WorkerInfoController {
     public PojoMsg workerChangePwd(@RequestBody WorkerInfo workerInfo, HttpServletRequest request){
         PojoMsg pojoMsg = new PojoMsg();
 
-        int workerChangeResult = workerInfoService.updateByIdSelective(workerInfo);
+        int workerChangeResult = workerInfoService.updateByNoSelective(workerInfo);
         if (workerChangeResult == 1){
             pojoMsg.setSuccess(true);
             pojoMsg.setMsg("登录成功！");
