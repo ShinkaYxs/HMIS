@@ -24,7 +24,7 @@ public interface WorkerInfoService {
      * @param record
      * @return
      */
-    int updateByIdSelective(WorkerInfo record);
+    int updateByNoSelective(WorkerInfo record);
 
     /**
      * 工作人员修改个人资料之后重新查询该人的个人资料

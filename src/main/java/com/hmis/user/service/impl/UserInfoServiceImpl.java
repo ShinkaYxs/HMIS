@@ -56,7 +56,7 @@ public class UserInfoServiceImpl implements UserInfoService {
      * @return
      */
     @Override
-    public UserInfo selectByNo(int userNo) {
+    public UserInfo selectByNo(Integer userNo) {
         return userInfoMapper.selectByNo(userNo);
     }
 }

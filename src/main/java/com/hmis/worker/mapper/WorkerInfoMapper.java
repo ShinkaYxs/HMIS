@@ -32,7 +32,7 @@ public interface WorkerInfoMapper {
      * @param record
      * @return
      */
-    int updateByIdSelective(@Param("dto") WorkerInfo record);
+    int updateByNoSelective(@Param("dto") WorkerInfo record);
 
     int updateByPrimaryKey(WorkerInfo record);
 }

@@ -32,5 +32,5 @@ public interface UserInfoService {
      * @param userNo
      * @return
      */
-    UserInfo selectByNo(int userNo);
+    UserInfo selectByNo(Integer userNo);
 }

@@ -40,8 +40,8 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
      * @return
      */
     @Override
-    public int updateByIdSelective(WorkerInfo workerInfo) {
-        return workerInfoMapper.updateByIdSelective(workerInfo);
+    public int updateByNoSelective(WorkerInfo workerInfo) {
+        return workerInfoMapper.updateByNoSelective(workerInfo);
     }
 
     /**
@@ -51,6 +51,6 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
      */
     @Override
     public WorkerInfo selectByNo(int workerNo) {
-        return workerInfoMapper.selectById(workerNo);
+        return workerInfoMapper.selectByNo(workerNo);
     }
 }
