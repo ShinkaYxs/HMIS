@@ -3,11 +3,10 @@
 <mapper namespace="com.hmis.worker.mapper.WorkerInfoMapper">
   <resultMap id="BaseResultMap" type="com.hmis.worker.dto.WorkerInfo">
     <id column="worker_no" jdbcType="INTEGER" property="workerNo" />
-<!--    <result column="worker_id" jdbcType="CHAR" property="workerId" />-->
     <result column="worker_name" jdbcType="VARCHAR" property="workerName" />
     <result column="worker_sex" jdbcType="CHAR" property="workerSex" />
     <result column="worker_age" jdbcType="TINYINT" property="workerAge" />
-    <result column="department_id" jdbcType="CHAR" property="departmentId" />
+    <result column="department_id" jdbcType="Integer" property="departmentNo" />
     <result column="worker_tel" jdbcType="CHAR" property="workerTel" />
     <result column="worker_email" jdbcType="VARCHAR" property="workerEmail" />
     <result column="worker_pwd" jdbcType="VARCHAR" property="workerPwd" />
@@ -56,9 +55,6 @@
   <insert id="insertSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
     insert into worker_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-<!--      <if test="workerId != null">-->
-<!--        worker_id,-->
-<!--      </if>-->
       <if test="workerName != null">
         worker_name,
       </if>
@@ -85,9 +81,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="workerId != null">
-        #{workerId,jdbcType=CHAR},
-      </if>
       <if test="workerName != null">
         #{workerName,jdbcType=VARCHAR},
       </if>
@@ -127,9 +120,9 @@
       <if test="dto.workerAge != null">
         worker_age = #{dto.workerAge,jdbcType=TINYINT},
       </if>
-<!--      <if test="dto.departmentId != null">-->
-<!--        department_id = #{dto.departmentId,jdbcType=CHAR},-->
-<!--      </if>-->
+      <if test="dto.departmentNo != null">
+        department_no = #{dto.departmentNo,jdbcType=Integer},
+      </if>
       <if test="dto.workerTel != null">
         worker_tel = #{dto.workerTel,jdbcType=CHAR},
       </if>

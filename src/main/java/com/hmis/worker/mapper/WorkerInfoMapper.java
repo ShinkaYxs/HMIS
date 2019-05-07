@@ -14,10 +14,6 @@ public interface WorkerInfoMapper {
      */
     List<WorkerInfo> queryCountForLogin(@Param("dto") WorkerInfo workerInfo);
 
-    int deleteByPrimaryKey(String workerId);
-
-    int insert(WorkerInfo record);
-
     int insertSelective(WorkerInfo record);
 
     /**
@@ -25,14 +21,20 @@ public interface WorkerInfoMapper {
      * @param workerNo
      * @return
      */
-    WorkerInfo selectById(int workerNo);
+    WorkerInfo selectByNo(int workerNo);
 
     /**
      * 工作人员-个人资料修改
-     * @param record
+     * @param workerInfo
      * @return
      */
-    int updateByIdSelective(@Param("dto") WorkerInfo record);
+    int updateByIdSelective(@Param("dto") WorkerInfo workerInfo);
+
+
+
+    int deleteByPrimaryKey(String workerId);
+
+    int insert(WorkerInfo record);
 
     int updateByPrimaryKey(WorkerInfo record);
 }

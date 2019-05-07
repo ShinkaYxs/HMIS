@@ -51,6 +51,6 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
      */
     @Override
     public WorkerInfo selectByNo(int workerNo) {
-        return workerInfoMapper.selectById(workerNo);
+        return workerInfoMapper.selectByNo(workerNo);
     }
 }

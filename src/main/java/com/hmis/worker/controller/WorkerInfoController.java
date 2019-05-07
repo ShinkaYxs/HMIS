@@ -123,7 +123,7 @@ public class WorkerInfoController {
             pojoMsg.setMsg("登录成功！");
 
             //重新查询一遍工作人员的信息
-            WorkerInfo workerInfoSelectById = workerInfoService.selectById(workerInfo.getWorkerId());
+            WorkerInfo workerInfoSelectById = workerInfoService.selectByNo(workerInfo.getWorkerNo());
 
             //将除密码外的所有信息放入session中
             HttpSession session = request.getSession();

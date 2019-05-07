@@ -21,10 +21,10 @@ public interface WorkerInfoService {
 
     /**
      * 工作人员-个人资料修改
-     * @param record
+     * @param workerInfo
      * @return
      */
-    int updateByIdSelective(WorkerInfo record);
+    int updateByIdSelective(WorkerInfo workerInfo);
 
     /**
      * 工作人员修改个人资料之后重新查询该人的个人资料
