@@ -41,13 +41,13 @@
     where user_id = #{userId,jdbcType=CHAR}
   </delete>
 
-  <insert id="insert" parameterType="com.hmis.user.dto.UserInfo">
+  <insert id="insertCountForRegister" parameterType="com.hmis.user.dto.UserInfo">
     insert into user_info (user_id, user_name, user_sex, 
       user_age, user_tel, user_email, 
-      user_pwd, head_portrait)
-    values (#{userId,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{userSex,jdbcType=CHAR}, 
-      #{userAge,jdbcType=INTEGER}, #{userTel,jdbcType=CHAR}, #{userEmail,jdbcType=VARCHAR}, 
-      #{userPwd,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR})
+      user_pwd)
+    values (#{dto.userId,jdbcType=CHAR}, #{dto.userName,jdbcType=VARCHAR}, #{dto.userSex,jdbcType=CHAR},
+      #{dto.userAge,jdbcType=INTEGER}, #{dto.userTel,jdbcType=CHAR}, #{dto.userEmail,jdbcType=VARCHAR},
+      #{dto.userPwd,jdbcType=VARCHAR})
   </insert>
 
   <insert id="insertSelective" parameterType="com.hmis.user.dto.UserInfo">
@@ -74,9 +74,9 @@
       <if test="userPwd != null">
         user_pwd,
       </if>
-      <if test="headPortrait != null">
-        head_portrait,
-      </if>
+<!--      <if test="headPortrait != null">-->
+<!--        head_portrait,-->
+<!--      </if>-->
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -100,9 +100,9 @@
       <if test="userPwd != null">
         #{userPwd,jdbcType=VARCHAR},
       </if>
-      <if test="headPortrait != null">
-        #{headPortrait,jdbcType=VARCHAR},
-      </if>
+<!--      <if test="headPortrait != null">-->
+<!--        #{headPortrait,jdbcType=VARCHAR},-->
+<!--      </if>-->
     </trim>
   </insert>
 

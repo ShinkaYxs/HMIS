@@ -35,4 +35,8 @@ public interface UserInfoMapper {
     int updateByIdSelective(@Param("dto") UserInfo record);
 
     int updateByPrimaryKey(UserInfo record);
+
+    //int userRegister(UserInfo userInfo);
+
+    int insertCountForRegister(UserInfo userInfo);
 }

@@ -18,6 +18,9 @@ public interface UserInfoService {
      */
     List<UserInfo> userLogin(UserInfo userInfo);
 
+    int userRegister(UserInfo userInfo);
+
+
     /**
      * 普通用户-个人资料修改
      * @param record
