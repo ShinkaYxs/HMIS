@@ -71,6 +71,32 @@ public class UserInfoController {
             return pojoMsg;
         }
     }
+    @RequestMapping(value = "/userRegister")
+    @ResponseBody
+    public PojoMsg userRegister(@RequestBody UserInfo userInfo, HttpServletRequest request){
+
+        PojoMsg pojoMsg = new PojoMsg();
+        if (!CaptchaUtil.ver(userInfo.getCode(), request)) {
+            CaptchaUtil.clear(request);
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("验证码错误！");
+            return pojoMsg;
+        }
+        int userInfoList = userInfoService.userRegister(userInfo);
+        if (userInfoList == 1){
+
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("注册成功！");
+
+            //将用户除密码外的所有信息放入session中
+
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("用注册失败请重试！");
+            return pojoMsg;
+        }
+    }
 
     /**
      * 普通用户-个人资料修改

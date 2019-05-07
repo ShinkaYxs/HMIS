@@ -27,7 +27,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     /**
      * 普通用户登录
-     *
      * @param userInfo
      * @return
      */
@@ -41,15 +40,13 @@ public class UserInfoServiceImpl implements UserInfoService {
         return userInfoMapper.insertCountForRegister(userInfo);
     }
 
-
-
     /**
      * 普通用户-个人资料修改
      * @param userInfo
      * @return
      */
     @Override
-    public int updateByIdSelective (UserInfo userInfo){
+    public int updateByIdSelective(UserInfo userInfo) {
         return userInfoMapper.updateByIdSelective(userInfo);
     }
 

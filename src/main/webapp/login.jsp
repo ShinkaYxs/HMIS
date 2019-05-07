@@ -45,7 +45,7 @@
         </div>
         <div class="layui-form-item" style="margin-bottom: 20px;">
             <input type="checkbox" name="remember" lay-skin="primary" title="记住密码">
-            <a href="/user_register.html" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">注册帐号</a>
+            <a href="/user_register.jsp" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">注册帐号</a>
             <a href="forget.html" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？&nbsp;&nbsp;&nbsp;</a>
         </div>
         <button id="loginFormButton" class="layui-btn login_btn" lay-submit="" lay-filter="loginFormButton">登录</button>

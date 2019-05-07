@@ -36,7 +36,5 @@ public interface UserInfoMapper {
 
     int updateByPrimaryKey(UserInfo record);
 
-    //int userRegister(UserInfo userInfo);
-
-    int insertCountForRegister(UserInfo userInfo);
+    int insertCountForRegister(@Param("dto") UserInfo userInfo);
 }

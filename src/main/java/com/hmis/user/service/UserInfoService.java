@@ -20,7 +20,6 @@ public interface UserInfoService {
 
     int userRegister(UserInfo userInfo);
 
-
     /**
      * 普通用户-个人资料修改
      * @param record
