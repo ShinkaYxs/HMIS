@@ -47,16 +47,16 @@ public class UserInfoServiceImpl implements UserInfoService {
      */
     @Override
     public int updateByIdSelective(UserInfo userInfo) {
-        return userInfoMapper.updateByIdSelective(userInfo);
+        return userInfoMapper.updateByNoSelective(userInfo);
     }
 
     /**
      * 普通用户修改个人资料之后重新查询该人的个人资料
-     * @param userId
+     * @param userNo
      * @return
      */
     @Override
-    public UserInfo selectById(String userId) {
-        return userInfoMapper.selectById(userId);
+    public UserInfo selectByNo(int userNo) {
+        return userInfoMapper.selectByNo(userNo);
     }
 }

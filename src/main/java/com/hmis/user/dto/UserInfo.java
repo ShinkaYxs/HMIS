@@ -4,7 +4,7 @@ public class UserInfo {
 
     private Integer userNo;
 
-    private String userId;
+//    private String userId;
 
     private String userName;
 
@@ -26,13 +26,13 @@ public class UserInfo {
     //登录用的
     private String userPasswd;
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+//    public String getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(String userId) {
+//        this.userId = userId;
+//    }
 
     public String getUserName() {
         return userName;
