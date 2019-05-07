@@ -128,5 +128,33 @@ public class WorkerInfoController {
         }
     }
 
+    /**
+     * 查询所有工作人员信息
+     * @param workerInfo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/workerInfoQueryAll")
+    @ResponseBody
+    public PojoMsg workerInfoQueryAll(HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+//        List<WorkerInfo> workerInfoList = workerInfoService.workerInfoQueryAll(workerInfo);
+        List<WorkerInfo> workerInfoList = workerInfoService.workerInfoQueryAll();
+        if (workerInfoList.size() >= 0){
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("查询成功！");
+
+            //执行成功后返回给登录页面的数据
+            int count = 0;
+            for(WorkerInfo workerInfo_elem : workerInfoList){
+                pojoMsg.add(String.valueOf(count++),workerInfo_elem);
+            }
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("查询过程未知错误！");
+            return pojoMsg;
+        }
+    }
 
 }

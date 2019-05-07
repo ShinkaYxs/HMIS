@@ -63,4 +63,17 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
     public int updatePwdByNoAndOld(WorkerInfo workerInfo) {
         return workerInfoMapper.updatePwdByNoAndOld(workerInfo);
     }
+
+    /**
+     * 查询所有工作人员信息
+     * @return
+     */
+//    @Override
+//    public List<WorkerInfo> workerInfoQueryAll(WorkerInfo workerInfo) {
+//        return workerInfoMapper.workerInfoQueryAll(workerInfo);
+//    }
+    @Override
+    public List<WorkerInfo> workerInfoQueryAll() {
+        return workerInfoMapper.workerInfoQueryAll();
+    }
 }

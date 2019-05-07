@@ -35,6 +35,13 @@ public interface WorkerInfoMapper {
      */
     int updatePwdByNoAndOld(@Param("dto") WorkerInfo workerInfo);
 
+    /**
+     * 查询所有工作人员信息
+     * @return
+     */
+//    List<WorkerInfo> workerInfoQueryAll(@Param("dto") WorkerInfo workerInfo);
+    List<WorkerInfo> workerInfoQueryAll();
+
 
 
     int insertSelective(WorkerInfo workerInfo);

@@ -75,7 +75,7 @@
     set user_pwd = #{dto.userNewPwd,jdbcType=VARCHAR}
     <where>
       AND user_no = #{dto.userNo,jdbcType=INTEGER}
-      AND user_pwd = #{dto.userPwd,jdbcType=INTEGER}
+      AND user_pwd = #{dto.userPwd,jdbcType=VARCHAR}
     </where>
   </update>
 

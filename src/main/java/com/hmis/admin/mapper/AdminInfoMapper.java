@@ -14,6 +14,15 @@ public interface AdminInfoMapper {
      */
     List<AdminInfo> queryCountForLogin(@Param("dto") AdminInfo adminInfo);
 
+    /**
+     * 管理员修改密码
+     * @param adminInfo
+     * @return
+     */
+    int updatePwdByOld(@Param("dto") AdminInfo adminInfo);
+
+
+
     int insert(AdminInfo adminInfo);
 
     int insertSelective(AdminInfo adminInfo);

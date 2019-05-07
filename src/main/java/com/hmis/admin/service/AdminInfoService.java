@@ -17,4 +17,11 @@ public interface AdminInfoService {
      * @return
      */
     List<AdminInfo> adminLogin(AdminInfo adminInfo);
+
+    /**
+     * 管理员修改密码
+     * @param adminInfo
+     * @return
+     */
+    int updatePwdByOld(AdminInfo adminInfo);
 }

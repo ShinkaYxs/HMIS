@@ -50,9 +50,9 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">所有商品</a>
+                    <a class="" href="javascript:;">工作人员</a>
                     <dl class="layui-nav-child">
-                        <dd><a data-url="/index.html" data-id="testId" data-title="这里是选项a" href="#"
+                        <dd><a data-url="/index.html" data-id="testId" data-title="查看/修改" href="#"
                                class="site-demo-active" data-type="tabAdd">选项a</a></dd>
                         <dd><a href="javascript:;">列表一</a></dd>
                         <dd><a href="javascript:;">列表二</a></dd>

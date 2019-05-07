@@ -40,6 +40,13 @@ public interface WorkerInfoService {
      */
     int updatePwdByNoAndOld(WorkerInfo workerInfo);
 
+    /**
+     * 查询所有工作人员信息
+     * @return
+     */
+//    List<WorkerInfo> workerInfoQueryAll(WorkerInfo workerInfo);
+    List<WorkerInfo> workerInfoQueryAll();
+
 }
 
 
