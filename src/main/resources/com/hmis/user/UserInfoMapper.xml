@@ -104,7 +104,7 @@
     </trim>
   </insert>
 
-  <update id="updateByIdSelective" parameterType="com.hmis.user.dto.UserInfo">
+  <update id="updateByNoSelective" parameterType="com.hmis.user.dto.UserInfo">
     update user_info
     <set>
       <if test="dto.userName != null">
@@ -129,7 +129,7 @@
         head_portrait = #{dto.headPortrait,jdbcType=VARCHAR},
       </if>
     </set>
-    where user_id = #{dto.userId,jdbcType=CHAR}
+    where user_no = #{dto.userNo,jdbcType=INTEGER}
   </update>
 
 <!--  <update id="updateByPrimaryKey" parameterType="com.hmis.user.dto.UserInfo">-->
