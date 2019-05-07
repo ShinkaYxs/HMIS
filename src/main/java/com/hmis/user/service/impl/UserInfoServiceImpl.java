@@ -58,6 +58,5 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public UserInfo selectById(String userId) {
         return userInfoMapper.selectById(userId);
-
     }
 }
