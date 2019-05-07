@@ -33,6 +33,11 @@ public class UserInfo {
 //    public void setUserId(String userId) {
 //        this.userId = userId;
 //    }
+    public Integer getUserNo() { return userNo; }
+
+    public void setUserNo(Integer userNo) {
+        this.userNo = userNo;
+    }
 
     public String getUserName() {
         return userName;
@@ -104,13 +109,5 @@ public class UserInfo {
 
     public void setUserPasswd(String userPasswd) {
         this.userPasswd = userPasswd;
-    }
-
-    public Integer getUserNo() {
-        return userNo;
-    }
-
-    public void setUserNo(Integer userNo) {
-        this.userNo = userNo;
     }
 }

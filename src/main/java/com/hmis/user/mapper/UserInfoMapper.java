@@ -14,7 +14,7 @@ public interface UserInfoMapper {
      */
     List<UserInfo> queryCountForLogin(@Param("dto") UserInfo userInfo);
 
-    int deleteByPrimaryKey(String userId);
+    int deleteByPrimaryKey(Integer userNo);
 
     int insert(UserInfo record);
 
@@ -25,7 +25,7 @@ public interface UserInfoMapper {
      * @param userNo
      * @return
      */
-    UserInfo selectByNo(int userNo);
+    UserInfo selectByNo(Integer userNo);
 
     /**
      * 普通用户-个人资料修改

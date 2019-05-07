@@ -21,8 +21,7 @@
     <include refid="Base_Column_List" />
     from user_info a
     <where>
-      AND (
-          a.user_tel = #{dto.userName,jdbcType=CHAR}
+      AND (a.user_tel = #{dto.userName,jdbcType=CHAR}
           OR a.user_email = #{dto.userName,jdbcType=CHAR})
       AND a.user_pwd = #{dto.userPasswd,jdbcType=VARCHAR}
     </where>
@@ -35,10 +34,10 @@
     where user_no = #{userNo,jdbcType=INTEGER}
   </select>
 
-<!--  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">-->
-<!--    delete from user_info-->
-<!--    where user_id = #{userId,jdbcType=INTEGER}-->
-<!--  </delete>-->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_info
+    where user_no = #{userNo,jdbcType=INTEGER}
+  </delete>
 
   <insert id="insertCountForRegister" parameterType="com.hmis.user.dto.UserInfo">
     insert into user_info (user_name, user_sex,
@@ -51,8 +50,8 @@
   <insert id="insertSelective" parameterType="com.hmis.user.dto.UserInfo">
     insert into user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-<!--      <if test="userId != null">-->
-<!--        user_id,-->
+<!--      <if test="userNo != null">-->
+<!--        user_no,-->
 <!--      </if>-->
       <if test="userName != null">
         user_name,
@@ -77,9 +76,6 @@
 <!--      </if>-->
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-<!--      <if test="userId != null">-->
-<!--        #{userId,jdbcType=CHAR},-->
-<!--      </if>-->
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
       </if>
@@ -132,15 +128,15 @@
     where user_no = #{dto.userNo,jdbcType=INTEGER}
   </update>
 
-<!--  <update id="updateByPrimaryKey" parameterType="com.hmis.user.dto.UserInfo">-->
-<!--    update user_info-->
-<!--    set user_name = #{userName,jdbcType=VARCHAR},-->
-<!--      user_sex = #{userSex,jdbcType=CHAR},-->
-<!--      user_age = #{userAge,jdbcType=INTEGER},-->
-<!--      user_tel = #{userTel,jdbcType=CHAR},-->
-<!--      user_email = #{userEmail,jdbcType=VARCHAR},-->
-<!--      user_pwd = #{userPwd,jdbcType=VARCHAR},-->
-<!--      head_portrait = #{headPortrait,jdbcType=VARCHAR}-->
-<!--    where user_id = #{userId,jdbcType=CHAR}-->
-<!--  </update>-->
+  <update id="updateByPrimaryKey" parameterType="com.hmis.user.dto.UserInfo">
+    update user_info
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=CHAR},
+      user_age = #{userAge,jdbcType=INTEGER},
+      user_tel = #{userTel,jdbcType=CHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      head_portrait = #{headPortrait,jdbcType=VARCHAR}
+    where user_no = #{userNo,jdbcType=INTEGER}
+  </update>
 </mapper>
