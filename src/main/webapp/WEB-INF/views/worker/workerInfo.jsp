@@ -31,22 +31,22 @@
         /*修改密码*/
         .changePwd{ width:30%; margin:3% 0 0 5%; }
 
-        /*适配*/
-        @media screen and (max-width:1050px){
-            /*用户信息*/
-            .user_left,.user_right,.changePwd{ width:100%; float:none; margin-left: 0; }
-            .user_right{ margin-bottom: 20px; }
-        }
-        @media screen and (max-width: 750px){
-            /*用户信息*/
-            .user_left,.user_right,.changePwd{ width:100%; float:none; margin-left: 0; }
-            .user_right{ margin-bottom: 20px; }
-        }
-        @media screen and (max-width:432px){
-            /*用户信息*/
-            .user_left,.user_right,.changePwd{ width:100%; float:none; margin-left: 0; }
-            .user_right{ margin-bottom: 20px; }
-        }
+        /*!*适配*!*/
+        /*@media screen and (max-width:1050px){*/
+            /*!*用户信息*!*/
+            /*.user_left,.user_right,.changePwd{ width:100%; float:none; margin-left: 0; }*/
+            /*.user_right{ margin-bottom: 20px; }*/
+        /*}*/
+        /*@media screen and (max-width: 750px){*/
+            /*!*用户信息*!*/
+            /*.user_left,.user_right,.changePwd{ width:100%; float:none; margin-left: 0; }*/
+            /*.user_right{ margin-bottom: 20px; }*/
+        /*}*/
+        /*@media screen and (max-width:432px){*/
+            /*!*用户信息*!*/
+            /*.user_left,.user_right,.changePwd{ width:100%; float:none; margin-left: 0; }*/
+            /*.user_right{ margin-bottom: 20px; }*/
+        /*}*/
     </style>
 </head>
 <body class="childrenBody">
@@ -55,7 +55,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">工号</label>
             <div class="layui-input-block">
-                <input type="text" name="workerId" value=${sessionScope.workerInfo.workerId} disabled class="layui-input layui-disabled">
+                <input type="text" name="workerNo" value=${sessionScope.workerInfo.workerNo} disabled class="layui-input layui-disabled">
             </div>
         </div>
         <div class="layui-form-item">

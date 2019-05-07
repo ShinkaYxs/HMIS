@@ -31,6 +31,9 @@ public class WorkerInfo {
     //登录用的
     private String userPasswd;
 
+    //修改密码时用的
+    private String workerNewPwd;
+
     public String getWorkerId() {
         return workerId;
     }
@@ -133,5 +136,13 @@ public class WorkerInfo {
 
     public void setWorkerNo(Integer workerNo) {
         this.workerNo = workerNo;
+    }
+
+    public String getWorkerNewPwd() {
+        return workerNewPwd;
+    }
+
+    public void setWorkerNewPwd(String workerNewPwd) {
+        this.workerNewPwd = workerNewPwd;
     }
 }

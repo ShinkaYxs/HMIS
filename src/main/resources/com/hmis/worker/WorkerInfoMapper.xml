@@ -24,8 +24,7 @@
     <include refid="Base_Column_List" />
     from worker_info a
     <where>
-      AND (a.worker_id = #{dto.userName,jdbcType=CHAR}
-          OR a.worker_tel = #{dto.userName,jdbcType=CHAR}
+      AND (a.worker_tel = #{dto.userName,jdbcType=CHAR}
           OR a.worker_email = #{dto.userName,jdbcType=CHAR})
       AND a.worker_pwd = #{dto.userPasswd,jdbcType=VARCHAR}
     </where>
@@ -143,8 +142,11 @@
       <if test="dto.headPortrait != null">
         head_portrait = #{dto.headPortrait,jdbcType=VARCHAR},
       </if>
+      <if test="dto.workerNewPwd != null">
+        worker_pwd = #{dto.workerNewPwd,jdbcType=VARCHAR},
+      </if>
     </set>
-    where worker_id = #{dto.workerId,jdbcType=CHAR}
+    where worker_No = #{dto.workerNo,jdbcType=Integer}
   </update>
 
   <update id="updateByPrimaryKey" parameterType="com.hmis.worker.dto.WorkerInfo">
