@@ -32,7 +32,7 @@ public interface UserInfoMapper {
      * @param record
      * @return
      */
-    int updateByIdSelective(@Param("dto") UserInfo record);
+    int updateByNoSelective(@Param("dto") UserInfo record);
 
     int updateByPrimaryKey(UserInfo record);
 

@@ -7,7 +7,7 @@
     <result column="worker_name" jdbcType="VARCHAR" property="workerName" />
     <result column="worker_sex" jdbcType="CHAR" property="workerSex" />
     <result column="worker_age" jdbcType="TINYINT" property="workerAge" />
-    <result column="department_id" jdbcType="CHAR" property="departmentId" />
+    <result column="department_no" jdbcType="INTEGER" property="departmentNo" />
     <result column="worker_tel" jdbcType="CHAR" property="workerTel" />
     <result column="worker_email" jdbcType="VARCHAR" property="workerEmail" />
     <result column="worker_pwd" jdbcType="VARCHAR" property="workerPwd" />
@@ -15,7 +15,7 @@
   </resultMap>
 
   <sql id="Base_Column_List">
-    worker_no, worker_id, worker_name, worker_sex, worker_age, department_id, worker_tel, worker_email,
+    worker_no, worker_name, worker_sex, worker_age, department_no, worker_tel, worker_email,
     head_portrait
   </sql>
 
@@ -68,8 +68,8 @@
       <if test="workerAge != null">
         worker_age,
       </if>
-      <if test="departmentId != null">
-        department_id,
+      <if test="departmentNo != null">
+        department_no,
       </if>
       <if test="workerTel != null">
         worker_tel,
@@ -85,8 +85,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="workerId != null">
-        #{workerId,jdbcType=CHAR},
+      <if test="workerNo != null">
+        #{workerNo,jdbcType=INTEGER},
       </if>
       <if test="workerName != null">
         #{workerName,jdbcType=VARCHAR},
@@ -97,8 +97,8 @@
       <if test="workerAge != null">
         #{workerAge,jdbcType=TINYINT},
       </if>
-      <if test="departmentId != null">
-        #{departmentId,jdbcType=CHAR},
+      <if test="departmentNo != null">
+        #{departmentNo,jdbcType=INTEGER},
       </if>
       <if test="workerTel != null">
         #{workerTel,jdbcType=CHAR},
@@ -115,7 +115,7 @@
     </trim>
   </insert>
 
-  <update id="updateByIdSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
+  <update id="updateByNoSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
     update worker_info
     <set>
       <if test="dto.workerName != null">
@@ -143,7 +143,7 @@
         head_portrait = #{dto.headPortrait,jdbcType=VARCHAR},
       </if>
     </set>
-    where worker_id = #{dto.workerId,jdbcType=CHAR}
+    where worker_no = #{dto.workerNo,jdbcType=INTEGER}
   </update>
 
 <!--  <update id="updateByPrimaryKey" parameterType="com.hmis.worker.dto.WorkerInfo">-->
