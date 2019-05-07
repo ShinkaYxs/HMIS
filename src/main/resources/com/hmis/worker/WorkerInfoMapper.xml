@@ -29,6 +29,37 @@
     </where>
   </select>
 
+  <update id="updateByNoSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
+    update worker_info
+    <set>
+      <if test="dto.workerName != null">
+        worker_name = #{dto.workerName,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.workerSex != null">
+        worker_sex = #{dto.workerSex,jdbcType=CHAR},
+      </if>
+      <if test="dto.workerAge != null">
+        worker_age = #{dto.workerAge,jdbcType=TINYINT},
+      </if>
+      <if test="dto.departmentNo != null">
+        department_no = #{dto.departmentNo,jdbcType=INTEGER},
+      </if>
+      <if test="dto.workerTel != null">
+        worker_tel = #{dto.workerTel,jdbcType=CHAR},
+      </if>
+      <if test="dto.workerEmail != null">
+        worker_email = #{dto.workerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.workerPwd != null">
+        worker_pwd = #{dto.workerPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.headPortrait != null">
+        head_portrait = #{dto.headPortrait,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where worker_no = #{dto.workerNo,jdbcType=INTEGER}
+  </update>
+
   <select id="selectByNo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -36,21 +67,16 @@
     where worker_no = #{workerNo,jdbcType=INTEGER}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from worker_info
-    where worker_no = #{workerNo,jdbcType=INTEGER}
-  </delete>
+  <update id="updatePwdByNoAndOld" parameterType="com.hmis.worker.dto.WorkerInfo">
+    update worker_info
+    set worker_pwd = #{dto.workerNewPwd,jdbcType=VARCHAR}
+    <where>
+      AND worker_no = #{dto.workerNo,jdbcType=INTEGER}
+      AND worker_pwd = #{dto.workerPwd,jdbcType=INTEGER}
+    </where>
+  </update>
 
-  <insert id="insert" parameterType="com.hmis.worker.dto.WorkerInfo">
-    insert into worker_info (worker_no, worker_name, worker_sex,
-      worker_age, department_no, worker_tel,
-      worker_email, worker_pwd, head_portrait
-      )
-    values (#{workerNo,jdbcType=INTEGER}, #{workerName,jdbcType=VARCHAR}, #{workerSex,jdbcType=CHAR},
-      #{workerAge,jdbcType=TINYINT}, #{departmentNo,jdbcType=INTEGER}, #{workerTel,jdbcType=CHAR},
-      #{workerEmail,jdbcType=VARCHAR}, #{workerPwd,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR}
-      )
-  </insert>
+
 
   <insert id="insertSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
     insert into worker_info
@@ -108,67 +134,22 @@
     </trim>
   </insert>
 
-  <update id="updateByNoSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
-    update worker_info
-    <set>
-      <if test="dto.workerName != null">
-        worker_name = #{dto.workerName,jdbcType=VARCHAR},
-      </if>
-      <if test="dto.workerSex != null">
-        worker_sex = #{dto.workerSex,jdbcType=CHAR},
-      </if>
-      <if test="dto.workerAge != null">
-        worker_age = #{dto.workerAge,jdbcType=TINYINT},
-      </if>
-      <if test="dto.departmentNo != null">
-        department_no = #{dto.departmentNo,jdbcType=INTEGER},
-      </if>
-      <if test="dto.workerTel != null">
-        worker_tel = #{dto.workerTel,jdbcType=CHAR},
-      </if>
-      <if test="dto.workerEmail != null">
-        worker_email = #{dto.workerEmail,jdbcType=VARCHAR},
-      </if>
-      <if test="dto.workerPwd != null">
-        worker_pwd = #{dto.workerPwd,jdbcType=VARCHAR},
-      </if>
-      <if test="dto.headPortrait != null">
-        head_portrait = #{dto.headPortrait,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where worker_no = #{dto.workerNo,jdbcType=INTEGER}
-  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from worker_info
+    where worker_no = #{workerNo,jdbcType=INTEGER}
+  </delete>
 
+  <insert id="insert" parameterType="com.hmis.worker.dto.WorkerInfo">
+    insert into worker_info (worker_no, worker_name, worker_sex,
+      worker_age, department_no, worker_tel,
+      worker_email, worker_pwd, head_portrait
+      )
+    values (#{workerNo,jdbcType=INTEGER}, #{workerName,jdbcType=VARCHAR}, #{workerSex,jdbcType=CHAR},
+      #{workerAge,jdbcType=TINYINT}, #{departmentNo,jdbcType=INTEGER}, #{workerTel,jdbcType=CHAR},
+      #{workerEmail,jdbcType=VARCHAR}, #{workerPwd,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR}
+      )
+  </insert>
 
-
-<!--  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">-->
-<!--    delete from worker_info-->
-<!--    where worker_id = #{workerId,jdbcType=CHAR}-->
-<!--  </delete>-->
-
-<!--  <insert id="insert" parameterType="com.hmis.worker.dto.WorkerInfo">-->
-<!--    insert into worker_info (worker_id, worker_name, worker_sex, -->
-<!--      worker_age, department_id, worker_tel, -->
-<!--      worker_email, worker_pwd, head_portrait-->
-<!--      )-->
-<!--    values (#{workerId,jdbcType=CHAR}, #{workerName,jdbcType=VARCHAR}, #{workerSex,jdbcType=CHAR}, -->
-<!--      #{workerAge,jdbcType=TINYINT}, #{departmentId,jdbcType=CHAR}, #{workerTel,jdbcType=CHAR}, -->
-<!--      #{workerEmail,jdbcType=VARCHAR}, #{workerPwd,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR}-->
-<!--      )-->
-<!--  </insert>-->
-
-<!--  <update id="updateByPrimaryKey" parameterType="com.hmis.worker.dto.WorkerInfo">-->
-<!--    update worker_info-->
-<!--    set worker_name = #{workerName,jdbcType=VARCHAR},-->
-<!--      worker_sex = #{workerSex,jdbcType=CHAR},-->
-<!--      worker_age = #{workerAge,jdbcType=TINYINT},-->
-<!--      department_id = #{departmentId,jdbcType=CHAR},-->
-<!--      worker_tel = #{workerTel,jdbcType=CHAR},-->
-<!--      worker_email = #{workerEmail,jdbcType=VARCHAR},-->
-<!--      worker_pwd = #{workerPwd,jdbcType=VARCHAR},-->
-<!--      head_portrait = #{headPortrait,jdbcType=VARCHAR}-->
-<!--    where worker_id = #{workerId,jdbcType=CHAR}-->
-<!--  </update>-->
   <update id="updateByPrimaryKey" parameterType="com.hmis.worker.dto.WorkerInfo">
     update worker_info
     set worker_name = #{workerName,jdbcType=VARCHAR},

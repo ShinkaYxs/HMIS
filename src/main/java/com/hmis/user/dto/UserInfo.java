@@ -4,8 +4,6 @@ public class UserInfo {
 
     private Integer userNo;
 
-//    private String userId;
-
     private String userName;
 
     private String userSex;
@@ -26,13 +24,9 @@ public class UserInfo {
     //登录用的
     private String userPasswd;
 
-//    public String getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(String userId) {
-//        this.userId = userId;
-//    }
+    //修改密码时用的
+    private String userNewPwd;
+
     public Integer getUserNo() { return userNo; }
 
     public void setUserNo(Integer userNo) {
@@ -109,5 +103,13 @@ public class UserInfo {
 
     public void setUserPasswd(String userPasswd) {
         this.userPasswd = userPasswd;
+    }
+
+    public String getUserNewPwd() {
+        return userNewPwd;
+    }
+
+    public void setUserNewPwd(String userNewPwd) {
+        this.userNewPwd = userNewPwd;
     }
 }

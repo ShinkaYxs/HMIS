@@ -20,7 +20,7 @@ public interface WorkerInfoService {
 
 
     /**
-     * 工作人员-个人资料修改
+     * 工作人员个人资料修改
      * @param workerInfo
      * @return
      */
@@ -32,6 +32,13 @@ public interface WorkerInfoService {
      * @return
      */
     WorkerInfo selectByNo(int workerNo);
+
+    /**
+     * 工作人员修改密码
+     * @param workerInfo
+     * @return
+     */
+    int updatePwdByNoAndOld(WorkerInfo workerInfo);
 
 }
 

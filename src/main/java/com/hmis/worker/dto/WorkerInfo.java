@@ -4,8 +4,6 @@ public class WorkerInfo {
 
     private Integer workerNo;
 
-   //private int worker;
-
     private String workerName;
 
     private String workerSex;

@@ -35,7 +35,7 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
     }
 
     /**
-     * 工作人员-个人资料修改
+     * 工作人员个人资料修改
      * @param workerInfo
      * @return
      */
@@ -52,5 +52,15 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
     @Override
     public WorkerInfo selectByNo(int workerNo) {
         return workerInfoMapper.selectByNo(workerNo);
+    }
+
+    /**
+     * 工作人员修改密码
+     * @param workerInfo
+     * @return
+     */
+    @Override
+    public int updatePwdByNoAndOld(WorkerInfo workerInfo) {
+        return workerInfoMapper.updatePwdByNoAndOld(workerInfo);
     }
 }

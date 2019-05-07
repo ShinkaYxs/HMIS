@@ -75,7 +75,7 @@ public class WorkerInfoController {
     }
 
     /**
-     * 工作人员-个人资料修改
+     * 工作人员个人资料修改
      * @param workerInfo
      * @param request
      * @return
@@ -87,7 +87,7 @@ public class WorkerInfoController {
         int workerChangeResult = workerInfoService.updateByNoSelective(workerInfo);
         if (workerChangeResult == 1){
             pojoMsg.setSuccess(true);
-            pojoMsg.setMsg("登录成功！");
+            pojoMsg.setMsg("修改成功！");
 
             //重新查询一遍工作人员的信息
             WorkerInfo workerInfoSelectByNo = workerInfoService.selectByNo(workerInfo.getWorkerNo());
@@ -107,7 +107,7 @@ public class WorkerInfoController {
     }
 
     /**
-     * 工作人员-修改密码
+     * 工作人员修改密码
      * @param workerInfo
      * @param request
      * @return
@@ -116,25 +116,14 @@ public class WorkerInfoController {
     @ResponseBody
     public PojoMsg workerChangePwd(@RequestBody WorkerInfo workerInfo, HttpServletRequest request){
         PojoMsg pojoMsg = new PojoMsg();
-
-        int workerChangeResult = workerInfoService.updateByNoSelective(workerInfo);
-        if (workerChangeResult == 1){
+        int workerChangePwdResult = workerInfoService.updatePwdByNoAndOld(workerInfo);
+        if (workerChangePwdResult == 1){
             pojoMsg.setSuccess(true);
-            pojoMsg.setMsg("登录成功！");
-
-            //重新查询一遍工作人员的信息
-            WorkerInfo workerInfoSelectById = workerInfoService.selectByNo(workerInfo.getWorkerNo());
-
-            //将除密码外的所有信息放入session中
-            HttpSession session = request.getSession();
-            session.setAttribute("workerInfo",workerInfoSelectById);
-
-            //执行成功后返回给页面的数据，实际上拿到这些数据也不用，所以不放入这些信息也行
-            pojoMsg.add(String.valueOf(0),workerInfoSelectById);
+            pojoMsg.setMsg("修改成功！");
             return pojoMsg;
         }else{
             pojoMsg.setSuccess(false);
-            pojoMsg.setMsg("更新信息时发生错误！");
+            pojoMsg.setMsg("旧密码输入错误！");
             return pojoMsg;
         }
     }

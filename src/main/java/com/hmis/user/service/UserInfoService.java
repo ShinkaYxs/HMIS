@@ -18,14 +18,12 @@ public interface UserInfoService {
      */
     List<UserInfo> userLogin(UserInfo userInfo);
 
-    int userRegister(UserInfo userInfo);
-
     /**
-     * 普通用户-个人资料修改
-     * @param record
+     * 普通用户个人资料修改
+     * @param userInfo
      * @return
      */
-    int updateByIdSelective(UserInfo record);
+    int updateByIdSelective(UserInfo userInfo);
 
     /**
      * 普通用户修改个人资料之后重新查询该人的个人资料
@@ -33,4 +31,18 @@ public interface UserInfoService {
      * @return
      */
     UserInfo selectByNo(Integer userNo);
+
+    /**
+     * 普通用户注册
+     * @param userInfo
+     * @return
+     */
+    int userRegister(UserInfo userInfo);
+
+    /**
+     * 普通用户修改密码
+     * @param userInfo
+     * @return
+     */
+    int updatePwdByNoAndOld(UserInfo userInfo);
 }

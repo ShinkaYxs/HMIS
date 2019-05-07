@@ -71,38 +71,9 @@ public class UserInfoController {
             return pojoMsg;
         }
     }
-    @RequestMapping(value = "/userRegister")
-    @ResponseBody
-    public PojoMsg userRegister(@RequestBody UserInfo userInfo, HttpServletRequest request){
-
-        PojoMsg pojoMsg = new PojoMsg();
-        if (!CaptchaUtil.ver(userInfo.getCode(), request)) {
-            CaptchaUtil.clear(request);
-            pojoMsg.setSuccess(false);
-            pojoMsg.setMsg("验证码错误！");
-            return pojoMsg;
-        }
-
-
-
-        int userInfoList = userInfoService.userRegister(userInfo);
-        if (userInfoList == 1){
-
-            pojoMsg.setSuccess(true);
-            pojoMsg.setMsg("注册成功！");
-
-            //将用户除密码外的所有信息放入session中
-
-            return pojoMsg;
-        }else{
-            pojoMsg.setSuccess(false);
-            pojoMsg.setMsg("用注册失败请重试！");
-            return pojoMsg;
-        }
-    }
 
     /**
-     * 普通用户-个人资料修改
+     * 普通用户个人资料修改
      * @param userInfo
      * @param request
      * @return
@@ -114,7 +85,7 @@ public class UserInfoController {
         int userChangeResult = userInfoService.updateByIdSelective(userInfo);
         if (userChangeResult == 1){
             pojoMsg.setSuccess(true);
-            pojoMsg.setMsg("登录成功！");
+            pojoMsg.setMsg("修改成功！");
 
             //重新查询一遍普通用户的信息
             UserInfo userInfoselectByNo = userInfoService.selectByNo(userInfo.getUserNo());
@@ -129,6 +100,57 @@ public class UserInfoController {
         }else{
             pojoMsg.setSuccess(false);
             pojoMsg.setMsg("更新信息时发生错误！");
+            return pojoMsg;
+        }
+    }
+
+    /**
+     * 普通用户注册
+     * @param userInfo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/userRegister")
+    @ResponseBody
+    public PojoMsg userRegister(@RequestBody UserInfo userInfo, HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+        if (!CaptchaUtil.ver(userInfo.getCode(), request)) {
+            CaptchaUtil.clear(request);
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("验证码错误！");
+            return pojoMsg;
+        }
+
+        int userInfoList = userInfoService.userRegister(userInfo);
+        if (userInfoList == 1){
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("注册成功！");
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("用户注册失败请重试！");
+            return pojoMsg;
+        }
+    }
+
+    /**
+     * 普通用户修改密码
+     * @param userInfo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/userChangePwd")
+    @ResponseBody
+    public PojoMsg userChangePwd(@RequestBody UserInfo userInfo, HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+        int userChangePwdResult = userInfoService.updatePwdByNoAndOld(userInfo);
+        if (userChangePwdResult == 1){
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("修改成功！");
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("旧密码输入错误！");
             return pojoMsg;
         }
     }

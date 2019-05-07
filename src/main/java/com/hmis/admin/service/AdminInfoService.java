@@ -11,5 +11,10 @@ import java.util.List;
  */
 public interface AdminInfoService {
 
+    /**
+     * 管理员登录
+     * @param adminInfo
+     * @return
+     */
     List<AdminInfo> adminLogin(AdminInfo adminInfo);
 }
