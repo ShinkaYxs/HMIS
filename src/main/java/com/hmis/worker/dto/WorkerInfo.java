@@ -4,7 +4,7 @@ public class WorkerInfo {
 
     private Integer workerNo;
 
-    private String workerId;
+   //private int worker;
 
     private String workerName;
 
@@ -12,7 +12,7 @@ public class WorkerInfo {
 
     private Byte workerAge;
 
-    private String departmentId;
+   private Integer  departmentNo;
 
     private String workerTel;
 
@@ -31,13 +31,6 @@ public class WorkerInfo {
     //登录用的
     private String userPasswd;
 
-    public String getWorkerId() {
-        return workerId;
-    }
-
-    public void setWorkerId(String workerId) {
-        this.workerId = workerId;
-    }
 
     public String getWorkerName() {
         return workerName;
@@ -63,12 +56,12 @@ public class WorkerInfo {
         this.workerAge = workerAge;
     }
 
-    public String getDepartmentId() {
-        return departmentId;
+    public int getDepartmentNo() {
+        return departmentNo;
     }
 
-    public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartmentNo(int departmentNo) {
+        this.departmentNo = departmentNo;
     }
 
     public String getWorkerTel() {

@@ -26,9 +26,9 @@
         <div class="layui-form-item">
             <input lay-verify="required" name="userName" class="layui-input" placeholder="姓名" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">
         </div>
-        <div class="layui-form-item">
-            <input name="userId" class="layui-input" placeholder="编号" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">
-        </div>
+<%--        <div class="layui-form-item">--%>
+<%--            <input name="userId" class="layui-input" placeholder="编号" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">--%>
+<%--        </div>--%>
         <div class="layui-form-item">
             <input lay-verify="required|number"name="userAge" class="layui-input" placeholder="年龄" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">
         </div>

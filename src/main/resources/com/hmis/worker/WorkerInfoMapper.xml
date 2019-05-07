@@ -3,7 +3,7 @@
 <mapper namespace="com.hmis.worker.mapper.WorkerInfoMapper">
   <resultMap id="BaseResultMap" type="com.hmis.worker.dto.WorkerInfo">
     <id column="worker_no" jdbcType="INTEGER" property="workerNo" />
-    <result column="worker_id" jdbcType="CHAR" property="workerId" />
+<!--    <result column="worker_id" jdbcType="CHAR" property="workerId" />-->
     <result column="worker_name" jdbcType="VARCHAR" property="workerName" />
     <result column="worker_sex" jdbcType="CHAR" property="workerSex" />
     <result column="worker_age" jdbcType="TINYINT" property="workerAge" />
@@ -24,42 +24,41 @@
     <include refid="Base_Column_List" />
     from worker_info a
     <where>
-      AND (a.worker_id = #{dto.userName,jdbcType=CHAR}
-          OR a.worker_tel = #{dto.userName,jdbcType=CHAR}
+      AND ( a.worker_tel = #{dto.userName,jdbcType=CHAR}
           OR a.worker_email = #{dto.userName,jdbcType=CHAR})
       AND a.worker_pwd = #{dto.userPasswd,jdbcType=VARCHAR}
     </where>
   </select>
 
-  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+  <select id="selectByNo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from worker_info
-    where worker_id = #{workerId,jdbcType=CHAR}
+    where worker_no = #{workerNo,jdbcType=Integer}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from worker_info
-    where worker_id = #{workerId,jdbcType=CHAR}
-  </delete>
+<!--  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">-->
+<!--    delete from worker_info-->
+<!--    where worker_id = #{workerId,jdbcType=CHAR}-->
+<!--  </delete>-->
 
-  <insert id="insert" parameterType="com.hmis.worker.dto.WorkerInfo">
-    insert into worker_info (worker_id, worker_name, worker_sex, 
-      worker_age, department_id, worker_tel, 
-      worker_email, worker_pwd, head_portrait
-      )
-    values (#{workerId,jdbcType=CHAR}, #{workerName,jdbcType=VARCHAR}, #{workerSex,jdbcType=CHAR}, 
-      #{workerAge,jdbcType=TINYINT}, #{departmentId,jdbcType=CHAR}, #{workerTel,jdbcType=CHAR}, 
-      #{workerEmail,jdbcType=VARCHAR}, #{workerPwd,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR}
-      )
-  </insert>
+<!--  <insert id="insert" parameterType="com.hmis.worker.dto.WorkerInfo">-->
+<!--    insert into worker_info (worker_id, worker_name, worker_sex, -->
+<!--      worker_age, department_id, worker_tel, -->
+<!--      worker_email, worker_pwd, head_portrait-->
+<!--      )-->
+<!--    values (#{workerId,jdbcType=CHAR}, #{workerName,jdbcType=VARCHAR}, #{workerSex,jdbcType=CHAR}, -->
+<!--      #{workerAge,jdbcType=TINYINT}, #{departmentId,jdbcType=CHAR}, #{workerTel,jdbcType=CHAR}, -->
+<!--      #{workerEmail,jdbcType=VARCHAR}, #{workerPwd,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR}-->
+<!--      )-->
+<!--  </insert>-->
 
   <insert id="insertSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
     insert into worker_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="workerId != null">
-        worker_id,
-      </if>
+<!--      <if test="workerId != null">-->
+<!--        worker_id,-->
+<!--      </if>-->
       <if test="workerName != null">
         worker_name,
       </if>
@@ -128,9 +127,9 @@
       <if test="dto.workerAge != null">
         worker_age = #{dto.workerAge,jdbcType=TINYINT},
       </if>
-      <if test="dto.departmentId != null">
-        department_id = #{dto.departmentId,jdbcType=CHAR},
-      </if>
+<!--      <if test="dto.departmentId != null">-->
+<!--        department_id = #{dto.departmentId,jdbcType=CHAR},-->
+<!--      </if>-->
       <if test="dto.workerTel != null">
         worker_tel = #{dto.workerTel,jdbcType=CHAR},
       </if>
@@ -147,16 +146,16 @@
     where worker_id = #{dto.workerId,jdbcType=CHAR}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.hmis.worker.dto.WorkerInfo">
-    update worker_info
-    set worker_name = #{workerName,jdbcType=VARCHAR},
-      worker_sex = #{workerSex,jdbcType=CHAR},
-      worker_age = #{workerAge,jdbcType=TINYINT},
-      department_id = #{departmentId,jdbcType=CHAR},
-      worker_tel = #{workerTel,jdbcType=CHAR},
-      worker_email = #{workerEmail,jdbcType=VARCHAR},
-      worker_pwd = #{workerPwd,jdbcType=VARCHAR},
-      head_portrait = #{headPortrait,jdbcType=VARCHAR}
-    where worker_id = #{workerId,jdbcType=CHAR}
-  </update>
+<!--  <update id="updateByPrimaryKey" parameterType="com.hmis.worker.dto.WorkerInfo">-->
+<!--    update worker_info-->
+<!--    set worker_name = #{workerName,jdbcType=VARCHAR},-->
+<!--      worker_sex = #{workerSex,jdbcType=CHAR},-->
+<!--      worker_age = #{workerAge,jdbcType=TINYINT},-->
+<!--      department_id = #{departmentId,jdbcType=CHAR},-->
+<!--      worker_tel = #{workerTel,jdbcType=CHAR},-->
+<!--      worker_email = #{workerEmail,jdbcType=VARCHAR},-->
+<!--      worker_pwd = #{workerPwd,jdbcType=VARCHAR},-->
+<!--      head_portrait = #{headPortrait,jdbcType=VARCHAR}-->
+<!--    where worker_id = #{workerId,jdbcType=CHAR}-->
+<!--  </update>-->
 </mapper>
