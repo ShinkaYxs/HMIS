@@ -14,9 +14,9 @@ import java.util.Map;
  * @date 2019/4/24 20:04
  */
 public class PojoMsg {
-    private boolean success;    //返回100表示成功,200表示失败
-    private String msg;    //返回提示信息
-//    private Map<String,Object> extend = new HashMap<String,Object>();    //用户返回给浏览器的数据
+    private int code = 1;       //状态码
+    private boolean success;    //返回true表示成功,false表示失败
+    private String msg;         //返回提示信息
     private Map<String,Object> data = new HashMap<String,Object>();    //用户返回给浏览器的数据
 
     public PojoMsg success() {
@@ -31,26 +31,18 @@ public class PojoMsg {
     }
 
     public PojoMsg add(String key,Object value) {
-//        this.getExtend().put(key, value);
         this.getData().put(key, value);
         return this;
     }
 
-    public String getMsg() {
-        return msg;
+
+    public int getCode() {
+        return code;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setCode(int code) {
+        this.code = code;
     }
-
-//    public Map<String, Object> getExtend() {
-//        return extend;
-//    }
-//
-//    public void setExtend(Map<String, Object> extend) {
-//        this.extend = extend;
-//    }
 
     public boolean isSuccess() {
         return success;
@@ -60,7 +52,13 @@ public class PojoMsg {
         this.success = success;
     }
 
+    public String getMsg() {
+        return msg;
+    }
 
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
     public Map<String, Object> getData() {
         return data;

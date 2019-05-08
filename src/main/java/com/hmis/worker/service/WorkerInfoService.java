@@ -47,6 +47,13 @@ public interface WorkerInfoService {
 //    List<WorkerInfo> workerInfoQueryAll(WorkerInfo workerInfo);
     List<WorkerInfo> workerInfoQueryAll();
 
+    /**
+     * 管理员根据工号删除工作人员
+     * @param workerId
+     * @return
+     */
+    int deleteWorkerByNo(Integer workerId);
+
 }
 
 

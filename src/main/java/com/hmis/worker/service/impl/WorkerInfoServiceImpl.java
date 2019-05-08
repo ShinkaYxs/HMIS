@@ -76,4 +76,14 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
     public List<WorkerInfo> workerInfoQueryAll() {
         return workerInfoMapper.workerInfoQueryAll();
     }
+
+    /**
+     * 管理员根据工号删除工作人员
+     * @param workerId
+     * @return
+     */
+    @Override
+    public int deleteWorkerByNo(Integer workerId) {
+        return workerInfoMapper.deleteWorkerByNo(workerId);
+    }
 }

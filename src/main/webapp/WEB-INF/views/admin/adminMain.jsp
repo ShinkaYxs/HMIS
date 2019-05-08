@@ -52,8 +52,8 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">工作人员</a>
                     <dl class="layui-nav-child">
-                        <dd><a data-url="/index.html" data-id="testId" data-title="查看/修改" href="#"
-                               class="site-demo-active" data-type="tabAdd">选项a</a></dd>
+                        <dd><a data-url="/page/views/admin/adminWorkerInfoRUD" data-id="adminWorkerInfoRUD" data-title="工作人员信息" href="#"
+                               class="site-demo-active" data-type="tabAdd">工作人员信息</a></dd>
                         <dd><a href="javascript:;">列表一</a></dd>
                         <dd><a href="javascript:;">列表二</a></dd>
                         <dd><a href="javascript:;">列表三</a></dd>

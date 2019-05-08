@@ -42,11 +42,16 @@ public interface WorkerInfoMapper {
 //    List<WorkerInfo> workerInfoQueryAll(@Param("dto") WorkerInfo workerInfo);
     List<WorkerInfo> workerInfoQueryAll();
 
+    /**
+     * 管理员根据工号删除工作人员
+     * @param workerId
+     * @return
+     */
+    int deleteWorkerByNo(Integer workerId);
+
 
 
     int insertSelective(WorkerInfo workerInfo);
-
-    int deleteByPrimaryKey(String workerId);
 
     int insert(WorkerInfo workerInfo);
 

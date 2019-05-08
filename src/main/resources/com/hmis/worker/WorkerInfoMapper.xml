@@ -76,36 +76,17 @@
     </where>
   </update>
 
-  <!--<select id="workerInfoQueryAll" parameterType="com.hmis.worker.dto.WorkerInfo" resultMap="BaseResultMap">-->
-    <!--select-->
-    <!--<include refid="Base_Column_List" />-->
-    <!--from worker_info-->
-    <!--<where>-->
-      <!--<if test="dto.workerName != null">-->
-        <!--worker_name = #{dto.workerName,jdbcType=VARCHAR},-->
-      <!--</if>-->
-      <!--<if test="dto.workerSex != null">-->
-        <!--worker_sex = #{dto.workerSex,jdbcType=CHAR},-->
-      <!--</if>-->
-      <!--<if test="dto.workerAge != null">-->
-        <!--worker_age = #{dto.workerAge,jdbcType=TINYINT},-->
-      <!--</if>-->
-      <!--<if test="dto.departmentNo != null">-->
-        <!--department_no = #{dto.departmentNo,jdbcType=INTEGER},-->
-      <!--</if>-->
-      <!--<if test="dto.workerTel != null">-->
-        <!--worker_tel = #{dto.workerTel,jdbcType=CHAR},-->
-      <!--</if>-->
-      <!--<if test="dto.workerEmail != null">-->
-        <!--worker_email = #{dto.workerEmail,jdbcType=VARCHAR},-->
-      <!--</if>-->
-    <!--</where>-->
-  <!--</select>-->
   <select id="workerInfoQueryAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from worker_info
+    order by worker_no
   </select>
+
+  <delete id="deleteWorkerByNo" parameterType="java.lang.Integer">
+    delete from worker_info
+    where worker_no = #{workerNo,jdbcType=INTEGER}
+  </delete>
 
 
 
@@ -164,11 +145,6 @@
       </if>
     </trim>
   </insert>
-
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from worker_info
-    where worker_no = #{workerNo,jdbcType=INTEGER}
-  </delete>
 
   <insert id="insert" parameterType="com.hmis.worker.dto.WorkerInfo">
     insert into worker_info (worker_no, worker_name, worker_sex,

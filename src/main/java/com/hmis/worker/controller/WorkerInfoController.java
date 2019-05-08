@@ -6,8 +6,6 @@
 
 package com.hmis.worker.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.hmis.tools.GetRequestJsonUtils;
 import com.hmis.tools.PojoMsg;
 import com.hmis.worker.dto.WorkerInfo;
 import com.hmis.worker.service.WorkerInfoService;
@@ -130,7 +128,7 @@ public class WorkerInfoController {
 
     /**
      * 查询所有工作人员信息
-     * @param workerInfo
+//     * @param workerInfo
      * @param request
      * @return
      */
@@ -138,9 +136,9 @@ public class WorkerInfoController {
     @ResponseBody
     public PojoMsg workerInfoQueryAll(HttpServletRequest request){
         PojoMsg pojoMsg = new PojoMsg();
-//        List<WorkerInfo> workerInfoList = workerInfoService.workerInfoQueryAll(workerInfo);
         List<WorkerInfo> workerInfoList = workerInfoService.workerInfoQueryAll();
         if (workerInfoList.size() >= 0){
+            pojoMsg.setCode(0);
             pojoMsg.setSuccess(true);
             pojoMsg.setMsg("查询成功！");
 
@@ -153,6 +151,28 @@ public class WorkerInfoController {
         }else{
             pojoMsg.setSuccess(false);
             pojoMsg.setMsg("查询过程未知错误！");
+            return pojoMsg;
+        }
+    }
+
+    /**
+     * 管理员根据工号删除工作人员
+     * @param workerNo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/workerDeleteByNo")
+    @ResponseBody
+    public PojoMsg workerDeleteByNo(Integer workerNo, HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+        int workerDeleteByNoResult = workerInfoService.deleteWorkerByNo(workerNo);
+        if (workerDeleteByNoResult == 1){
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("删除成功！");
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("员工不存在或发生其他错误！");
             return pojoMsg;
         }
     }
