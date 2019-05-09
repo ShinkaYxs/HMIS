@@ -11,5 +11,17 @@ import java.util.List;
  */
 public interface AdminInfoService {
 
+    /**
+     * 管理员登录
+     * @param adminInfo
+     * @return
+     */
     List<AdminInfo> adminLogin(AdminInfo adminInfo);
+
+    /**
+     * 管理员修改密码
+     * @param adminInfo
+     * @return
+     */
+    int updatePwdByOld(AdminInfo adminInfo);
 }

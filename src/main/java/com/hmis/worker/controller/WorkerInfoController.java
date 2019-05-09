@@ -6,8 +6,6 @@
 
 package com.hmis.worker.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.hmis.tools.GetRequestJsonUtils;
 import com.hmis.tools.PojoMsg;
 import com.hmis.worker.dto.WorkerInfo;
 import com.hmis.worker.service.WorkerInfoService;
@@ -75,7 +73,7 @@ public class WorkerInfoController {
     }
 
     /**
-     * 工作人员-个人资料修改
+     * 工作人员个人资料修改
      * @param workerInfo
      * @param request
      * @return
@@ -87,7 +85,7 @@ public class WorkerInfoController {
         int workerChangeResult = workerInfoService.updateByNoSelective(workerInfo);
         if (workerChangeResult == 1){
             pojoMsg.setSuccess(true);
-            pojoMsg.setMsg("登录成功！");
+            pojoMsg.setMsg("修改成功！");
 
             //重新查询一遍工作人员的信息
             WorkerInfo workerInfoSelectByNo = workerInfoService.selectByNo(workerInfo.getWorkerNo());
@@ -107,7 +105,7 @@ public class WorkerInfoController {
     }
 
     /**
-     * 工作人员-修改密码
+     * 工作人员修改密码
      * @param workerInfo
      * @param request
      * @return
@@ -116,28 +114,90 @@ public class WorkerInfoController {
     @ResponseBody
     public PojoMsg workerChangePwd(@RequestBody WorkerInfo workerInfo, HttpServletRequest request){
         PojoMsg pojoMsg = new PojoMsg();
-
-        int workerChangeResult = workerInfoService.updateByNoSelective(workerInfo);
-        if (workerChangeResult == 1){
+        int workerChangePwdResult = workerInfoService.updatePwdByNoAndOld(workerInfo);
+        if (workerChangePwdResult == 1){
             pojoMsg.setSuccess(true);
-            pojoMsg.setMsg("登录成功！");
-
-            //重新查询一遍工作人员的信息
-            WorkerInfo workerInfoSelectById = workerInfoService.selectByNo(workerInfo.getWorkerNo());
-
-            //将除密码外的所有信息放入session中
-            HttpSession session = request.getSession();
-            session.setAttribute("workerInfo",workerInfoSelectById);
-
-            //执行成功后返回给页面的数据，实际上拿到这些数据也不用，所以不放入这些信息也行
-            pojoMsg.add(String.valueOf(0),workerInfoSelectById);
+            pojoMsg.setMsg("修改成功！");
             return pojoMsg;
         }else{
             pojoMsg.setSuccess(false);
-            pojoMsg.setMsg("更新信息时发生错误！");
+            pojoMsg.setMsg("旧密码输入错误！");
             return pojoMsg;
         }
     }
 
+    /**
+     * 查询所有工作人员信息
+//     * @param workerInfo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/workerInfoQueryAll")
+    @ResponseBody
+    public PojoMsg workerInfoQueryAll(HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+        List<WorkerInfo> workerInfoList = workerInfoService.workerInfoQueryAll();
+        if (workerInfoList.size() >= 0){
+            pojoMsg.setCode(0);
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("查询成功！");
+
+            //执行成功后返回给登录页面的数据
+            int count = 0;
+            for(WorkerInfo workerInfo_elem : workerInfoList){
+                pojoMsg.add(String.valueOf(count++),workerInfo_elem);
+            }
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("查询过程未知错误！");
+            return pojoMsg;
+        }
+    }
+
+    /**
+     * 管理员根据工号删除工作人员
+     * @param workerNo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/workerDeleteByNo")
+    @ResponseBody
+    public PojoMsg workerDeleteByNo(Integer workerNo, HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+        int workerDeleteByNoResult = workerInfoService.deleteWorkerByNo(workerNo);
+        if (workerDeleteByNoResult == 1){
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("删除成功！");
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("员工不存在或发生其他错误！");
+            return pojoMsg;
+        }
+    }
+
+    /**
+     * 管理员添加工作人员信息
+     * @param workerInfo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/workerAdd")
+    @ResponseBody
+    public PojoMsg workerAdd(@RequestBody WorkerInfo workerInfo, HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+        workerInfo.setWorkerPwd("111111");     //初始密码设为111111
+        int workerAddResult = workerInfoService.workerAdd(workerInfo);
+        if (workerAddResult == 1){
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("添加成功！");
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("添加过程发生错误！");
+            return pojoMsg;
+        }
+    }
 
 }

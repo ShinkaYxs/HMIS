@@ -71,4 +71,26 @@ public class AdminInfoController {
         }
     }
 
+    /**
+     * 管理员修改密码
+     * @param adminInfo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/adminChangePwd")
+    @ResponseBody
+    public PojoMsg adminChangePwd(@RequestBody AdminInfo adminInfo,HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+        int adminChangePwdResult = adminInfoService.updatePwdByOld(adminInfo);
+        if (adminChangePwdResult == 1){
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("修改成功！");
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("旧密码输入错误！");
+            return pojoMsg;
+        }
+    }
+
 }

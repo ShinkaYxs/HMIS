@@ -35,7 +35,7 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
     }
 
     /**
-     * 工作人员-个人资料修改
+     * 工作人员个人资料修改
      * @param workerInfo
      * @return
      */
@@ -52,5 +52,48 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
     @Override
     public WorkerInfo selectByNo(int workerNo) {
         return workerInfoMapper.selectByNo(workerNo);
+    }
+
+    /**
+     * 工作人员修改密码
+     * @param workerInfo
+     * @return
+     */
+    @Override
+    public int updatePwdByNoAndOld(WorkerInfo workerInfo) {
+        return workerInfoMapper.updatePwdByNoAndOld(workerInfo);
+    }
+
+    /**
+     * 查询所有工作人员信息
+     * @return
+     */
+//    @Override
+//    public List<WorkerInfo> workerInfoQueryAll(WorkerInfo workerInfo) {
+//        return workerInfoMapper.workerInfoQueryAll(workerInfo);
+//    }
+    @Override
+    public List<WorkerInfo> workerInfoQueryAll() {
+        return workerInfoMapper.workerInfoQueryAll();
+    }
+
+    /**
+     * 管理员根据工号删除工作人员
+     * @param workerId
+     * @return
+     */
+    @Override
+    public int deleteWorkerByNo(Integer workerId) {
+        return workerInfoMapper.deleteWorkerByNo(workerId);
+    }
+
+    /**
+     * 管理员添加工作人员信息
+     * @param workerInfo
+     * @return
+     */
+    @Override
+    public int workerAdd(WorkerInfo workerInfo) {
+        return workerInfoMapper.workerAdd(workerInfo);
     }
 }

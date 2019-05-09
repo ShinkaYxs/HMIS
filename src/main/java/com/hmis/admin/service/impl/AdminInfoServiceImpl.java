@@ -24,9 +24,24 @@ public class AdminInfoServiceImpl implements AdminInfoService {
     @Resource
     private AdminInfoMapper adminInfoMapper;
 
+    /**
+     * 管理员登录
+     * @param adminInfo
+     * @return
+     */
     @Override
     public List<AdminInfo> adminLogin(AdminInfo adminInfo){
         List<AdminInfo> result = adminInfoMapper.queryCountForLogin(adminInfo);
         return result;
+    }
+
+    /**
+     * 管理员修改密码
+     * @param adminInfo
+     * @return
+     */
+    @Override
+    public int updatePwdByOld(AdminInfo adminInfo) {
+        return adminInfoMapper.updatePwdByOld(adminInfo);
     }
 }

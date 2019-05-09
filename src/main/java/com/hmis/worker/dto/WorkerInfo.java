@@ -4,13 +4,11 @@ public class WorkerInfo {
 
     private Integer workerNo;
 
-   //private int worker;
-
     private String workerName;
 
     private String workerSex;
 
-    private Byte workerAge;
+    private Integer workerAge;
 
    private Integer  departmentNo;
 
@@ -50,19 +48,19 @@ public class WorkerInfo {
         this.workerSex = workerSex;
     }
 
-    public Byte getWorkerAge() {
+    public Integer getWorkerAge() {
         return workerAge;
     }
 
-    public void setWorkerAge(Byte workerAge) {
+    public void setWorkerAge(Integer workerAge) {
         this.workerAge = workerAge;
     }
 
-    public int getDepartmentNo() {
+    public Integer getDepartmentNo() {
         return departmentNo;
     }
 
-    public void setDepartmentNo(int departmentNo) {
+    public void setDepartmentNo(Integer departmentNo) {
         this.departmentNo = departmentNo;
     }
 
