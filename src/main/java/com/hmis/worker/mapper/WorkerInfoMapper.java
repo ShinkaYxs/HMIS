@@ -49,11 +49,16 @@ public interface WorkerInfoMapper {
      */
     int deleteWorkerByNo(Integer workerId);
 
+    /**
+     * 管理员添加工作人员信息
+     * @param workerInfo
+     * @return
+     */
+    int workerAdd(@Param("dto") WorkerInfo workerInfo);
+
 
 
     int insertSelective(WorkerInfo workerInfo);
-
-    int insert(WorkerInfo workerInfo);
 
     int updateByPrimaryKey(WorkerInfo workerInfo);
 }

@@ -54,10 +54,17 @@
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/admin/adminWorkerInfoRUD" data-id="adminWorkerInfoRUD" data-title="工作人员信息" href="#"
                                class="site-demo-active" data-type="tabAdd">工作人员信息</a></dd>
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="javascript:;">列表三</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                        <dd><a data-url="/page/views/admin/adminWorkerAdd" data-id="adminWorkerAdd" data-title="添加工作人员" href="#"
+                               class="site-demo-active" data-type="tabAdd">添加工作人员</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">普通用户</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="/page/views/admin/adminUserInfoRUD" data-id="adminUserInfoRUD" data-title="普通用户信息" href="#"
+                               class="site-demo-active" data-type="tabAdd">普通用户信息</a></dd>
+                        <dd><a data-url="/page/views/admin/adminUserAdd" data-id="adminUserAdd" data-title="添加普通用户" href="#"
+                               class="site-demo-active" data-type="tabAdd">添加普通用户</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

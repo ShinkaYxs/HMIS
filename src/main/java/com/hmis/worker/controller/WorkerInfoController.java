@@ -177,4 +177,27 @@ public class WorkerInfoController {
         }
     }
 
+    /**
+     * 管理员添加工作人员信息
+     * @param workerInfo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/workerAdd")
+    @ResponseBody
+    public PojoMsg workerAdd(@RequestBody WorkerInfo workerInfo, HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+        workerInfo.setWorkerPwd("111111");     //初始密码设为111111
+        int workerAddResult = workerInfoService.workerAdd(workerInfo);
+        if (workerAddResult == 1){
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("添加成功！");
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("添加过程发生错误！");
+            return pojoMsg;
+        }
+    }
+
 }

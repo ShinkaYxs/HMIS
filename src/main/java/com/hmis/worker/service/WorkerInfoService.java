@@ -54,6 +54,13 @@ public interface WorkerInfoService {
      */
     int deleteWorkerByNo(Integer workerId);
 
+    /**
+     * 管理员添加工作人员信息
+     * @param workerInfo
+     * @return
+     */
+    int workerAdd(WorkerInfo workerInfo);
+
 }
 
 

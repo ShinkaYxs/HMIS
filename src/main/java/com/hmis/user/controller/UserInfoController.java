@@ -40,7 +40,7 @@ public class UserInfoController {
      */
     @RequestMapping(value = "/userLogin")
     @ResponseBody
-    public PojoMsg workerLogin(@RequestBody UserInfo userInfo, HttpServletRequest request){
+    public PojoMsg userLogin(@RequestBody UserInfo userInfo, HttpServletRequest request){
         PojoMsg pojoMsg = new PojoMsg();
         //判断验证码是否正确
         if (!CaptchaUtil.ver(userInfo.getCode(), request)) {
@@ -114,11 +114,15 @@ public class UserInfoController {
     @ResponseBody
     public PojoMsg userRegister(@RequestBody UserInfo userInfo, HttpServletRequest request){
         PojoMsg pojoMsg = new PojoMsg();
-        if (!CaptchaUtil.ver(userInfo.getCode(), request)) {
-            CaptchaUtil.clear(request);
-            pojoMsg.setSuccess(false);
-            pojoMsg.setMsg("验证码错误！");
-            return pojoMsg;
+        if(null == userInfo.getUserPwd()){
+            userInfo.setUserPwd("111111");
+        }else{
+            if (!CaptchaUtil.ver(userInfo.getCode(), request)) {
+                CaptchaUtil.clear(request);
+                pojoMsg.setSuccess(false);
+                pojoMsg.setMsg("验证码错误！");
+                return pojoMsg;
+            }
         }
 
         int userInfoList = userInfoService.userRegister(userInfo);
@@ -151,6 +155,57 @@ public class UserInfoController {
         }else{
             pojoMsg.setSuccess(false);
             pojoMsg.setMsg("旧密码输入错误！");
+            return pojoMsg;
+        }
+    }
+
+    /**
+     * 查询所有普通用户信息
+     //     * @param userInfo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/userInfoQueryAll")
+    @ResponseBody
+    public PojoMsg userInfoQueryAll(HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+        List<UserInfo> userInfoList = userInfoService.userInfoQueryAll();
+        if (userInfoList.size() >= 0){
+            pojoMsg.setCode(0);
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("查询成功！");
+
+            //执行成功后返回给登录页面的数据
+            int count = 0;
+            for(UserInfo userInfo_elem : userInfoList){
+                pojoMsg.add(String.valueOf(count++),userInfo_elem);
+            }
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("查询过程未知错误！");
+            return pojoMsg;
+        }
+    }
+
+    /**
+     * 管理员根据No删除普通用户
+     * @param userNo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/userDeleteByNo")
+    @ResponseBody
+    public PojoMsg userDeleteByNo(Integer userNo, HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+        int userDeleteByNoResult = userInfoService.deleteUserByNo(userNo);
+        if (userDeleteByNoResult == 1){
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("删除成功！");
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("员工不存在或发生其他错误！");
             return pojoMsg;
         }
     }

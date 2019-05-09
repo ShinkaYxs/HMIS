@@ -42,9 +42,20 @@ public interface UserInfoMapper {
      */
     int updatePwdByNoAndOld(@Param("dto") UserInfo userInfo);
 
+    /**
+     * 查询所有普通用户信息
+     * @return
+     */
+    List<UserInfo> userInfoQueryAll();
+
+    /**
+     * 管理员根据No删除普通用户
+     * @param userNo
+     * @return
+     */
+    int deleteUserByNo(Integer userNo);
 
 
-    int deleteByPrimaryKey(Integer userNo);
 
     int insertSelective(UserInfo userInfo);
 

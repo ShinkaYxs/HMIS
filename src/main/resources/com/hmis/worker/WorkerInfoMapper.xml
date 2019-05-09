@@ -5,7 +5,7 @@
     <id column="worker_no" jdbcType="INTEGER" property="workerNo" />
     <result column="worker_name" jdbcType="VARCHAR" property="workerName" />
     <result column="worker_sex" jdbcType="CHAR" property="workerSex" />
-    <result column="worker_age" jdbcType="TINYINT" property="workerAge" />
+    <result column="worker_age" jdbcType="INTEGER" property="workerAge" />
     <result column="department_no" jdbcType="INTEGER" property="departmentNo" />
     <result column="worker_tel" jdbcType="CHAR" property="workerTel" />
     <result column="worker_email" jdbcType="VARCHAR" property="workerEmail" />
@@ -39,7 +39,7 @@
         worker_sex = #{dto.workerSex,jdbcType=CHAR},
       </if>
       <if test="dto.workerAge != null">
-        worker_age = #{dto.workerAge,jdbcType=TINYINT},
+        worker_age = #{dto.workerAge,jdbcType=INTEGER},
       </if>
       <if test="dto.departmentNo != null">
         department_no = #{dto.departmentNo,jdbcType=INTEGER},
@@ -88,6 +88,17 @@
     where worker_no = #{workerNo,jdbcType=INTEGER}
   </delete>
 
+  <insert id="workerAdd" parameterType="com.hmis.worker.dto.WorkerInfo">
+    insert into worker_info (worker_name, worker_sex,
+      worker_age, department_no, worker_tel,
+      worker_email, worker_pwd, head_portrait
+      )
+    values (#{dto.workerName,jdbcType=VARCHAR}, #{dto.workerSex,jdbcType=CHAR},
+      #{dto.workerAge,jdbcType=INTEGER}, #{dto.departmentNo,jdbcType=INTEGER}, #{dto.workerTel,jdbcType=CHAR},
+      #{dto.workerEmail,jdbcType=VARCHAR}, #{dto.workerPwd,jdbcType=VARCHAR}, #{dto.headPortrait,jdbcType=VARCHAR}
+      )
+  </insert>
+
 
 
   <insert id="insertSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
@@ -126,7 +137,7 @@
         #{workerSex,jdbcType=CHAR},
       </if>
       <if test="workerAge != null">
-        #{workerAge,jdbcType=TINYINT},
+        #{workerAge,jdbcType=INTEGER},
       </if>
       <if test="departmentNo != null">
         #{departmentNo,jdbcType=INTEGER},
@@ -146,22 +157,11 @@
     </trim>
   </insert>
 
-  <insert id="insert" parameterType="com.hmis.worker.dto.WorkerInfo">
-    insert into worker_info (worker_no, worker_name, worker_sex,
-      worker_age, department_no, worker_tel,
-      worker_email, worker_pwd, head_portrait
-      )
-    values (#{workerNo,jdbcType=INTEGER}, #{workerName,jdbcType=VARCHAR}, #{workerSex,jdbcType=CHAR},
-      #{workerAge,jdbcType=TINYINT}, #{departmentNo,jdbcType=INTEGER}, #{workerTel,jdbcType=CHAR},
-      #{workerEmail,jdbcType=VARCHAR}, #{workerPwd,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR}
-      )
-  </insert>
-
   <update id="updateByPrimaryKey" parameterType="com.hmis.worker.dto.WorkerInfo">
     update worker_info
     set worker_name = #{workerName,jdbcType=VARCHAR},
       worker_sex = #{workerSex,jdbcType=CHAR},
-      worker_age = #{workerAge,jdbcType=TINYINT},
+      worker_age = #{workerAge,jdbcType=INTEGER},
       department_no = #{departmentNo,jdbcType=INTEGER},
       worker_tel = #{workerTel,jdbcType=CHAR},
       worker_email = #{workerEmail,jdbcType=VARCHAR},

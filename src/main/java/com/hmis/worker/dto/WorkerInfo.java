@@ -8,7 +8,7 @@ public class WorkerInfo {
 
     private String workerSex;
 
-    private Byte workerAge;
+    private Integer workerAge;
 
    private Integer  departmentNo;
 
@@ -48,11 +48,11 @@ public class WorkerInfo {
         this.workerSex = workerSex;
     }
 
-    public Byte getWorkerAge() {
+    public Integer getWorkerAge() {
         return workerAge;
     }
 
-    public void setWorkerAge(Byte workerAge) {
+    public void setWorkerAge(Integer workerAge) {
         this.workerAge = workerAge;
     }
 

@@ -74,4 +74,23 @@ public class UserInfoServiceImpl implements UserInfoService {
     public int updatePwdByNoAndOld(UserInfo userInfo) {
         return userInfoMapper.updatePwdByNoAndOld(userInfo);
     }
+
+    /**
+     * 查询所有普通用户信息
+     * @return
+     */
+    @Override
+    public List<UserInfo> userInfoQueryAll() {
+        return userInfoMapper.userInfoQueryAll();
+    }
+
+    /**
+     * 管理员根据No删除普通用户
+     * @param userNo
+     * @return
+     */
+    @Override
+    public int deleteUserByNo(Integer userNo) {
+        return userInfoMapper.deleteUserByNo(userNo);
+    }
 }

@@ -71,7 +71,7 @@
                 $(".video-player").css({"height":$(window).height(),"width":"auto","left":-($(".video-player").width()-$(window).width())/2});
             }else{
                 //本项目所使用的背景视频尺寸较小，执行else中的语句
-                $(".video-player").css({"width":$(window).width(),"height":"auto","left":0});
+                $(".video-player").css({"width":$(window).width()+200,"height":"auto","left":0});
             }
         }).resize();
 

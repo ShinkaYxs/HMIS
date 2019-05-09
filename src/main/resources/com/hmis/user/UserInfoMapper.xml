@@ -79,12 +79,21 @@
     </where>
   </update>
 
+  <select id="userInfoQueryAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    order by user_no
+  </select>
 
-
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteUserByNo" parameterType="java.lang.Integer">
     delete from user_info
     where user_no = #{userNo,jdbcType=INTEGER}
   </delete>
+
+
+
+
 
   <insert id="insertSelective" parameterType="com.hmis.user.dto.UserInfo">
     insert into user_info
