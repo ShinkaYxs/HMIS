@@ -69,6 +69,13 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
+                    <a class="" href="javascript:;">动物管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="/page/views/worker/workerAnimalInfoRUD" data-id="adminAnimalInfoRUD" data-title="动物信息" href="#"
+                               class="site-demo-active" data-type="tabAdd">动物信息</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
                     <a href="javascript:;">解决方案</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">列表一</a></dd>

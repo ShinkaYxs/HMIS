@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>普通用户信息</title>
+    <title>动物信息</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -41,15 +41,15 @@
 
         table.render({
             elem: '#test-table-operate'
-            ,url: '/user/userInfoQueryAll'
+            ,url: '/animal/animalInfoQueryAll'
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field:'userNo', width:80, title: 'No', sort: true, fixed: 'left'}
-                ,{field:'userName', width:80, title: '用户名'}
-                ,{field:'userSex', width:80, title: '性别', sort: true}
-                ,{field:'userAge', width:80, title: '年龄'}
-                ,{field:'userTel', width:120, title: '手机', sort: true}
-                ,{field:'userEmail', title: '邮箱', sort: true}
+                ,{field:'animalNo', width:80, title: 'ID', sort: true, fixed: 'left'}
+                ,{field:'userNo', width:80, title: '所属用户'}
+                ,{field:'animalType', width:80, title: '种类'}
+                ,{field:'animalName', width:80, title: '动物名'}
+                ,{field:'animalSex', width:80, title: '性别', sort: true}
+                ,{field:'animalAge', width:80, title: '年龄'}
                 ,{field:'headPortrait',title: '头像路径'}
                 ,{width:120, align:'center', fixed: 'right', toolbar: '#test-table-operate-barDemo'}
             ]]
@@ -65,12 +65,12 @@
         table.on('tool(test-table-operate)', function(obj){
             var data = obj.data;
             // if(obj.event === 'detail'){
-            //     layer.msg('ID：'+ data.userNo + ' 的查看操作');
+            //     layer.msg('ID：'+ data.workerNo + ' 的查看操作');
             // } else
             if(obj.event === 'del'){
-                layer.confirm('真的删除该人员信息？', {icon: 3, title:'提示', offset: '50px'}, function(index){
+                layer.confirm('真的删除该动物信息？', {icon: 3, title:'提示', offset: '50px'}, function(index){
                     $.ajax({
-                        url:'/user/userDeleteByNo?userNo=' + data.userNo,
+                        url:'/animal/animalDeleteByNo?animalNo=' + data.animalNo,
                         dataType:"JSON",
                         success:function (resultData) {
                             if (resultData.success) {
@@ -89,17 +89,17 @@
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){
+                $("#animalNo").val(data.animalNo);
                 $("#userNo").val(data.userNo);
-                $("#userName").val(data.userName);
-                $("#userSex").val(data.userSex);
-                $("#userAge").val(data.userAge);
-                $("#userTel").val(data.userTel);
-                $("#userEmail").val(data.userEmail);
+                $("#animalType").val(data.animalType);
+                $("#animalName").val(data.animalName);
+                $("#animalSex").val(data.animalSex);
+                $("#animalAge").val(data.animalAge);
                 $("#headPortrait").val(data.headPortrait);
                 layer.open({
                     //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
                     type: 1,
-                    title: "修改普通用户信息",
+                    title: "修改动物信息",
                     area: ['420px', '460px'],
                     offset: '10px',             //只定义top坐标，水平保持居中
                     content: $("#popUpdateTest")//引用的弹出层的页面层的方式加载修改界面表单
@@ -116,7 +116,7 @@
                 var dataNewParam = dataNew.field;
                 var dataNewJson = JSON.stringify(dataNewParam);
                 $.ajax({
-                    url:'/user/userChange',
+                    url:'/animal/animalChange',
                     method:'post',
                     contentType: "application/json;charset=utf-8",
                     data:dataNewJson,
@@ -171,39 +171,39 @@
     <div class="layui-col-md10">
         <form class="layui-form">
             <div class="layui-form-item">
-                <label class="layui-form-label">No</label>
+                <label class="layui-form-label">工号</label>
                 <div class="layui-input-block">
-                    <input type="text" id="userNo" name="userNo" placeholder="请输入工号" disabled class="layui-input">
+                    <input type="text" id="animalNo" name="animalNo" placeholder="请输入工号" disabled class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">用户名</label>
+                <label class="layui-form-label">用户ID</label>
                 <div class="layui-input-block">
-                    <input type="text" id="userName" name="userName" placeholder="请输入用户名" class="layui-input">
+                    <input type="text" id="userNo" name="userNo" placeholder="请输入用户ID" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">动物类型</label>
+                <div class="layui-input-block">
+                    <input type="text" id="animalType" name="animalType" placeholder="请输入动物类型" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">动物名</label>
+                <div class="layui-input-block">
+                    <input type="text" id="animalName" name="animalName" placeholder="请输入动物名" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">性别</label>
                 <div class="layui-input-block">
-                    <input type="text" id="userSex" name="userSex" value="" placeholder="请输入性别" class="layui-input">
+                    <input type="text" id="animalSex" name="animalSex" value="" placeholder="请输入性别" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">年龄</label>
                 <div class="layui-input-block">
-                    <input type="tel" id="userAge" name="userAge" value="" placeholder="请输入年龄" lay-verify="required|number" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">手机</label>
-                <div class="layui-input-block">
-                    <input type="tel" id="userTel" name="userTel" value="" placeholder="请输入手机号码" lay-verify="required|phone" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">邮箱</label>
-                <div class="layui-input-block">
-                    <input type="text" id="userEmail" name="userEmail" value="" placeholder="请输入邮箱" lay-verify="required|email" class="layui-input">
+                    <input type="tel" id="animalAge" name="animalAge" value="" placeholder="请输入年龄" lay-verify="required|number" class="layui-input">
                 </div>
             </div>
             <div class="layui-input-block">
