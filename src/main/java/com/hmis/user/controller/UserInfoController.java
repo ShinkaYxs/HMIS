@@ -111,7 +111,7 @@ public class UserInfoController {
     @ResponseBody
     public PojoMsg userChange(@RequestBody UserInfo userInfo, HttpServletRequest request){
         PojoMsg pojoMsg = new PojoMsg();
-        int userChangeResult = userInfoService.updateByIdSelective(userInfo);
+        int userChangeResult = userInfoService.updateByNoSelective(userInfo);
         if (userChangeResult == 1){
             pojoMsg.setSuccess(true);
             pojoMsg.setMsg("登录成功！");

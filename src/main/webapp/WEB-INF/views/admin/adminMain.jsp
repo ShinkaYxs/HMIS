@@ -52,7 +52,7 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">所有商品</a>
                     <dl class="layui-nav-child">
-                        <dd><a data-url="/index.html" data-id="testId" data-title="这里是选项a" href="#"
+                        <dd><a data-url="/index.html" data-id="testId" data-title="这里是选项a" href=""
                                class="site-demo-active" data-type="tabAdd">选项a</a></dd>
                         <dd><a href="javascript:;">列表一</a></dd>
                         <dd><a href="javascript:;">列表二</a></dd>
@@ -68,7 +68,7 @@
                         <dd><a href="">超链接</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">云市场</a></li>
+                <li class="layui-nav-item"><a href="/insert_notice.jsp">发布公告</a></li>
                 <li class="layui-nav-item"><a href="">发布商品</a></li>
             </ul>
         </div>

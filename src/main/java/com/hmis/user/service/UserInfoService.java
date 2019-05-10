@@ -25,7 +25,7 @@ public interface UserInfoService {
      * @param record
      * @return
      */
-    int updateByIdSelective(UserInfo record);
+    int updateByNoSelective(UserInfo record);
 
     /**
      * 普通用户修改个人资料之后重新查询该人的个人资料
