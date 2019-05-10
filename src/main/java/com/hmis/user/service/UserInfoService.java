@@ -39,7 +39,7 @@ public interface UserInfoService {
      * @param userInfo
      * @return
      */
-    int userRegister(UserInfo userInfo);
+    //int userRegister(UserInfo userInfo);
 
     /**
      * 普通用户修改密码

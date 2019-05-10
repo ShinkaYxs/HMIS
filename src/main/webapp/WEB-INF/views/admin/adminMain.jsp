@@ -77,14 +77,15 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
+                    <a class="" href="javascript:;">公告管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                        <dd><a data-url="" data-id="" data-title="公告信息" href="#"
+                               class="site-demo-active" data-type="tabddA">公告信息</a></dd>
+                        <dd><a data-url="/page/views/admin/adminNoticeInfo" data-id="adminNoticeInfo" data-title="添加公告" href="#"
+                               class="site-demo-active" data-type="tabAdd">添加公告</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="/insert_notice.jsp">发布公告</a></li>
+                <li class="layui-nav-item"><a href="">云市场</a></li>
                 <li class="layui-nav-item"><a href="">发布商品</a></li>
             </ul>
         </div>
