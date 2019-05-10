@@ -4,13 +4,11 @@ public class WorkerInfo {
 
     private Integer workerNo;
 
-   //private int worker;
-
     private String workerName;
 
     private String workerSex;
 
-    private Byte workerAge;
+    private Integer workerAge;
 
    private Integer  departmentNo;
 
@@ -31,6 +29,8 @@ public class WorkerInfo {
     //登录用的
     private String userPasswd;
 
+    //修改密码时用的
+    private String workerNewPwd;
 
     public String getWorkerName() {
         return workerName;
@@ -48,11 +48,11 @@ public class WorkerInfo {
         this.workerSex = workerSex;
     }
 
-    public Byte getWorkerAge() {
+    public Integer getWorkerAge() {
         return workerAge;
     }
 
-    public void setWorkerAge(Byte workerAge) {
+    public void setWorkerAge(Integer workerAge) {
         this.workerAge = workerAge;
     }
 
@@ -126,5 +126,13 @@ public class WorkerInfo {
 
     public void setWorkerNo(Integer workerNo) {
         this.workerNo = workerNo;
+    }
+
+    public String getWorkerNewPwd() {
+        return workerNewPwd;
+    }
+
+    public void setWorkerNewPwd(String workerNewPwd) {
+        this.workerNewPwd = workerNewPwd;
     }
 }

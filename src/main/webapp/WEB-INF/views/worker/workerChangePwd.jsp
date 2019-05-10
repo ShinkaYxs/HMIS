@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>个人资料</title>
+    <title>修改密码</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -32,21 +32,21 @@
         .changePwd{ width:30%; margin:3% 0 0 5%; }
 
         /*适配*/
-        @media screen and (max-width:1050px){
-            /*用户信息*/
-            .user_left,.user_right,.changePwd{ width:100%; float:none; margin-left: 0; }
-            .user_right{ margin-bottom: 20px; }
-        }
-        @media screen and (max-width: 750px){
-            /*用户信息*/
-            .user_left,.user_right,.changePwd{ width:100%; float:none; margin-left: 0; }
-            .user_right{ margin-bottom: 20px; }
-        }
-        @media screen and (max-width:432px){
-            /*用户信息*/
-            .user_left,.user_right,.changePwd{ width:100%; float:none; margin-left: 0; }
-            .user_right{ margin-bottom: 20px; }
-        }
+        /*@media screen and (max-width:1050px){*/
+            /*!*用户信息*!*/
+            /*.user_left,.user_right,.changePwd{ width:100%; float:none; margin-left: 0; }*/
+            /*.user_right{ margin-bottom: 20px; }*/
+        /*}*/
+        /*@media screen and (max-width: 750px){*/
+            /*!*用户信息*!*/
+            /*.user_left,.user_right,.changePwd{ width:100%; float:none; margin-left: 0; }*/
+            /*.user_right{ margin-bottom: 20px; }*/
+        /*}*/
+        /*@media screen and (max-width:432px){*/
+            /*!*用户信息*!*/
+            /*.user_left,.user_right,.changePwd{ width:100%; float:none; margin-left: 0; }*/
+            /*.user_right{ margin-bottom: 20px; }*/
+        /*}*/
     </style>
 </head>
 <body class="childrenBody">
@@ -55,48 +55,32 @@
         <div class="layui-form-item">
             <label class="layui-form-label">工号</label>
             <div class="layui-input-block">
-                <input type="text" name="userNo" value=${sessionScope.userInfo.userNo} disabled class="layui-input layui-disabled">
+                <input type="text" name="workerNo" value=${sessionScope.workerInfo.workerNo} disabled class="layui-input layui-disabled">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">用户名</label>
+            <label class="layui-form-label">旧密码</label>
             <div class="layui-input-block">
-                <input type="text" name="userName" value=${sessionScope.userInfo.userName} disabled class="layui-input layui-disabled">
+                <input type="text" name="workerPwd" value="" placeholder="请输入旧密码" lay-verify="required" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">性别</label>
+            <label class="layui-form-label">新密码</label>
             <div class="layui-input-block">
-                <input type="text" name="userSex" value=${sessionScope.userInfo.userSex} disabled class="layui-input layui-disabled">
+                <input type="text" name="workerNewPwd" value="" placeholder="请输入新密码" lay-verify="required|pass" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">年龄</label>
+            <label class="layui-form-label">确认新密码</label>
             <div class="layui-input-block">
-                <input type="tel" name="userAge" value=${sessionScope.userInfo.userAge} placeholder="请输入年龄" lay-verify="required|number" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">手机号码</label>
-            <div class="layui-input-block">
-                <input type="tel" name="userTel" value=${sessionScope.userInfo.userTel} placeholder="请输入手机号码" lay-verify="required|phone" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">邮箱</label>
-            <div class="layui-input-block">
-                <input type="text" name="userEmail" value=${sessionScope.userInfo.userEmail} placeholder="请输入邮箱" lay-verify="required|email" class="layui-input">
+                <input type="text" name="workerReNewPwd" value="" placeholder="请再次输入新密码" lay-verify="required|pass|repass" class="layui-input">
             </div>
         </div>
     </div>
     <div class="user_right">
-        <h1 style="color: #1E9FFF">${sessionScope.userInfo.userName}的个人资料</h1>
+        <h1 style="color: #1E9FFF">${sessionScope.workerInfo.workerName}修改密码</h1>
         <p></p>
-        <button type="button" class="layui-btn layui-btn-normal" id="testUpload">
-            <i class="layui-icon" >&#xe67c;</i>换个头像
-        </button>
-        <p></p>
-        <img src=${sessionScope.userInfo.headPortrait} class="layui-circle" id="userFace">
+        <img src=${sessionScope.workerInfo.headPortrait} class="layui-circle" id="userFace">
     </div>
     <div class="layui-form-item" style="margin-left: 5%;">
         <div class="layui-input-block">
@@ -107,21 +91,19 @@
 </form>
 <script type="text/javascript" src="/layui/layui.js"></script>
 <script>
-    layui.use(['upload','form','layer'], function(){
-        var upload = layui.upload;
+    layui.use(['form','layer'], function(){
         var form = layui.form,
             layer = parent.layer === undefined ? layui.layer : parent.layer,
             $ = layui.jquery;
 
-        //文件上传 执行实例
-        var uploadInst = upload.render({
-            elem: '#testUpload' //绑定元素
-            ,url: '/upload/' //上传接口
-            ,done: function(res){
-                //上传完毕回调
-            }
-            ,error: function(){
-                //请求异常回调
+        form.verify({
+            pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且两次密码要相同'
+            ]
+            ,repass: function(value, item){ //value：表单的值、item：表单的DOM对象
+                if(value !=layui.$('input[name="workerNewPwd"]').val()){
+                    return '密码不相同请重新输入！'}
             }
         });
 
@@ -138,11 +120,11 @@
         //监听确认提交按钮
         form.on('submit(changeUser)', function(data){
             var param = data.field;                 //表单数据
-            JsonDelItem(param,"file");
+            JsonDelItem(param,"workerReNewPwd");
             var dataJson = JSON.stringify(param);   //转成Json
 
             $.ajax({
-                url:'/user/userChange',
+                url:'/worker/workerChangePwd',
                 method:'post',
                 contentType: "application/json;charset=utf-8",
                 data:dataJson,

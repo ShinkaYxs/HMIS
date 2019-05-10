@@ -9,6 +9,9 @@ public class AdminInfo {
     //登录时的验证码
     private String code;
 
+    //修改密码时用的
+    private String userNewPwd;
+
     public String getUserName() {
         return userName;
     }
@@ -31,5 +34,13 @@ public class AdminInfo {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getUserNewPwd() {
+        return userNewPwd;
+    }
+
+    public void setUserNewPwd(String userNewPwd) {
+        this.userNewPwd = userNewPwd;
     }
 }

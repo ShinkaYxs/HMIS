@@ -21,8 +21,8 @@ public interface UserInfoService {
     int userRegister(UserInfo userInfo);
 
     /**
-     * 普通用户-个人资料修改
-     * @param record
+     * 普通用户个人资料修改
+     * @param userInfo
      * @return
      */
     int updateByNoSelective(UserInfo record);
@@ -33,4 +33,31 @@ public interface UserInfoService {
      * @return
      */
     UserInfo selectByNo(Integer userNo);
+
+    /**
+     * 普通用户注册
+     * @param userInfo
+     * @return
+     */
+    int userRegister(UserInfo userInfo);
+
+    /**
+     * 普通用户修改密码
+     * @param userInfo
+     * @return
+     */
+    int updatePwdByNoAndOld(UserInfo userInfo);
+
+    /**
+     * 查询所有普通用户信息
+     * @return
+     */
+    List<UserInfo> userInfoQueryAll();
+
+    /**
+     * 管理员根据No删除普通用户
+     * @param userNo
+     * @return
+     */
+    int deleteUserByNo(Integer userNo);
 }

@@ -35,13 +35,18 @@ public class UserInfoServiceImpl implements UserInfoService {
         return userInfoMapper.queryCountForLogin(userInfo);
     }
 
+    /**
+     * 普通用户修改个人资料之后重新查询该人的个人资料
+     * @param userNo
+     * @return
+     */
     @Override
-    public int userRegister(UserInfo userInfo) {
-        return userInfoMapper.insertCountForRegister(userInfo);
+    public UserInfo selectByNo(Integer userNo) {
+        return userInfoMapper.selectByNo(userNo);
     }
 
     /**
-     * 普通用户-个人资料修改
+     * 普通用户个人资料修改
      * @param userInfo
      * @return
      */
@@ -51,12 +56,41 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     /**
-     * 普通用户修改个人资料之后重新查询该人的个人资料
+     * 普通用户注册
+     * @param userInfo
+     * @return
+     */
+    @Override
+    public int userRegister(UserInfo userInfo) {
+        return userInfoMapper.insertCountForRegister(userInfo);
+    }
+
+    /**
+     * 普通用户修改密码
+     * @param userInfo
+     * @return
+     */
+    @Override
+    public int updatePwdByNoAndOld(UserInfo userInfo) {
+        return userInfoMapper.updatePwdByNoAndOld(userInfo);
+    }
+
+    /**
+     * 查询所有普通用户信息
+     * @return
+     */
+    @Override
+    public List<UserInfo> userInfoQueryAll() {
+        return userInfoMapper.userInfoQueryAll();
+    }
+
+    /**
+     * 管理员根据No删除普通用户
      * @param userNo
      * @return
      */
     @Override
-    public UserInfo selectByNo(Integer userNo) {
-        return userInfoMapper.selectByNo(userNo);
+    public int deleteUserByNo(Integer userNo) {
+        return userInfoMapper.deleteUserByNo(userNo);
     }
 }

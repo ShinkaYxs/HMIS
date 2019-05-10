@@ -3,10 +3,9 @@
 <mapper namespace="com.hmis.worker.mapper.WorkerInfoMapper">
   <resultMap id="BaseResultMap" type="com.hmis.worker.dto.WorkerInfo">
     <id column="worker_no" jdbcType="INTEGER" property="workerNo" />
-<!--    <result column="worker_id" jdbcType="CHAR" property="workerId" />-->
     <result column="worker_name" jdbcType="VARCHAR" property="workerName" />
     <result column="worker_sex" jdbcType="CHAR" property="workerSex" />
-    <result column="worker_age" jdbcType="TINYINT" property="workerAge" />
+    <result column="worker_age" jdbcType="INTEGER" property="workerAge" />
     <result column="department_no" jdbcType="INTEGER" property="departmentNo" />
     <result column="worker_tel" jdbcType="CHAR" property="workerTel" />
     <result column="worker_email" jdbcType="VARCHAR" property="workerEmail" />
@@ -24,11 +23,42 @@
     <include refid="Base_Column_List" />
     from worker_info a
     <where>
-      AND ( a.worker_tel = #{dto.userName,jdbcType=CHAR}
+      AND (a.worker_tel = #{dto.userName,jdbcType=CHAR}
           OR a.worker_email = #{dto.userName,jdbcType=CHAR})
       AND a.worker_pwd = #{dto.userPasswd,jdbcType=VARCHAR}
     </where>
   </select>
+
+  <update id="updateByNoSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
+    update worker_info
+    <set>
+      <if test="dto.workerName != null">
+        worker_name = #{dto.workerName,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.workerSex != null">
+        worker_sex = #{dto.workerSex,jdbcType=CHAR},
+      </if>
+      <if test="dto.workerAge != null">
+        worker_age = #{dto.workerAge,jdbcType=INTEGER},
+      </if>
+      <if test="dto.departmentNo != null">
+        department_no = #{dto.departmentNo,jdbcType=INTEGER},
+      </if>
+      <if test="dto.workerTel != null">
+        worker_tel = #{dto.workerTel,jdbcType=CHAR},
+      </if>
+      <if test="dto.workerEmail != null">
+        worker_email = #{dto.workerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.workerPwd != null">
+        worker_pwd = #{dto.workerPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.headPortrait != null">
+        head_portrait = #{dto.headPortrait,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where worker_no = #{dto.workerNo,jdbcType=INTEGER}
+  </update>
 
   <select id="selectByNo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
@@ -37,28 +67,43 @@
     where worker_no = #{workerNo,jdbcType=INTEGER}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <update id="updatePwdByNoAndOld" parameterType="com.hmis.worker.dto.WorkerInfo">
+    update worker_info
+    set worker_pwd = #{dto.workerNewPwd,jdbcType=VARCHAR}
+    <where>
+      AND worker_no = #{dto.workerNo,jdbcType=INTEGER}
+      AND worker_pwd = #{dto.workerPwd,jdbcType=VARCHAR}
+    </where>
+  </update>
+
+  <select id="workerInfoQueryAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from worker_info
+    order by worker_no
+  </select>
+
+  <delete id="deleteWorkerByNo" parameterType="java.lang.Integer">
     delete from worker_info
     where worker_no = #{workerNo,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert" parameterType="com.hmis.worker.dto.WorkerInfo">
-    insert into worker_info (worker_no, worker_name, worker_sex,
+  <insert id="workerAdd" parameterType="com.hmis.worker.dto.WorkerInfo">
+    insert into worker_info (worker_name, worker_sex,
       worker_age, department_no, worker_tel,
       worker_email, worker_pwd, head_portrait
       )
-    values (#{workerNo,jdbcType=INTEGER}, #{workerName,jdbcType=VARCHAR}, #{workerSex,jdbcType=CHAR},
-      #{workerAge,jdbcType=TINYINT}, #{departmentNo,jdbcType=INTEGER}, #{workerTel,jdbcType=CHAR},
-      #{workerEmail,jdbcType=VARCHAR}, #{workerPwd,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR}
+    values (#{dto.workerName,jdbcType=VARCHAR}, #{dto.workerSex,jdbcType=CHAR},
+      #{dto.workerAge,jdbcType=INTEGER}, #{dto.departmentNo,jdbcType=INTEGER}, #{dto.workerTel,jdbcType=CHAR},
+      #{dto.workerEmail,jdbcType=VARCHAR}, #{dto.workerPwd,jdbcType=VARCHAR}, #{dto.headPortrait,jdbcType=VARCHAR}
       )
   </insert>
+
+
 
   <insert id="insertSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
     insert into worker_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-<!--      <if test="workerId != null">-->
-<!--        worker_id,-->
-<!--      </if>-->
       <if test="workerName != null">
         worker_name,
       </if>
@@ -85,9 +130,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="workerNo != null">
-        #{workerNo,jdbcType=INTEGER},
-      </if>
       <if test="workerName != null">
         #{workerName,jdbcType=VARCHAR},
       </if>
@@ -95,7 +137,7 @@
         #{workerSex,jdbcType=CHAR},
       </if>
       <if test="workerAge != null">
-        #{workerAge,jdbcType=TINYINT},
+        #{workerAge,jdbcType=INTEGER},
       </if>
       <if test="departmentNo != null">
         #{departmentNo,jdbcType=INTEGER},
@@ -115,42 +157,11 @@
     </trim>
   </insert>
 
-  <update id="updateByNoSelective" parameterType="com.hmis.worker.dto.WorkerInfo">
-    update worker_info
-    <set>
-      <if test="dto.workerName != null">
-        worker_name = #{dto.workerName,jdbcType=VARCHAR},
-      </if>
-      <if test="dto.workerSex != null">
-        worker_sex = #{dto.workerSex,jdbcType=CHAR},
-      </if>
-      <if test="dto.workerAge != null">
-        worker_age = #{dto.workerAge,jdbcType=TINYINT},
-      </if>
-<!--      <if test="dto.departmentId != null">-->
-<!--        department_id = #{dto.departmentId,jdbcType=CHAR},-->
-<!--      </if>-->
-      <if test="dto.workerTel != null">
-        worker_tel = #{dto.workerTel,jdbcType=CHAR},
-      </if>
-      <if test="dto.workerEmail != null">
-        worker_email = #{dto.workerEmail,jdbcType=VARCHAR},
-      </if>
-      <if test="dto.workerPwd != null">
-        worker_pwd = #{dto.workerPwd,jdbcType=VARCHAR},
-      </if>
-      <if test="dto.headPortrait != null">
-        head_portrait = #{dto.headPortrait,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where worker_no = #{dto.workerNo,jdbcType=INTEGER}
-  </update>
-
   <update id="updateByPrimaryKey" parameterType="com.hmis.worker.dto.WorkerInfo">
     update worker_info
     set worker_name = #{workerName,jdbcType=VARCHAR},
       worker_sex = #{workerSex,jdbcType=CHAR},
-      worker_age = #{workerAge,jdbcType=TINYINT},
+      worker_age = #{workerAge,jdbcType=INTEGER},
       department_no = #{departmentNo,jdbcType=INTEGER},
       worker_tel = #{workerTel,jdbcType=CHAR},
       worker_email = #{workerEmail,jdbcType=VARCHAR},

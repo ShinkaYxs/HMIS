@@ -15,6 +15,17 @@
     </where>
   </select>
 
+  <update id="updatePwdByOld" parameterType="com.hmis.admin.dto.AdminInfo">
+    update admin_info
+    set user_passwd = #{dto.userNewPwd,jdbcType=VARCHAR}
+    <where>
+      AND user_name = 'admin'
+      AND user_passwd = #{dto.userPasswd,jdbcType=VARCHAR}
+    </where>
+  </update>
+
+
+
   <insert id="insert" parameterType="com.hmis.admin.dto.AdminInfo">
     insert into admin_info (user_name, user_passwd)
     values (#{userName,jdbcType=VARCHAR}, #{userPasswd,jdbcType=VARCHAR})

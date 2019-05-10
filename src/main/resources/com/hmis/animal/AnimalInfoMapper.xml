@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmis.animal.mapper.AnimalInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hmis.animal.dto.AnimalInfo">
+    <id column="animal_no" jdbcType="INTEGER" property="animalNo" />
+    <result column="user_no" jdbcType="INTEGER" property="userNo" />
+    <result column="animal_type" jdbcType="VARCHAR" property="animalType" />
+    <result column="animal_name" jdbcType="VARCHAR" property="animalName" />
+    <result column="animal_sex" jdbcType="CHAR" property="animalSex" />
+    <result column="animal_age" jdbcType="INTEGER" property="animalAge" />
+    <result column="head_portrait" jdbcType="VARCHAR" property="headPortrait" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    animal_no, user_no, animal_type, animal_name, animal_sex, animal_age, head_portrait
+  </sql>
+
+  <select id="AnimalInfoQueryAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from animal_info
+  </select>
+
+  <update id="updateByNoSelective" parameterType="com.hmis.animal.dto.AnimalInfo">
+    update animal_info
+    <set>
+      <if test="dto.userNo != null">
+        user_no = #{dto.userNo,jdbcType=INTEGER},
+      </if>
+      <if test="dto.animalType != null">
+        animal_type = #{dto.animalType,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.animalName != null">
+        animal_name = #{dto.animalName,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.animalSex != null">
+        animal_sex = #{dto.animalSex,jdbcType=CHAR},
+      </if>
+      <if test="dto.animalAge != null">
+        animal_age = #{dto.animalAge,jdbcType=INTEGER},
+      </if>
+      <if test="dto.headPortrait != null">
+        head_portrait = #{dto.headPortrait,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where animal_no = #{dto.animalNo,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteAnimalByNo" parameterType="java.lang.Integer">
+    delete from animal_info
+    where animal_no = #{animalNo,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="animalAdd" parameterType="com.hmis.animal.dto.AnimalInfo">
+    insert into animal_info (user_no, animal_type,
+      animal_name, animal_sex, animal_age,
+      head_portrait)
+    values (#{dto.userNo,jdbcType=INTEGER}, #{dto.animalType,jdbcType=VARCHAR},
+      #{dto.animalName,jdbcType=VARCHAR}, #{dto.animalSex,jdbcType=CHAR}, #{dto.animalAge,jdbcType=INTEGER},
+      #{dto.headPortrait,jdbcType=VARCHAR})
+  </insert>
+
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from animal_info
+    where animal_no = #{animalNo,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insertSelective" parameterType="com.hmis.animal.dto.AnimalInfo">
+    insert into animal_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="animalNo != null">
+        animal_no,
+      </if>
+      <if test="userNo != null">
+        user_no,
+      </if>
+      <if test="animalType != null">
+        animal_type,
+      </if>
+      <if test="animalName != null">
+        animal_name,
+      </if>
+      <if test="animalSex != null">
+        animal_sex,
+      </if>
+      <if test="animalAge != null">
+        animal_age,
+      </if>
+      <if test="headPortrait != null">
+        head_portrait,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="animalNo != null">
+        #{animalNo,jdbcType=INTEGER},
+      </if>
+      <if test="userNo != null">
+        #{userNo,jdbcType=INTEGER},
+      </if>
+      <if test="animalType != null">
+        #{animalType,jdbcType=VARCHAR},
+      </if>
+      <if test="animalName != null">
+        #{animalName,jdbcType=VARCHAR},
+      </if>
+      <if test="animalSex != null">
+        #{animalSex,jdbcType=CHAR},
+      </if>
+      <if test="animalAge != null">
+        #{animalAge,jdbcType=INTEGER},
+      </if>
+      <if test="headPortrait != null">
+        #{headPortrait,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.hmis.animal.dto.AnimalInfo">
+    update animal_info
+    set user_no = #{userNo,jdbcType=INTEGER},
+      animal_type = #{animalType,jdbcType=VARCHAR},
+      animal_name = #{animalName,jdbcType=VARCHAR},
+      animal_sex = #{animalSex,jdbcType=CHAR},
+      animal_age = #{animalAge,jdbcType=INTEGER},
+      head_portrait = #{headPortrait,jdbcType=VARCHAR}
+    where animal_no = #{animalNo,jdbcType=INTEGER}
+  </update>
+</mapper>

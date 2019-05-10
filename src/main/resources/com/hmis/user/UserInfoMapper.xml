@@ -34,10 +34,33 @@
     where user_no = #{userNo,jdbcType=INTEGER}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user_info
-    where user_no = #{userNo,jdbcType=INTEGER}
-  </delete>
+  <update id="updateByNoSelective" parameterType="com.hmis.user.dto.UserInfo">
+    update user_info
+    <set>
+      <if test="dto.userName != null">
+        user_name = #{dto.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.userSex != null">
+        user_sex = #{dto.userSex,jdbcType=CHAR},
+      </if>
+      <if test="dto.userAge != null">
+        user_age = #{dto.userAge,jdbcType=INTEGER},
+      </if>
+      <if test="dto.userTel != null">
+        user_tel = #{dto.userTel,jdbcType=CHAR},
+      </if>
+      <if test="dto.userEmail != null">
+        user_email = #{dto.userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.userPwd != null">
+        user_pwd = #{dto.userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.headPortrait != null">
+        head_portrait = #{dto.headPortrait,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_no = #{dto.userNo,jdbcType=INTEGER}
+  </update>
 
   <insert id="insertCountForRegister" parameterType="com.hmis.user.dto.UserInfo">
     insert into user_info (user_name, user_sex,
@@ -46,6 +69,31 @@
       #{dto.userAge,jdbcType=INTEGER}, #{dto.userTel,jdbcType=CHAR}, #{dto.userEmail,jdbcType=VARCHAR},
       #{dto.userPwd,jdbcType=VARCHAR})
   </insert>
+
+  <update id="updatePwdByNoAndOld" parameterType="com.hmis.user.dto.UserInfo">
+    update user_info
+    set user_pwd = #{dto.userNewPwd,jdbcType=VARCHAR}
+    <where>
+      AND user_no = #{dto.userNo,jdbcType=INTEGER}
+      AND user_pwd = #{dto.userPwd,jdbcType=VARCHAR}
+    </where>
+  </update>
+
+  <select id="userInfoQueryAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    order by user_no
+  </select>
+
+  <delete id="deleteUserByNo" parameterType="java.lang.Integer">
+    delete from user_info
+    where user_no = #{userNo,jdbcType=INTEGER}
+  </delete>
+
+
+
+
 
   <insert id="insertSelective" parameterType="com.hmis.user.dto.UserInfo">
     insert into user_info
@@ -100,34 +148,6 @@
     </trim>
   </insert>
 
-  <update id="updateByNoSelective" parameterType="com.hmis.user.dto.UserInfo">
-    update user_info
-    <set>
-      <if test="dto.userName != null">
-        user_name = #{dto.userName,jdbcType=VARCHAR},
-      </if>
-      <if test="dto.userSex != null">
-        user_sex = #{dto.userSex,jdbcType=CHAR},
-      </if>
-      <if test="dto.userAge != null">
-        user_age = #{dto.userAge,jdbcType=INTEGER},
-      </if>
-      <if test="dto.userTel != null">
-        user_tel = #{dto.userTel,jdbcType=CHAR},
-      </if>
-      <if test="dto.userEmail != null">
-        user_email = #{dto.userEmail,jdbcType=VARCHAR},
-      </if>
-      <if test="dto.userPwd != null">
-        user_pwd = #{dto.userPwd,jdbcType=VARCHAR},
-      </if>
-      <if test="dto.headPortrait != null">
-        head_portrait = #{dto.headPortrait,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where user_no = #{dto.userNo,jdbcType=INTEGER}
-  </update>
-
   <update id="updateByPrimaryKey" parameterType="com.hmis.user.dto.UserInfo">
     update user_info
     set user_name = #{userName,jdbcType=VARCHAR},
@@ -139,4 +159,5 @@
       head_portrait = #{headPortrait,jdbcType=VARCHAR}
     where user_no = #{userNo,jdbcType=INTEGER}
   </update>
+
 </mapper>

@@ -44,6 +44,13 @@
       <version>1.5.0</version>
     </dependency>
 
+    <!-- JSON字符串转换成JSON对象https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.51</version>
+    </dependency>
+
     <!-- spring核心包 -->
     <!-- springframe start -->
     <dependency>
@@ -232,11 +239,11 @@
     </dependency>
     <!-- 日志文件管理包 -->
     <!-- log start -->
-<!--    <dependency>-->
-<!--      <groupId>log4j</groupId>-->
-<!--      <artifactId>log4j</artifactId>-->
-<!--      <version>${log4j.version}</version>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
