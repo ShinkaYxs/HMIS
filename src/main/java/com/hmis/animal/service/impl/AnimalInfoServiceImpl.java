@@ -31,8 +31,8 @@ public class AnimalInfoServiceImpl implements AnimalInfoService {
      * @return
      */
     @Override
-    public List<AnimalInfo> AnimalInfoQueryAll() {
-        return animalInfoMapper.AnimalInfoQueryAll();
+    public List<AnimalInfo> animalInfoQueryAll() {
+        return animalInfoMapper.animalInfoQueryAll();
     }
 
     /**
@@ -63,5 +63,15 @@ public class AnimalInfoServiceImpl implements AnimalInfoService {
     @Override
     public int animalAdd(AnimalInfo animalInfo) {
         return animalInfoMapper.animalAdd(animalInfo);
+    }
+
+    /**
+     * 为下拉选择框查询某一用户的动物动物No和名称
+     * @param userNo
+     * @return
+     */
+    @Override
+    public List<AnimalInfo> animalOfUserQuery(Integer userNo) {
+        return animalInfoMapper.animalOfUserQuery(userNo);
     }
 }

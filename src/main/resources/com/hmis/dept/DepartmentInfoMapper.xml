@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmis.dept.mapper.DepartmentInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hmis.dept.dto.DepartmentInfo">
+    <id column="department_no" jdbcType="INTEGER" property="departmentNo" />
+    <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+    <result column="department_desc" jdbcType="VARCHAR" property="departmentDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    department_no, department_name, department_desc
+  </sql>
+
+  <select id="deptInfoQueryAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from department_info
+  </select>
+
+  <update id="updateByNoSelective" parameterType="com.hmis.dept.dto.DepartmentInfo">
+    update department_info
+    <set>
+      <if test="dto.departmentName != null">
+        department_name = #{dto.departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.departmentDesc != null">
+        department_desc = #{dto.departmentDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where department_no = #{dto.departmentNo,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteDeptByNo" parameterType="java.lang.Integer">
+    delete from department_info
+    where department_no = #{departmentNo,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="deptAdd" parameterType="com.hmis.dept.dto.DepartmentInfo">
+    insert into department_info (department_name, department_desc
+      )
+    values (#{dto.departmentName,jdbcType=VARCHAR}, #{dto.departmentDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from department_info
+    where department_no = #{departmentNo,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insertSelective" parameterType="com.hmis.dept.dto.DepartmentInfo">
+    insert into department_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="departmentNo != null">
+        department_no,
+      </if>
+      <if test="departmentName != null">
+        department_name,
+      </if>
+      <if test="departmentDesc != null">
+        department_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="departmentNo != null">
+        #{departmentNo,jdbcType=INTEGER},
+      </if>
+      <if test="departmentName != null">
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentDesc != null">
+        #{departmentDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.hmis.dept.dto.DepartmentInfo">
+    update department_info
+    set department_name = #{departmentName,jdbcType=VARCHAR},
+      department_desc = #{departmentDesc,jdbcType=VARCHAR}
+    where department_no = #{departmentNo,jdbcType=INTEGER}
+  </update>
+</mapper>

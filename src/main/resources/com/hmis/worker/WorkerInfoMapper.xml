@@ -99,6 +99,13 @@
       )
   </insert>
 
+  <select id="workerQueryByDeptNo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select worker_no, worker_name
+    from worker_info
+    where department_no = #{deptId,jdbcType=INTEGER}
+    order by worker_no
+  </select>
+
 
 
   <insert id="insertSelective" parameterType="com.hmis.worker.dto.WorkerInfo">

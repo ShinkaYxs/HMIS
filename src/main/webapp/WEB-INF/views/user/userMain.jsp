@@ -73,6 +73,17 @@
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/worker/workerAnimalInfoRUD" data-id="adminAnimalInfoRUD" data-title="动物信息" href="#"
                                class="site-demo-active" data-type="tabAdd">动物信息</a></dd>
+                        <dd><a data-url="/page/views/user/userAnimalAdd" data-id="userAnimalAdd" data-title="添加动物" href="#"
+                               class="site-demo-active" data-type="tabAdd">添加动物</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">救治流程</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="/page/views/user/userGuahao" data-id="userGuahao" data-title="预约挂号" href="#"
+                               class="site-demo-active" data-type="tabAdd">预约挂号</a></dd>
+                        <%--<dd><a data-url="/page/views/user/userAnimalAdd" data-id="userAnimalAdd" data-title="添加动物" href="#"--%>
+                               <%--class="site-demo-active" data-type="tabAdd">添加动物</a></dd>--%>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

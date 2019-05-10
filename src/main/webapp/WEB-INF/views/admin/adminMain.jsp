@@ -77,6 +77,15 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
+                    <a class="" href="javascript:;">科室管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="/page/views/admin/adminDeptInfoRUD" data-id="adminDeptInfoRUD" data-title="科室信息" href="#"
+                               class="site-demo-active" data-type="tabAdd">科室信息</a></dd>
+                        <dd><a data-url="/page/views/admin/adminDeptAdd" data-id="adminDeptAdd" data-title="添加科室" href="#"
+                               class="site-demo-active" data-type="tabAdd">添加科室</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
                     <a href="javascript:;">解决方案</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">列表一</a></dd>
