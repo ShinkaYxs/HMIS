@@ -20,4 +20,12 @@ public interface NoticeInfoMapper {
     int updateByPrimaryKey(NoticeInfo record);
 
     int insertNotice(@Param("dto") NoticeInfo noticeInfo);
+
+    int updatePwdByNoAndOld(@Param("dto") NoticeInfo noticeInfo);
+
+    List<NoticeInfo> noticeInfoQueryAll();
+
+    int deleteNoticeByNo(Integer noticeNo);
+
+    NoticeInfo selectByNo(Integer noticeNo);
 }

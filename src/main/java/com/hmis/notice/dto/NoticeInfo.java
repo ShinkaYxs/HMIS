@@ -1,6 +1,7 @@
 package com.hmis.notice.dto;
 
 public class NoticeInfo {
+    private Integer noticeNo;
 
     private String noticeName;
 
@@ -8,6 +9,13 @@ public class NoticeInfo {
 
     private String noticeTime;
 
+    public Integer getNoticeNo() {
+        return noticeNo;
+    }
+
+    public void setNoticeNo(Integer noticeNo) {
+        this.noticeNo = noticeNo;
+    }
 
     public String getNoticeName() {
         return noticeName;

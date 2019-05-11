@@ -79,9 +79,9 @@
                 <li class="layui-nav-item">
                     <a class="" href="javascript:;">公告管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a data-url="" data-id="" data-title="公告信息" href="#"
+                        <dd><a data-url="/page/views/admin/adminNoticeInfoRUD" data-id="adminNoticeInfoRUD" data-title="公告信息" href="#"
                                class="site-demo-active" data-type="tabddA">公告信息</a></dd>
-                        <dd><a data-url="/page/views/admin/adminNoticeInfo" data-id="adminNoticeInfo" data-title="添加公告" href="#"
+                        <dd><a data-url="/page/views/admin/adminNoticeAdd" data-id="adminNoticeAdd" data-title="添加公告" href="#"
                                class="site-demo-active" data-type="tabAdd">添加公告</a></dd>
                     </dl>
                 </li>
