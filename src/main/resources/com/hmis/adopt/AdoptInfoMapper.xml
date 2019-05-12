@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmis.adopt.mapper.AdoptInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hmis.adopt.dto.AdoptInfo">
+    <id column="adopt_no" jdbcType="INTEGER" property="adoptNo" />
+    <result column="user_no" jdbcType="INTEGER" property="userNo" />
+    <result column="animal_no" jdbcType="INTEGER" property="animalNo" />
+    <result column="operation_type" jdbcType="VARCHAR" property="operationType" />
+    <result column="operation_time" jdbcType="VARCHAR" property="operationTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    adopt_no, user_no, animal_no, operation_type, operation_time
+  </sql>
+
+  <select id="adoptInfoQueryAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from adopt_info
+    order by adopt_no
+  </select>
+
+  <insert id="insertAdopt" parameterType="com.hmis.adopt.dto.AdoptInfo">
+    insert into adopt_info (user_no, animal_no, operation_type,operation_time)
+    values (#{dto.userNo,jdbcType=INTEGER}, #{dto.animalNo,jdbcType=INTEGER},
+      #{dto.operationType,jdbcType=VARCHAR},#{dto.operationTime,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateByNoSelective" parameterType="com.hmis.adopt.dto.AdoptInfo">
+    update adopt_info
+    <set>
+      <if test="dto.userNo != null">
+        user_no = #{dto.userNo,jdbcType=INTEGER},
+      </if>
+      <if test="dto.animalNo != null">
+        animal_no = #{dto.animalNo,jdbcType=INTEGER},
+      </if>
+      <if test="dto.operationType != null">
+        operation_type = #{dto.operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="dto.operationTime != null">
+        operation_time = #{dto.operationTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where adopt_no = #{dto.adoptNo,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteAdoptByNo" parameterType="java.lang.Integer">
+    delete from adopt_info
+    where adopt_no = #{adoptNo,jdbcType=INTEGER}
+  </delete>
+
+  <update id="updateByPrimaryKey" parameterType="com.hmis.adopt.dto.AdoptInfo">
+    update adopt_info
+    set user_no = #{userNo,jdbcType=INTEGER},
+      animal_no = #{animalNo,jdbcType=INTEGER},
+      operation_Type = #{operationType,jdbcType=VARCHAR},
+      operation_time = #{operationTime,jdbcType=VARCHAR},
+    where adopt_no = #{adoptNo,jdbcType=INTEGER}
+  </update>
+
+  <insert id="insertSelective" parameterType="com.hmis.adopt.dto.AdoptInfo">
+    insert into adopt_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userNo != null">
+        user_no,
+      </if>
+      <if test="animalNo != null">
+        animal_no,
+      </if>
+      <if test="operationType != null">
+        operation_type,
+      </if>
+      <if test="operationTime != null">
+        operation_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userNo != null">
+        #{userNo,jdbcType=INTEGER},
+      </if>
+      <if test="animalNo != null">
+        #{animalNo,jdbcType=INTEGER},
+      </if>
+      <if test="operationType != null">
+        #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null">
+        #{operationTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectByNo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from adopt_info
+    where adopt_no = #{adoptNo,jdbcType=INTEGER}
+  </select>
+
+</mapper>

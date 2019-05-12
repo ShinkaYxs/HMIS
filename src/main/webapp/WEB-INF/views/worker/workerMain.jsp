@@ -79,6 +79,15 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
+                    <a class="" href="javascript:;">收养寄养</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="/page/views/worker/workerAdoptInfoRUD" data-id="workerAdoptInfoRUD" data-title="收养寄养信息" href="#"
+                               class="site-demo-active" data-type="tabAdd">收养寄养信息</a></dd>
+                        <dd><a data-url="/page/views/worker/workerAdoptAdd" data-id="workerAdoptAdd" data-title="添加收养寄养" href="#"
+                               class="site-demo-active" data-type="tabAdd">添加收养寄养</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
                     <a class="" href="javascript:;">救治流程</a>
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/worker/workerOrderInfoRUD" data-id="userOrderInfoRUD" data-title="查看队列" href="#"
