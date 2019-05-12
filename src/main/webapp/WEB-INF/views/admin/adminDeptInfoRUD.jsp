@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>动物信息</title>
+    <title>科室信息</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -17,16 +17,9 @@
 </head>
 <body>
 
-    <%--<div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">--%>
-        <%--<button class="layui-btn" data-type="getCheckData">获取选中行数据</button>--%>
-        <%--<button class="layui-btn" data-type="getCheckLength">获取选中数目</button>--%>
-        <%--<button class="layui-btn" data-type="isAll">验证是否全选</button>--%>
-    <%--</div>--%>
-
     <table class="layui-hide" id="test-table-operate" lay-filter="test-table-operate"></table>
 
     <script type="text/html" id="test-table-operate-barDemo">
-        <%--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>--%>
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
@@ -41,16 +34,12 @@
 
         table.render({
             elem: '#test-table-operate'
-            ,url: '/animal/animalInfoQueryAll'
+            ,url: '/department/deptInfoQueryAll'
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field:'animalNo', width:80, title: 'ID', sort: true, fixed: 'left'}
-                ,{field:'userNo', width:80, title: '所属用户'}
-                ,{field:'animalType', width:80, title: '种类'}
-                ,{field:'animalName', width:80, title: '动物名'}
-                ,{field:'animalSex', width:80, title: '性别', sort: true}
-                ,{field:'animalAge', width:80, title: '年龄'}
-                ,{field:'headPortrait',title: '头像路径'}
+                ,{field:'departmentNo', width:80, title: 'No', sort: true, fixed: 'left'}
+                ,{field:'departmentName', width:160, title: '名称'}
+                ,{field:'departmentDesc', title: '描述'}
                 ,{width:120, align:'center', fixed: 'right', toolbar: '#test-table-operate-barDemo'}
             ]]
             ,page: true
@@ -64,13 +53,10 @@
         //监听工具条
         table.on('tool(test-table-operate)', function(obj){
             var data = obj.data;
-            // if(obj.event === 'detail'){
-            //     layer.msg('ID：'+ data.workerNo + ' 的查看操作');
-            // } else
             if(obj.event === 'del'){
-                layer.confirm('真的删除该动物信息？', {icon: 3, title:'提示', offset: '50px'}, function(index){
+                layer.confirm('真的删除该科室信息？', {icon: 3, title:'提示', offset: '50px'}, function(index){
                     $.ajax({
-                        url:'/animal/animalDeleteByNo?animalNo=' + data.animalNo,
+                        url:'/department/deptDeleteByNo?deptNo=' + data.departmentNo,
                         dataType:"JSON",
                         success:function (resultData) {
                             if (resultData.success) {
@@ -85,21 +71,16 @@
                             layer.msg(resultData.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});
                         }
                     });
-                    // obj.del();
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){
-                $("#animalNo").val(data.animalNo);
-                $("#userNo").val(data.userNo);
-                $("#animalType").val(data.animalType);
-                $("#animalName").val(data.animalName);
-                $("#animalSex").val(data.animalSex);
-                $("#animalAge").val(data.animalAge);
-                $("#headPortrait").val(data.headPortrait);
+                $("#departmentNo").val(data.departmentNo);
+                $("#departmentName").val(data.departmentName);
+                $("#departmentDesc").val(data.departmentDesc);
                 layer.open({
                     //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
                     type: 1,
-                    title: "修改动物信息",
+                    title: "修改科室信息",
                     area: ['420px', '460px'],
                     offset: '10px',             //只定义top坐标，水平保持居中
                     content: $("#popUpdateTest")//引用的弹出层的页面层的方式加载修改界面表单
@@ -116,7 +97,7 @@
                 var dataNewParam = dataNew.field;
                 var dataNewJson = JSON.stringify(dataNewParam);
                 $.ajax({
-                    url:'/animal/animalChange',
+                    url:'/department/deptChange',
                     method:'post',
                     contentType: "application/json;charset=utf-8",
                     data:dataNewJson,
@@ -171,39 +152,22 @@
     <div class="layui-col-md10">
         <form class="layui-form">
             <div class="layui-form-item">
-                <label class="layui-form-label">动物No</label>
+                <label class="layui-form-label">No</label>
                 <div class="layui-input-block">
-                    <input type="text" id="animalNo" name="animalNo" placeholder="请输入工号" disabled class="layui-input">
+                    <input type="text" id="departmentNo" name="departmentNo" placeholder="请输入科室No" disabled class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">用户ID</label>
+                <label class="layui-form-label">名称</label>
                 <div class="layui-input-block">
-                    <input type="text" id="userNo" name="userNo" placeholder="请输入用户ID" class="layui-input">
+                    <input type="text" id="departmentName" name="departmentName" placeholder="请输入科室名称" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">动物类型</label>
+                <label class="layui-form-label">描述</label>
                 <div class="layui-input-block">
-                    <input type="text" id="animalType" name="animalType" placeholder="请输入动物类型" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">动物名</label>
-                <div class="layui-input-block">
-                    <input type="text" id="animalName" name="animalName" placeholder="请输入动物名" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">性别</label>
-                <div class="layui-input-block">
-                    <input type="text" id="animalSex" name="animalSex" value="" placeholder="请输入性别" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">年龄</label>
-                <div class="layui-input-block">
-                    <input type="tel" id="animalAge" name="animalAge" value="" placeholder="请输入年龄" lay-verify="required|number" class="layui-input">
+                    <%--<input type="text" id="departmentDesc" name="departmentDesc" placeholder="请输入科室描述" class="layui-input">--%>
+                    <textarea type="text" id="departmentDesc" name="departmentDesc" placeholder="请输入科室描述" class="layui-textarea" style="height: 230px"></textarea>
                 </div>
             </div>
             <div class="layui-input-block">

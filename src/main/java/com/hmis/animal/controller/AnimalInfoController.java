@@ -41,7 +41,7 @@ public class AnimalInfoController {
     @ResponseBody
     public PojoMsg animalInfoQueryAll(HttpServletRequest request){
         PojoMsg pojoMsg = new PojoMsg();
-        List<AnimalInfo> animalInfoList = animalInfoService.AnimalInfoQueryAll();
+        List<AnimalInfo> animalInfoList = animalInfoService.animalInfoQueryAll();
         if (animalInfoList.size() >= 0){
             pojoMsg.setCode(0);
             pojoMsg.setSuccess(true);
@@ -136,4 +136,32 @@ public class AnimalInfoController {
         }
     }
 
+    /**
+     * 为下拉选择框查询某一用户的动物动物No和名称
+     * @param userNo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/animalOfUserQuery")
+    @ResponseBody
+    public PojoMsg animalOfUserQuery(Integer userNo, HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+        List<AnimalInfo> animalInfoList = animalInfoService.animalOfUserQuery(userNo);
+        if (animalInfoList.size() >= 0){
+            pojoMsg.setCode(0);
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("查询成功！");
+
+            //执行成功后返回给登录页面的数据
+            int count = 0;
+            for(AnimalInfo animalInfo_elem : animalInfoList){
+                pojoMsg.add(String.valueOf(count++),animalInfo_elem);
+            }
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("查询过程未知错误！");
+            return pojoMsg;
+        }
+    }
 }

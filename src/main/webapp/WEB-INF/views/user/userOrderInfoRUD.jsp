@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>动物信息</title>
+    <title>普通用户查看等候队列</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -17,19 +17,7 @@
 </head>
 <body>
 
-    <%--<div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">--%>
-        <%--<button class="layui-btn" data-type="getCheckData">获取选中行数据</button>--%>
-        <%--<button class="layui-btn" data-type="getCheckLength">获取选中数目</button>--%>
-        <%--<button class="layui-btn" data-type="isAll">验证是否全选</button>--%>
-    <%--</div>--%>
-
     <table class="layui-hide" id="test-table-operate" lay-filter="test-table-operate"></table>
-
-    <script type="text/html" id="test-table-operate-barDemo">
-        <%--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>--%>
-        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    </script>
 
 <script src="/layui/layui.js" charset="utf-8"></script>
 <script>
@@ -41,17 +29,14 @@
 
         table.render({
             elem: '#test-table-operate'
-            ,url: '/animal/animalInfoQueryAll'
+            ,url: '/order/orderSelectQueue'
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field:'animalNo', width:80, title: 'ID', sort: true, fixed: 'left'}
-                ,{field:'userNo', width:80, title: '所属用户'}
-                ,{field:'animalType', width:80, title: '种类'}
-                ,{field:'animalName', width:80, title: '动物名'}
-                ,{field:'animalSex', width:80, title: '性别', sort: true}
-                ,{field:'animalAge', width:80, title: '年龄'}
-                ,{field:'headPortrait',title: '头像路径'}
-                ,{width:120, align:'center', fixed: 'right', toolbar: '#test-table-operate-barDemo'}
+                ,{field:'departmentName', width:120, title: '科室名称', sort: true}
+                ,{field:'workerName', width:120, title: '工作人员', sort: true}
+                ,{field:'queueNo', width:100, title: '队列号', sort: true}
+                ,{field:'userName', width:100, title: '用户名', sort: true}
+                ,{field:'animalName', title: '动物名'}
             ]]
             ,page: true
         });

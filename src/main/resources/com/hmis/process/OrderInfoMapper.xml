@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmis.process.mapper.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hmis.process.dto.OrderInfo">
+    <id column="order_no" jdbcType="INTEGER" property="orderNo" />
+    <result column="queue_no" jdbcType="INTEGER" property="queueNo" />
+    <result column="user_no" jdbcType="INTEGER" property="userNo" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="animal_no" jdbcType="INTEGER" property="animalNo" />
+    <result column="animal_name" jdbcType="VARCHAR" property="animalName" />
+    <result column="department_no" jdbcType="INTEGER" property="departmentNo" />
+    <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+    <result column="worker_no" jdbcType="INTEGER" property="workerNo" />
+    <result column="worker_name" jdbcType="VARCHAR" property="workerName" />
+    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_no, queue_no, user_no, animal_no, department_no, worker_no, order_time
+  </sql>
+
+  <select id="selectCountOfExist" parameterType="com.hmis.process.dto.OrderInfo" resultType="java.lang.Integer">
+    select count(*)
+    from order_info
+    <where>
+      and user_no = #{dto.userNo,jdbcType=INTEGER}
+      and animal_no = #{dto.animalNo,jdbcType=INTEGER}
+      and department_no = #{dto.departmentNo,jdbcType=INTEGER}
+      and worker_no = #{dto.workerNo,jdbcType=INTEGER}
+    </where>
+  </select>
+
+  <insert id="insert" parameterType="com.hmis.process.dto.OrderInfo">
+    insert into order_info (queue_no, user_no,
+      animal_no, department_no, worker_no,
+      order_time)
+    values (#{dto.queueNo,jdbcType=INTEGER}, #{dto.userNo,jdbcType=INTEGER},
+      #{dto.animalNo,jdbcType=INTEGER}, #{dto.departmentNo,jdbcType=INTEGER}, #{dto.workerNo,jdbcType=INTEGER},
+      #{dto.orderTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <select id="selectMaxQueueNo" parameterType="com.hmis.process.dto.OrderInfo" resultType="java.lang.Integer">
+    select max(queue_no)
+    from order_info
+    where department_no = #{dto.departmentNo,jdbcType=INTEGER}
+      and worker_no = #{dto.workerNo,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectQueue" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+      o.order_no,
+      o.queue_no,
+      o.user_no,
+      u.user_name,
+      o.animal_no,
+      a.animal_name,
+      o.department_no,
+      d.department_name,
+      o.worker_no,
+      w.worker_name,
+      o.order_time
+    FROM
+      user_info u,
+      animal_info a,
+      department_info d,
+      worker_info w,
+      order_info o
+    <where>
+      AND u.user_no = o.user_no
+      AND a.animal_no = o.animal_no
+      AND d.department_no = o.department_no
+      AND w.worker_no = o.worker_no
+      <if test="workerNo != null">
+        AND o.worker_no = #{workerNo,jdbcType=INTEGER}
+      </if>
+    </where>
+    order by o.department_no,o.worker_no,o.queue_no
+  </select>
+
+  <delete id="deleteByNo" parameterType="java.lang.Integer">
+    delete from order_info
+    where order_no = #{orderNo,jdbcType=INTEGER}
+  </delete>
+
+
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_info
+    where order_no = #{orderNo,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insertSelective" parameterType="com.hmis.process.dto.OrderInfo">
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="queueNo != null">
+        queue_no,
+      </if>
+      <if test="userNo != null">
+        user_no,
+      </if>
+      <if test="animalNo != null">
+        animal_no,
+      </if>
+      <if test="departmentNo != null">
+        department_no,
+      </if>
+      <if test="workerNo != null">
+        worker_no,
+      </if>
+      <if test="orderTime != null">
+        order_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="queueNo != null">
+        #{queueNo,jdbcType=INTEGER},
+      </if>
+      <if test="userNo != null">
+        #{userNo,jdbcType=INTEGER},
+      </if>
+      <if test="animalNo != null">
+        #{animalNo,jdbcType=INTEGER},
+      </if>
+      <if test="departmentNo != null">
+        #{departmentNo,jdbcType=INTEGER},
+      </if>
+      <if test="workerNo != null">
+        #{workerNo,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.hmis.process.dto.OrderInfo">
+    update order_info
+    <set>
+      <if test="queueNo != null">
+        queue_no = #{queueNo,jdbcType=INTEGER},
+      </if>
+      <if test="userNo != null">
+        user_no = #{userNo,jdbcType=INTEGER},
+      </if>
+      <if test="animalNo != null">
+        animal_no = #{animalNo,jdbcType=INTEGER},
+      </if>
+      <if test="departmentNo != null">
+        department_no = #{departmentNo,jdbcType=INTEGER},
+      </if>
+      <if test="workerNo != null">
+        worker_no = #{workerNo,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where order_no = #{orderNo,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.hmis.process.dto.OrderInfo">
+    update order_info
+    set queue_no = #{queueNo,jdbcType=INTEGER},
+      user_no = #{userNo,jdbcType=INTEGER},
+      animal_no = #{animalNo,jdbcType=INTEGER},
+      department_no = #{departmentNo,jdbcType=INTEGER},
+      worker_no = #{workerNo,jdbcType=INTEGER},
+      order_time = #{orderTime,jdbcType=TIMESTAMP}
+    where order_no = #{orderNo,jdbcType=INTEGER}
+  </update>
+</mapper>

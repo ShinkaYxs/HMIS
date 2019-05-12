@@ -200,4 +200,32 @@ public class WorkerInfoController {
         }
     }
 
+    /**
+     * 管理员根据科室No查询该科室下的工作人员
+     * @param deptNo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/workerQueryByDeptNo")
+    @ResponseBody
+    public PojoMsg workerQueryByDeptNo(Integer deptNo, HttpServletRequest request){
+        PojoMsg pojoMsg = new PojoMsg();
+        List<WorkerInfo> workerInfoList = workerInfoService.workerQueryByDeptNo(deptNo);
+        if (workerInfoList.size() >= 0){
+            pojoMsg.setSuccess(true);
+            pojoMsg.setMsg("查询成功！");
+
+            //执行成功后返回给登录页面的数据
+            int count = 0;
+            for(WorkerInfo workerInfo_elem : workerInfoList){
+                pojoMsg.add(String.valueOf(count++),workerInfo_elem);
+            }
+            return pojoMsg;
+        }else{
+            pojoMsg.setSuccess(false);
+            pojoMsg.setMsg("查询过程错误！");
+            return pojoMsg;
+        }
+    }
+
 }

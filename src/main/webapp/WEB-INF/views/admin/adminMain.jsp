@@ -85,6 +85,32 @@
                                class="site-demo-active" data-type="tabAdd">添加公告</a></dd>
                     </dl>
                 </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">科室管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="/page/views/admin/adminDeptInfoRUD" data-id="adminDeptInfoRUD" data-title="科室信息" href="#"
+                               class="site-demo-active" data-type="tabAdd">科室信息</a></dd>
+                        <dd><a data-url="/page/views/admin/adminDeptAdd" data-id="adminDeptAdd" data-title="添加科室" href="#"
+                               class="site-demo-active" data-type="tabAdd">添加科室</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">救治流程</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="/page/views/admin/adminOrderInfoRUD" data-id="adminOrderInfoRUD" data-title="查看队列" href="#"
+                               class="site-demo-active" data-type="tabAdd">查看队列</a></dd>
+                        <dd><a data-url="/page/views/admin/adminCureInfoRUD" data-id="workerCureInfoRUD" data-title="救助记录" href="#"
+                               class="site-demo-active" data-type="tabAdd">救助记录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">解决方案</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
                 <li class="layui-nav-item"><a href="">云市场</a></li>
                 <li class="layui-nav-item"><a href="">发布商品</a></li>
             </ul>

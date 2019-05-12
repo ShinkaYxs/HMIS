@@ -53,7 +53,7 @@
 <form class="layui-form">
     <div class="user_left">
         <div class="layui-form-item">
-            <label class="layui-form-label">工号</label>
+            <label class="layui-form-label">用户No</label>
             <div class="layui-input-block">
                 <input type="text" name="userNo" value=${sessionScope.userInfo.userNo} disabled class="layui-input layui-disabled">
             </div>
