@@ -96,4 +96,14 @@ public class WorkerInfoServiceImpl implements WorkerInfoService {
     public int workerAdd(WorkerInfo workerInfo) {
         return workerInfoMapper.workerAdd(workerInfo);
     }
+
+    /**
+     * 管理员根据科室No查询该科室下的工作人员
+     * @param deptId
+     * @return
+     */
+    @Override
+    public List<WorkerInfo> workerQueryByDeptNo(Integer deptId) {
+        return workerInfoMapper.workerQueryByDeptNo(deptId);
+    }
 }

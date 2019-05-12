@@ -11,7 +11,7 @@ public interface AnimalInfoMapper {
      * 查询所有动物信息
      * @return
      */
-    List<AnimalInfo> AnimalInfoQueryAll();
+    List<AnimalInfo> animalInfoQueryAll();
 
     /**
      * 动物资料修改
@@ -34,11 +34,16 @@ public interface AnimalInfoMapper {
      */
     int animalAdd(@Param("dto") AnimalInfo animalInfo);
 
+    /**
+     * 为下拉选择框查询某一用户的动物动物No和名称
+     * @param userNo
+     * @return
+     */
+    List<AnimalInfo> animalOfUserQuery(Integer userNo);
+
 
 
     int insertSelective(AnimalInfo animalInfo);
-
-    AnimalInfo selectByPrimaryKey(Integer animalNo);
 
     int updateByPrimaryKey(AnimalInfo animalInfo);
 }

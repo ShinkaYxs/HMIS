@@ -51,7 +51,7 @@ public class UserInfoServiceImpl implements UserInfoService {
      * @return
      */
     @Override
-    public int updateByIdSelective(UserInfo userInfo) {
+    public int updateByNoSelective(UserInfo userInfo) {
         return userInfoMapper.updateByNoSelective(userInfo);
     }
 

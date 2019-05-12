@@ -32,6 +32,11 @@ public class PageController {
         return "views/worker/" + pageName;
     }
 
+    @RequestMapping("/views/notice/{pageName}")
+    public String toNoticePage(@PathVariable("pageName") String pageName){
+        return "views/notice/" + pageName;
+    }
+
     @RequestMapping("/views/user/{pageName}")
     public String toUserPage(@PathVariable("pageName") String pageName){
         return "views/user/" + pageName;

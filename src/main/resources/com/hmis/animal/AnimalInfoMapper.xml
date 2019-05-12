@@ -14,7 +14,7 @@
     animal_no, user_no, animal_type, animal_name, animal_sex, animal_age, head_portrait
   </sql>
 
-  <select id="AnimalInfoQueryAll" resultMap="BaseResultMap">
+  <select id="animalInfoQueryAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from animal_info
@@ -59,14 +59,13 @@
       #{dto.headPortrait,jdbcType=VARCHAR})
   </insert>
 
-
-
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
+  <select id="animalOfUserQuery" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select animal_no, animal_name
     from animal_info
-    where animal_no = #{animalNo,jdbcType=INTEGER}
+    where user_no = #{userNo,jdbcType=INTEGER}
   </select>
+
+
 
   <insert id="insertSelective" parameterType="com.hmis.animal.dto.AnimalInfo">
     insert into animal_info

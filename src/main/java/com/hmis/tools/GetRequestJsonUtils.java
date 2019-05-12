@@ -50,7 +50,7 @@ public class GetRequestJsonUtils {
         // GET
         if (submitMehtod.equals("GET")) {
             return new String(request.getQueryString().getBytes("iso-8859-1"),"utf-8").replaceAll("%22", "\"");
-        // POST
+            // POST
         } else {
             return getRequestPostStr(request);
         }

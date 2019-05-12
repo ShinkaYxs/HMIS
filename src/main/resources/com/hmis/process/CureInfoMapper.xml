@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmis.process.mapper.CureInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hmis.process.dto.CureInfo">
+    <id column="cure_no" jdbcType="INTEGER" property="cureNo" />
+    <result column="department_no" jdbcType="INTEGER" property="departmentNo" />
+    <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+    <result column="worker_no" jdbcType="INTEGER" property="workerNo" />
+    <result column="worker_name" jdbcType="VARCHAR" property="workerName" />
+    <result column="user_no" jdbcType="INTEGER" property="userNo" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="animal_no" jdbcType="INTEGER" property="animalNo" />
+    <result column="animal_name" jdbcType="VARCHAR" property="animalName" />
+    <result column="cure_time" jdbcType="TIMESTAMP" property="cureTime" />
+    <result column="cure_time_format" jdbcType="TIMESTAMP" property="cureTimeFormat" />
+    <result column="cure_content" jdbcType="VARCHAR" property="cureContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cure_no, department_no, worker_no, user_no, animal_no, cure_time, cure_content
+  </sql>
+
+  <insert id="insert" parameterType="com.hmis.process.dto.CureInfo">
+    insert into cure_info (department_no, worker_no,
+      user_no, animal_no, cure_time,
+      cure_content)
+    values (#{dto.departmentNo,jdbcType=INTEGER}, #{dto.workerNo,jdbcType=INTEGER},
+      #{dto.userNo,jdbcType=INTEGER}, #{dto.animalNo,jdbcType=INTEGER}, #{dto.cureTime,jdbcType=TIMESTAMP},
+      #{dto.cureContent,jdbcType=VARCHAR})
+  </insert>
+
+  <select id="selectCureAll" resultMap="BaseResultMap">
+    select
+      c.cure_no,
+      c.user_no,
+      u.user_name,
+      c.animal_no,
+      a.animal_name,
+      c.department_no,
+      d.department_name,
+      c.worker_no,
+      w.worker_name,
+      DATE_FORMAT(c.cure_time,"%Y-%m-%d") cure_time,
+      c.cure_content
+    from
+      user_info u,
+      animal_info a,
+      department_info d,
+      worker_info w,
+      cure_info c
+    <where>
+      AND u.user_no = c.user_no
+      AND a.animal_no = c.animal_no
+      AND d.department_no = c.department_no
+      AND w.worker_no = c.worker_no
+    </where>
+    order by c.cure_no desc
+  </select>
+
+  <delete id="deleteByNo" parameterType="java.lang.Integer">
+    delete from cure_info
+    where cure_no = #{cureNo,jdbcType=INTEGER}
+  </delete>
+
+
+
+  <insert id="insertSelective" parameterType="com.hmis.process.dto.CureInfo">
+    insert into cure_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cureNo != null">
+        cure_no,
+      </if>
+      <if test="departmentNo != null">
+        department_no,
+      </if>
+      <if test="workerNo != null">
+        worker_no,
+      </if>
+      <if test="userNo != null">
+        user_no,
+      </if>
+      <if test="animalNo != null">
+        animal_no,
+      </if>
+      <if test="cureTime != null">
+        cure_time,
+      </if>
+      <if test="cureContent != null">
+        cure_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cureNo != null">
+        #{cureNo,jdbcType=INTEGER},
+      </if>
+      <if test="departmentNo != null">
+        #{departmentNo,jdbcType=INTEGER},
+      </if>
+      <if test="workerNo != null">
+        #{workerNo,jdbcType=INTEGER},
+      </if>
+      <if test="userNo != null">
+        #{userNo,jdbcType=INTEGER},
+      </if>
+      <if test="animalNo != null">
+        #{animalNo,jdbcType=INTEGER},
+      </if>
+      <if test="cureTime != null">
+        #{cureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cureContent != null">
+        #{cureContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.hmis.process.dto.CureInfo">
+    update cure_info
+    <set>
+      <if test="departmentNo != null">
+        department_no = #{departmentNo,jdbcType=INTEGER},
+      </if>
+      <if test="workerNo != null">
+        worker_no = #{workerNo,jdbcType=INTEGER},
+      </if>
+      <if test="userNo != null">
+        user_no = #{userNo,jdbcType=INTEGER},
+      </if>
+      <if test="animalNo != null">
+        animal_no = #{animalNo,jdbcType=INTEGER},
+      </if>
+      <if test="cureTime != null">
+        cure_time = #{cureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cureContent != null">
+        cure_content = #{cureContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cure_no = #{cureNo,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.hmis.process.dto.CureInfo">
+    update cure_info
+    set department_no = #{departmentNo,jdbcType=INTEGER},
+      worker_no = #{workerNo,jdbcType=INTEGER},
+      user_no = #{userNo,jdbcType=INTEGER},
+      animal_no = #{animalNo,jdbcType=INTEGER},
+      cure_time = #{cureTime,jdbcType=TIMESTAMP},
+      cure_content = #{cureContent,jdbcType=VARCHAR}
+    where cure_no = #{cureNo,jdbcType=INTEGER}
+  </update>
+</mapper>

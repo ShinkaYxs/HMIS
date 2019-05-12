@@ -56,6 +56,12 @@ public interface WorkerInfoMapper {
      */
     int workerAdd(@Param("dto") WorkerInfo workerInfo);
 
+    /**
+     * 管理员根据科室No查询该科室下的工作人员
+     * @return
+     */
+    List<WorkerInfo> workerQueryByDeptNo(Integer deptId);
+
 
 
     int insertSelective(WorkerInfo workerInfo);
