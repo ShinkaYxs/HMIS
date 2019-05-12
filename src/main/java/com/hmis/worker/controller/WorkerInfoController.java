@@ -7,18 +7,20 @@
 package com.hmis.worker.controller;
 
 import com.hmis.tools.PojoMsg;
+import com.hmis.tools.UploadUtil;
 import com.hmis.worker.dto.WorkerInfo;
 import com.hmis.worker.service.WorkerInfoService;
 import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 闫喜深
@@ -102,6 +104,50 @@ public class WorkerInfoController {
             pojoMsg.setMsg("更新信息时发生错误！");
             return pojoMsg;
         }
+    }
+
+    /**
+     * 工作人员上传头像
+     * @param file
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/workerUploadHeadPortrait")
+    @ResponseBody
+    public Map<String,Object> workerUploadHeadPortrait(@RequestParam MultipartFile file, HttpServletRequest request){
+        Map<String,Object> map = new HashMap<>();
+        WorkerInfo workerInfo = new WorkerInfo();
+        String workerNoStr = request.getParameter("workerNo");
+        if(workerNoStr!=null){
+            workerInfo.setWorkerNo(Integer.valueOf(workerNoStr));
+        }
+
+        try {
+            //获取的是target对应的头像图片资源存放路径
+            String path = request.getSession().getServletContext().getRealPath("\\images\\headPortrait\\");
+            String imageName = UploadUtil.uploadFile(file, path);
+            //更新数据库中的用户头像路径
+            String newHeadPortrait = "/images/headPortrait/"+imageName;
+            workerInfo.setHeadPortrait(newHeadPortrait);
+            int workerChangeResult = workerInfoService.updateByNoSelective(workerInfo);
+            if (workerChangeResult == 1){
+                //更新session中的用户头像路径
+                HttpSession session = request.getSession();
+                workerInfo = (WorkerInfo) session.getAttribute("workerInfo");
+                workerInfo.setHeadPortrait(newHeadPortrait);
+                session.setAttribute("workerInfo", workerInfo);
+                //设置返回数据
+                map.put("code",0);
+                map.put("imageName",imageName);
+            }else {
+                map.put("code",1);
+            }
+        }catch (Exception e){
+            map.put("code",2);
+            e.printStackTrace();
+        }
+
+        return map;
     }
 
     /**

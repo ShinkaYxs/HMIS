@@ -55,7 +55,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">用户No</label>
             <div class="layui-input-block">
-                <input type="text" name="userNo" value=${sessionScope.userInfo.userNo} disabled class="layui-input layui-disabled">
+                <input type="text" id="userNo" name="userNo" value=${sessionScope.userInfo.userNo} disabled class="layui-input layui-disabled">
             </div>
         </div>
         <div class="layui-form-item">
@@ -115,14 +115,41 @@
 
         //文件上传 执行实例
         var uploadInst = upload.render({
-            elem: '#testUpload' //绑定元素
-            ,url: '/upload/' //上传接口
-            ,done: function(res){
-                //上传完毕回调
+            elem: '#testUpload'                         //绑定元素
+            ,url: '/user/userUploadHeadPortrait'    //上传接口
+            ,data: {
+                userNo: $('#userNo').val()
             }
-            ,error: function(){
-                //请求异常回调
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#userFace').attr('src', result); //图片链接（base64）
+                });
             }
+            ,done: function(res){   //上传完毕回调
+                if(res.code === 1){
+                    return layer.msg('文件上传成功但更新头像路径失败！');
+                }else if(res.code > 1){
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
+                    return layer.msg('上传失败');
+                }
+                layer.msg( "上传成功" ,{offset: '60px',icon: 6,anim: 6,time: 2000});
+            }
+            ,error: function(){     //请求异常回调
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+            ,accept: 'images'       //允许上传的文件类型
+            ,acceptMime: 'image/*'  //打开文件选择框时，筛选出的文件类型，值为用逗号隔开的MIME类型列表，只显示图片文件
         });
 
         //删除Json中指定的元素
