@@ -86,6 +86,15 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
+                    <a class="" href="javascript:;">救治流程</a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="/page/views/admin/adminOrderInfoRUD" data-id="adminOrderInfoRUD" data-title="查看队列" href="#"
+                               class="site-demo-active" data-type="tabAdd">查看队列</a></dd>
+                        <dd><a data-url="/page/views/admin/adminCureInfoRUD" data-id="workerCureInfoRUD" data-title="救助记录" href="#"
+                               class="site-demo-active" data-type="tabAdd">救助记录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
                     <a href="javascript:;">解决方案</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">列表一</a></dd>

@@ -80,7 +80,7 @@
                 layer.open({
                     //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
                     type: 1,
-                    title: "修改动物信息",
+                    title: "修改科室信息",
                     area: ['420px', '460px'],
                     offset: '10px',             //只定义top坐标，水平保持居中
                     content: $("#popUpdateTest")//引用的弹出层的页面层的方式加载修改界面表单
@@ -166,7 +166,8 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">描述</label>
                 <div class="layui-input-block">
-                    <input type="text" id="departmentDesc" name="departmentDesc" placeholder="请输入科室描述" class="layui-input">
+                    <%--<input type="text" id="departmentDesc" name="departmentDesc" placeholder="请输入科室描述" class="layui-input">--%>
+                    <textarea type="text" id="departmentDesc" name="departmentDesc" placeholder="请输入科室描述" class="layui-textarea" style="height: 230px"></textarea>
                 </div>
             </div>
             <div class="layui-input-block">

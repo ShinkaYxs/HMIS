@@ -171,7 +171,7 @@
     <div class="layui-col-md10">
         <form class="layui-form">
             <div class="layui-form-item">
-                <label class="layui-form-label">工号</label>
+                <label class="layui-form-label">动物No</label>
                 <div class="layui-input-block">
                     <input type="text" id="animalNo" name="animalNo" placeholder="请输入工号" disabled class="layui-input">
                 </div>

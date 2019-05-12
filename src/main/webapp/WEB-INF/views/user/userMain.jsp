@@ -82,8 +82,10 @@
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/user/userGuahao" data-id="userGuahao" data-title="预约挂号" href="#"
                                class="site-demo-active" data-type="tabAdd">预约挂号</a></dd>
-                        <%--<dd><a data-url="/page/views/user/userAnimalAdd" data-id="userAnimalAdd" data-title="添加动物" href="#"--%>
-                               <%--class="site-demo-active" data-type="tabAdd">添加动物</a></dd>--%>
+                        <dd><a data-url="/page/views/user/userOrderInfoRUD" data-id="userOrderInfoRUD" data-title="查看队列" href="#"
+                               class="site-demo-active" data-type="tabAdd">查看队列</a></dd>
+                        <dd><a data-url="/page/views/worker/workerCureInfoRUD" data-id="workerCureInfoRUD" data-title="救助记录" href="#"
+                               class="site-demo-active" data-type="tabAdd">救助记录</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

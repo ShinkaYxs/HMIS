@@ -18,7 +18,7 @@
     <source src="/images/loginBackGround.mp4" type="video/mp4">
 </video>
 <div class="video_mask"></div>
-<div class="login" style="height:400px;width:500px;padding: 20px;background-color:rgba(0,0,0,0.5);border-radius: 4px;position:absolute;left: 50%;top: 50%; margin:-220px 0 0 -260px;z-index:99;">
+<div class="login" style="height:320px;width:500px;padding: 20px;background-color:rgba(0,0,0,0.5);border-radius: 4px;position:absolute;left: 50%;top: 50%; margin:-180px 0 0 -260px;z-index:99;">
     <h1>预约救治</h1>
     <form id="formId" class="layui-form">
         <div class="layui-form-item">
@@ -45,19 +45,6 @@
                 </div>
             </div>
         </div>
-        <%--<div class="layui-form-item">--%>
-            <%--<input name="animalName" class="layui-input" placeholder="姓名" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">--%>
-        <%--</div>--%>
-        <%--<div class="layui-form-item">--%>
-            <%--<input name="animalAge" class="layui-input" placeholder="年龄" lay-verify="required|number" type="text" autocomplete="off" style="padding-left: 40px;">--%>
-        <%--</div>--%>
-        <%--<div class="layui-form-item" style="color: #fff">--%>
-            <%--<label class="layui-form-label" style="text-align:center;font-weight: bold;padding: 10px 0px">性别</label>--%>
-            <%--<div class="layui-input-block" style="margin-left: 60px;margin-right: 0px;!important">--%>
-                <%--<input type="radio" name="animalSex" value="男" title="男" checked>--%>
-                <%--<input type="radio" name="animalSex" value="女" title="女" >--%>
-            <%--</div>--%>
-        <%--</div>--%>
         <button id="RegisterFormButton" class="layui-btn login_btn" type="submit" lay-submit="" lay-filter="RegisterFormButton">添加</button>
     </form>
 </div>
@@ -157,7 +144,7 @@
             });
         }
 
-        //监听科室，从后台获取工作人员no和名称
+        //监听科室，下拉框从后台获取工作人员no和名称
         form.on('select(departmentNo)', function (data) {
             var departmentNo = data.value;
             $.ajax({
@@ -197,7 +184,7 @@
             var param = data.field;                 //表单数据
             var dataJson = JSON.stringify(param);   //转成Json
             $.ajax({
-                url:'/animal/animalAdd',
+                url:'/order/orderAdd',
                 method:'post',
                 contentType: "application/json;charset=utf-8",
                 data:dataJson,

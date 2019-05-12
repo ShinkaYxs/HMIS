@@ -25,7 +25,8 @@
             <input name="departmentName" class="layui-input" placeholder="科室名称" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;">
         </div>
         <div class="layui-form-item">
-            <input name="departmentDesc" class="layui-input" placeholder="科室描述" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;line-height: 30px">
+            <%--<input name="departmentDesc" class="layui-input" placeholder="科室描述" lay-verify="required" type="text" autocomplete="off" style="padding-left: 40px;line-height: 30px">--%>
+            <textarea name="departmentDesc" class="layui-textarea" placeholder="科室描述" lay-verify="required" type="text" style="height: 230px" required></textarea>
         </div>
         <button id="RegisterFormButton" class="layui-btn login_btn" type="submit" lay-submit="" lay-filter="RegisterFormButton">添加</button>
     </form>

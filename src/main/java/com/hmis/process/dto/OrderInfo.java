@@ -5,15 +5,23 @@ import java.util.Date;
 public class OrderInfo {
     private Integer orderNo;
 
-    private Integer orderNoOfDept;
+    private Integer queueNo;
 
     private Integer userNo;
 
+    private String userName;
+
     private Integer animalNo;
+
+    private String animalName;
 
     private Integer departmentNo;
 
+    private String departmentName;
+
     private Integer workerNo;
+
+    private String workerName;
 
     private Date orderTime;
 
@@ -25,12 +33,12 @@ public class OrderInfo {
         this.orderNo = orderNo;
     }
 
-    public Integer getOrderNoOfDept() {
-        return orderNoOfDept;
+    public Integer getQueueNo() {
+        return queueNo;
     }
 
-    public void setOrderNoOfDept(Integer orderNoOfDept) {
-        this.orderNoOfDept = orderNoOfDept;
+    public void setQueueNo(Integer queueNo) {
+        this.queueNo = queueNo;
     }
 
     public Integer getUserNo() {
@@ -71,5 +79,37 @@ public class OrderInfo {
 
     public void setOrderTime(Date orderTime) {
         this.orderTime = orderTime;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getAnimalName() {
+        return animalName;
+    }
+
+    public void setAnimalName(String animalName) {
+        this.animalName = animalName;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public String getWorkerName() {
+        return workerName;
+    }
+
+    public void setWorkerName(String workerName) {
+        this.workerName = workerName;
     }
 }
