@@ -79,11 +79,12 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
+                    <a class="" href="javascript:;">收养寄养</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                        <dd><a data-url="/page/views/worker/workerAdoptInfoRUD" data-id="workerAdoptInfoRUD" data-title="收养寄养信息" href="#"
+                               class="site-demo-active" data-type="tabAdd">收养寄养信息</a></dd>
+                        <dd><a data-url="/page/views/worker/workerAdoptAdd" data-id="workerAdoptAdd" data-title="添加收养寄养" href="#"
+                               class="site-demo-active" data-type="tabAdd">添加收养寄养</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="">云市场</a></li>
