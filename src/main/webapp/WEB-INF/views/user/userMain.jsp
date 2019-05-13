@@ -13,17 +13,17 @@
         <div class="layui-logo">小型动物救助中心</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
-            <li class="layui-nav-item"><a href="">用户</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">其它系统</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
-                </dl>
-            </li>
+            <%--<li class="layui-nav-item"><a href="">控制台</a></li>--%>
+            <%--<li class="layui-nav-item"><a href="">商品管理</a></li>--%>
+            <%--<li class="layui-nav-item"><a href="">用户</a></li>--%>
+            <%--<li class="layui-nav-item">--%>
+                <%--<a href="javascript:;">其它系统</a>--%>
+                <%--<dl class="layui-nav-child">--%>
+                    <%--<dd><a href="">邮件管理</a></dd>--%>
+                    <%--<dd><a href="">消息管理</a></dd>--%>
+                    <%--<dd><a href="">授权管理</a></dd>--%>
+                <%--</dl>--%>
+            <%--</li>--%>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
@@ -54,50 +54,66 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">工作人员</a>
+                <%--layui-nav-itemed控制默认展开--%>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">
+                        <i class="layui-icon layui-icon-friends" style="margin: 10px"></i>
+                        <cite>工作人员</cite>
+                    </a>
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/worker/workerWorkerInfoRUD" data-id="adminWorkerInfoRUD" data-title="工作人员信息" href="#"
-                               class="site-demo-active" data-type="tabAdd">工作人员信息</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">工作人员信息</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;">普通用户</a>
+                    <a class="" href="javascript:;">
+                        <i class="layui-icon layui-icon-user" style="margin: 10px"></i>
+                        <cite>普通用户</cite>
+                    </a>
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/worker/workerUserInfoRUD" data-id="adminUserInfoRUD" data-title="普通用户信息" href="#"
-                               class="site-demo-active" data-type="tabAdd">普通用户信息</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">普通用户信息</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;">动物管理</a>
+                    <a class="" href="javascript:;">
+                        <i class="layui-icon layui-icon-theme" style="margin: 10px"></i>
+                        <cite>动物管理</cite>
+                    </a>
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/worker/workerAnimalInfoRUD" data-id="adminAnimalInfoRUD" data-title="动物信息" href="#"
-                               class="site-demo-active" data-type="tabAdd">动物信息</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">动物信息</a></dd>
                         <dd><a data-url="/page/views/user/userAnimalAdd" data-id="userAnimalAdd" data-title="添加动物" href="#"
-                               class="site-demo-active" data-type="tabAdd">添加动物</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">添加动物</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;">救治流程</a>
+                    <a class="" href="javascript:;">
+                        <i class="layui-icon layui-icon-next" style="margin: 10px"></i>
+                        <cite>救治流程</cite>
+                    </a>
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/user/userGuahao" data-id="userGuahao" data-title="预约挂号" href="#"
-                               class="site-demo-active" data-type="tabAdd">预约挂号</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">预约挂号</a></dd>
                         <dd><a data-url="/page/views/user/userOrderInfoRUD" data-id="userOrderInfoRUD" data-title="查看队列" href="#"
-                               class="site-demo-active" data-type="tabAdd">查看队列</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">查看队列</a></dd>
                         <dd><a data-url="/page/views/worker/workerCureInfoRUD" data-id="workerCureInfoRUD" data-title="救助记录" href="#"
-                               class="site-demo-active" data-type="tabAdd">救助记录</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">救助记录</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">云市场</a></li>
-                <li class="layui-nav-item"><a href="">发布商品</a></li>
+                <%--<li class="layui-nav-item"><a href="">云市场</a></li>--%>
+                <%--<li class="layui-nav-item"><a href="">发布商品</a></li>--%>
             </ul>
         </div>
     </div>
 
-    <div class="layui-body">
-        <div class="layui-tab" lay-filter="demo" lay-allowclose="true">
+    <div class="layui-body" style="border-top:5px solid #1AA094">
+        <div class="layui-tab" lay-filter="demo" lay-allowclose="true" style="margin: 0px;">
             <ul class="layui-tab-title">
-                <li class="layui-this" lay-id="indexId">管理首页</li>
+                <li class="layui-this" lay-id="indexId" style="background-color: #1AA094">
+                    <i class="layui-icon layui-icon-home" style="margin: 10px"></i>
+                    <cite>首页</cite>
+                </li>
             </ul>
             <ul class="rightmenu" style="display: none;position: absolute;">
                 <li data-type="closethis">关闭当前</li>

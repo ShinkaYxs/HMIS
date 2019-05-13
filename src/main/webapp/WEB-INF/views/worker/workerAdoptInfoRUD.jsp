@@ -37,11 +37,11 @@
             ,url: '/adopt/adoptInfoQueryAll'
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field:'adoptNo', width:80, title: '收养编号', sort: true, fixed: 'left'}
-                ,{field:'userNo', width:80, title: '人员编号'}
-                ,{field:'animalNo', width:80, title: '动物编号', sort: true}
-                ,{field:'operationType', width:80, title: '操作类型'}
-                ,{field:'operationTime', width:80, title: '时间'}
+                ,{field:'adoptNo', width:120, title: '收养编号', sort: true, fixed: 'left'}
+                ,{field:'userNo', width:120, title: '人员编号'}
+                ,{field:'animalNo', width:120, title: '动物编号', sort: true}
+                ,{field:'operationType', title: '操作类型'}
+                ,{field:'operationTime', title: '时间'}
                 ,{width:120, align:'center', fixed: 'right', toolbar: '#test-table-operate-barDemo'}
             ]]
             ,page: true

@@ -20,7 +20,7 @@
 </video>
 <div class="video_mask"></div>
 
-<div class="login" style="height:400px;width:500px;padding: 20px;background-color:rgba(0,0,0,0.5);border-radius: 4px;position:absolute;left: 50%;top: 50%; margin:-220px 0 0 -260px;z-index:99;">
+<div class="login" style="height:320px;width:500px;padding: 20px;background-color:rgba(0,0,0,0.5);border-radius: 4px;position:absolute;left: 50%;top: 50%; margin:-180px 0 0 -260px;z-index:99;">
     <h1>发布公告</h1>
     <form id="formId" class="layui-form">
         <div class="layui-form-item">
@@ -62,7 +62,7 @@
         $ = layui.jquery;
         var start = laydate.render({
             elem: '#noticeTime',
-            type: 'datetime',
+            // type: 'datetime',
             max: nowTime,
             btns: ['clear', 'confirm'],
             done: function (value, date) {
@@ -89,10 +89,13 @@
             }
         });
         form.on('submit(InsertNoticeButton)', function(data){
+            //点击按钮后锁定页面防止重复点击
+            var index = layer.load(1, {
+                shade: [0.5,'#000'] //0.1透明度的背景
+            });
 
             var param = data.field;                 //表单数
             var dataJson = JSON.stringify(param);   //转成Json
-
 
             $.ajax({
                 url:'/notice/noticeInsert',
@@ -101,6 +104,7 @@
                 data:dataJson,
                 dataType:"JSON",
                 success:function(data){
+                    layer.close(index);     //解除页面的锁定
                     if (data.success) {
                         layer.msg( "发布成功" ,{offset: '60px',icon: 6,anim: 6,time: 2000});
                         window.location.href = "#";
@@ -111,6 +115,7 @@
                     }
                 },
                 error:function(data){
+                    layer.close(index);     //解除页面的锁定
                     layer.msg(data.msg ,{offset: '60px',icon: 5,anim: 6,time: 3000});
                     changeCodeImg();
                 }

@@ -21,7 +21,7 @@ public interface NoticeInfoMapper {
 
     int insertNotice(@Param("dto") NoticeInfo noticeInfo);
 
-    int updatePwdByNoAndOld(@Param("dto") NoticeInfo noticeInfo);
+//    int updatePwdByNoAndOld(@Param("dto") NoticeInfo noticeInfo);
 
     List<NoticeInfo> noticeInfoQueryAll();
 

@@ -67,7 +67,7 @@
         $ = layui.jquery;
         var start = laydate.render({
             elem: '#operationTime',
-            type: 'datetime',
+            // type: 'datetime',
             max: nowTime,
             btns: ['clear', 'confirm'],
             done: function (value, date) {

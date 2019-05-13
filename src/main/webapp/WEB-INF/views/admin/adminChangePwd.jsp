@@ -58,7 +58,7 @@
         <h1 style="color: #1E9FFF">${sessionScope.userInfo.userName}修改密码</h1>
         <p></p>
         <%--<img src=${sessionScope.userInfo.headPortrait} class="layui-circle" id="userFace">--%>
-        <img src="http://t.cn/RCzsdCq" class="layui-circle" id="userFace">
+        <img src="/images/headPortrait/admin_headPortrait.jpg" class="layui-circle" id="userFace">
     </div>
     <div class="layui-form-item" style="margin-left: 5%;">
         <div class="layui-input-block">
