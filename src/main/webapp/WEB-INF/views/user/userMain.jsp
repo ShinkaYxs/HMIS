@@ -93,8 +93,8 @@
                         <cite>救治流程</cite>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a data-url="/page/views/user/userGuahao" data-id="userGuahao" data-title="预约挂号" href="#"
-                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">预约挂号</a></dd>
+                        <dd><a data-url="/page/views/user/userGuahao" data-id="userGuahao" data-title="预约救治" href="#"
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">预约救治</a></dd>
                         <dd><a data-url="/page/views/user/userOrderInfoRUD" data-id="userOrderInfoRUD" data-title="查看队列" href="#"
                                class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">查看队列</a></dd>
                         <dd><a data-url="/page/views/worker/workerCureInfoRUD" data-id="workerCureInfoRUD" data-title="救助记录" href="#"

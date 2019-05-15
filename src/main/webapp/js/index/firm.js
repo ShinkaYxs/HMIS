@@ -18,6 +18,7 @@ layui.define(['jquery', 'element', 'carousel', 'laypage'], function(exports){
     ,width: '100%'
     ,height: '898px'
     ,arrow: 'always'
+    ,interval: 2000
   });
 
   //滚动监听

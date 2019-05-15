@@ -32,11 +32,12 @@
             ,layer = layui.layer;
         var $ = layui.$;
         var laydate = layui.laydate;
+        var nowTime = new Date().valueOf();
 
         //执行一个laydate实例
         laydate.render({
-            elem: '#cureTime' //指定元素
-            max: nowTime,
+            elem: '#cureTime', //指定元素
+            max: nowTime
         });
 
         var workerNo = '${sessionScope.workerInfo.workerNo}';

@@ -144,7 +144,8 @@
                     });
                     return layer.msg('上传失败');
                 }
-                layer.msg( "上传成功" ,{offset: '60px',icon: 6,anim: 6,time: 2000});
+                layer.msg( "上传成功" ,{offset: '60px',icon: 6,anim: 6,time: 2000, end: function (){
+                                        location.reload();}});
             }
             ,error: function(){     //请求异常回调
                 //演示失败状态，并实现重传

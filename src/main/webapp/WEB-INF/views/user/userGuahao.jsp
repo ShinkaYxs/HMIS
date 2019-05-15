@@ -15,7 +15,7 @@
 </head>
 <body>
 <video class="video-player" preload="auto" autoplay="autoplay" loop="loop">
-    <source src="/images/loginBackGround.mp4" type="video/mp4">
+    <source src="/images/video/snow.mp4" type="video/mp4">
 </video>
 <div class="video_mask"></div>
 <div class="login" style="height:320px;width:500px;padding: 20px;background-color:rgba(0,0,0,0.5);border-radius: 4px;position:absolute;left: 50%;top: 50%; margin:-180px 0 0 -260px;z-index:99;">

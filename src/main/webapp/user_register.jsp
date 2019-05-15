@@ -15,7 +15,7 @@
 </head>
 <body>
 <video class="video-player" preload="auto" autoplay="autoplay" loop="loop">
-    <source src="/images/loginBackGround.mp4" type="video/mp4">
+    <source src="/images/video/snow.mp4" type="video/mp4">
 </video>
 <div class="video_mask"></div>
 <!-- 		用户注册需要填写的信息 -->

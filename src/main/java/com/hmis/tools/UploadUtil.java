@@ -23,11 +23,11 @@ public class UploadUtil {
         //定义src下的图片资源存储路径
         String pathSrc = "D:\\GIT_GitHub\\HMIS\\src\\main\\webapp\\images\\headPortrait";
         String name = file.getOriginalFilename();                       //上传文件的真实名称
-//        String prefixName = name.substring(0, name.lastIndexOf(".")); //去掉后缀名的文件名
-//        String suffixName = name.substring(name.lastIndexOf("."));    //获取后缀名
-//        String hash = Integer.toHexString(new Random().nextInt());    //自定义随机数 字母+数字作为文件名
-//        String fileName = hash + suffixName;
-        String fileName = name;
+        String prefixName = name.substring(0, name.lastIndexOf("."));//去掉后缀名的文件名
+        String suffixName = name.substring(name.lastIndexOf("."));  //获取后缀名
+        String hash = Integer.toHexString(new Random().nextInt());      //自定义随机数 字母+数字 文件名
+        String fileName = prefixName + hash + suffixName;               //最终文件名为  原名+随机数+后缀名
+//        String fileName = name;
         File tempFile = new File(path, fileName);
 
         if (!tempFile.getParentFile().exists()){
@@ -40,7 +40,7 @@ public class UploadUtil {
         tempFile.createNewFile();
         file.transferTo(tempFile);
 
-        copy(path+"\\"+name, pathSrc+"\\"+name);
+        copy(path+"\\"+fileName, pathSrc+"\\"+fileName);
 
         return tempFile.getName();
     }

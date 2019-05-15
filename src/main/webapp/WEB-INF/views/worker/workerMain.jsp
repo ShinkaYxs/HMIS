@@ -106,7 +106,7 @@
                         <cite>救治流程</cite>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a data-url="/page/views/worker/workerOrderInfoRUD" data-id="userOrderInfoRUD" data-title="查看队列" href="#"
+                        <dd><a data-url="/page/views/worker/workerOrderInfoRUD" data-id="workerOrderInfoRUD" data-title="查看队列" href="#"
                                class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">查看队列</a></dd>
                         <dd><a data-url="/page/views/worker/workerCureInfoRUD" data-id="workerCureInfoRUD" data-title="救助记录" href="#"
                                class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">救助记录</a></dd>
