@@ -13,22 +13,27 @@
         <div class="layui-logo">小型动物救助中心</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
-            <li class="layui-nav-item"><a href="">用户</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">其它系统</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
-                </dl>
-            </li>
+            <%--<li class="layui-nav-item layadmin-flexible" lay-unselect>--%>
+                <%--<a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">--%>
+                    <%--<i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>--%>
+                <%--</a>--%>
+            <%--</li>--%>
+            <%--<li class="layui-nav-item"><a href="">控制台</a></li>--%>
+            <%--<li class="layui-nav-item"><a href="">商品管理</a></li>--%>
+            <%--<li class="layui-nav-item"><a href="">用户</a></li>--%>
+            <%--<li class="layui-nav-item">--%>
+                <%--<a href="javascript:;">其它系统</a>--%>
+                <%--<dl class="layui-nav-child">--%>
+                    <%--<dd><a href="">邮件管理</a></dd>--%>
+                    <%--<dd><a href="">消息管理</a></dd>--%>
+                    <%--<dd><a href="">授权管理</a></dd>--%>
+                <%--</dl>--%>
+            <%--</li>--%>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    <img src="/images/headPortrait/admin_headPortrait.jpg" class="layui-nav-img">
                     ${sessionScope.userName}
                 </a>
                 <dl class="layui-nav-child">
@@ -49,85 +54,122 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">工作人员</a>
+                <%--layui-nav-itemed控制默认展开--%>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">
+                        <i class="layui-icon layui-icon-friends" style="margin: 10px"></i>
+                        <cite>工作人员</cite>
+                    </a>
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/admin/adminWorkerInfoRUD" data-id="adminWorkerInfoRUD" data-title="工作人员信息" href="#"
-                               class="site-demo-active" data-type="tabAdd">工作人员信息</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">工作人员信息</a></dd>
                         <dd><a data-url="/page/views/admin/adminWorkerAdd" data-id="adminWorkerAdd" data-title="添加工作人员" href="#"
-                               class="site-demo-active" data-type="tabAdd">添加工作人员</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">添加工作人员</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;">普通用户</a>
+                    <a class="" href="javascript:;">
+                        <i class="layui-icon layui-icon-user" style="margin: 10px"></i>
+                        <cite>普通用户</cite>
+                    </a>
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/admin/adminUserInfoRUD" data-id="adminUserInfoRUD" data-title="普通用户信息" href="#"
-                               class="site-demo-active" data-type="tabAdd">普通用户信息</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">普通用户信息</a></dd>
                         <dd><a data-url="/page/views/admin/adminUserAdd" data-id="adminUserAdd" data-title="添加普通用户" href="#"
-                               class="site-demo-active" data-type="tabAdd">添加普通用户</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">添加普通用户</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;">动物管理</a>
+                    <a class="" href="javascript:;">
+                        <i class="layui-icon layui-icon-theme" style="margin: 10px"></i>
+                        <cite>动物管理</cite>
+                    </a>
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/admin/adminAnimalInfoRUD" data-id="adminAnimalInfoRUD" data-title="动物信息" href="#"
-                               class="site-demo-active" data-type="tabAdd">动物信息</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">动物信息</a></dd>
                         <dd><a data-url="/page/views/admin/adminAnimalAdd" data-id="adminAnimalAdd" data-title="添加动物" href="#"
-                               class="site-demo-active" data-type="tabAdd">添加动物</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">添加动物</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;">公告管理</a>
+                    <a class="" href="javascript:;">
+                        <i class="layui-icon layui-icon-template" style="margin: 10px"></i>
+                        <cite>收养寄养</cite>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a data-url="/page/views/worker/workerAdoptInfoRUD" data-id="workerAdoptInfoRUD" data-title="收养寄养信息" href="#"
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">收养寄养信息</a></dd>
+                        <dd><a data-url="/page/views/worker/workerAdoptAdd" data-id="workerAdoptAdd" data-title="添加收养寄养" href="#"
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">添加收养寄养</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">
+                        <i class="layui-icon layui-icon-notice" style="margin: 10px"></i>
+                        <cite>公告管理</cite>
+                    </a>
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/admin/adminNoticeInfoRUD" data-id="adminNoticeInfoRUD" data-title="公告信息" href="#"
-                               class="site-demo-active" data-type="tabddA">公告信息</a></dd>
+                               class="site-demo-active" data-type="tabddA" style="padding-left: 50px">公告信息</a></dd>
                         <dd><a data-url="/page/views/admin/adminNoticeAdd" data-id="adminNoticeAdd" data-title="添加公告" href="#"
-                               class="site-demo-active" data-type="tabAdd">添加公告</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">添加公告</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;">科室管理</a>
+                    <a class="" href="javascript:;">
+                        <i class="layui-icon layui-icon-templeate-1" style="margin: 10px"></i>
+                        <cite>科室管理</cite>
+                    </a>
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/admin/adminDeptInfoRUD" data-id="adminDeptInfoRUD" data-title="科室信息" href="#"
-                               class="site-demo-active" data-type="tabAdd">科室信息</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">科室信息</a></dd>
                         <dd><a data-url="/page/views/admin/adminDeptAdd" data-id="adminDeptAdd" data-title="添加科室" href="#"
-                               class="site-demo-active" data-type="tabAdd">添加科室</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">添加科室</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;">救治流程</a>
+                    <a class="" href="javascript:;">
+                        <i class="layui-icon layui-icon-next" style="margin: 10px"></i>
+                        <cite>救治流程</cite>
+                    </a>
                     <dl class="layui-nav-child">
                         <dd><a data-url="/page/views/admin/adminOrderInfoRUD" data-id="adminOrderInfoRUD" data-title="查看队列" href="#"
-                               class="site-demo-active" data-type="tabAdd">查看队列</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">查看队列</a></dd>
                         <dd><a data-url="/page/views/admin/adminCureInfoRUD" data-id="workerCureInfoRUD" data-title="救助记录" href="#"
-                               class="site-demo-active" data-type="tabAdd">救助记录</a></dd>
+                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">救助记录</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="">超链接</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item"><a href="">云市场</a></li>
-                <li class="layui-nav-item"><a href="">发布商品</a></li>
+                <%--<li class="layui-nav-item">--%>
+                    <%--<a href="javascript:;">解决方案</a>--%>
+                    <%--<dl class="layui-nav-child">--%>
+                        <%--<dd><a href="javascript:;">列表一</a></dd>--%>
+                        <%--<dd><a href="javascript:;">列表二</a></dd>--%>
+                        <%--<dd><a href="">超链接</a></dd>--%>
+                    <%--</dl>--%>
+                <%--</li>--%>
+                <%--<li class="layui-nav-item"><a href="">云市场</a></li>--%>
+                <%--<li class="layui-nav-item"><a href="">发布商品</a></li>--%>
             </ul>
         </div>
     </div>
 
-    <div class="layui-body">
-        <div class="layui-tab" lay-filter="demo" lay-allowclose="true">
+    <div class="layui-body" style="border-top:5px solid #1AA094">
+        <div class="layui-tab" lay-filter="demo" lay-allowclose="true" style="margin: 0px;">
             <ul class="layui-tab-title">
-                <li class="layui-this" lay-id="indexId">管理首页</li>
+                <li class="layui-this" lay-id="indexId" style="background-color: #1AA094">
+                    <i class="layui-icon layui-icon-home" style="margin: 10px"></i>
+                    <cite>首页</cite>
+                </li>
             </ul>
             <ul class="rightmenu" style="display: none;position: absolute;">
                 <li data-type="closethis">关闭当前</li>
                 <li data-type="closeall">关闭所有</li>
             </ul>
             <div class="layui-tab-content">
-                <div class="layui-tab-item layui-show">这是管理首页里的内容</div>
+                <div class="layui-tab-item layui-show">
+                    <%--这是管理首页里的内容--%>
+                    <img src="/images/back_main.jpg" style="width: 1129px;">
+                </div>
             </div>
         </div>
     </div>

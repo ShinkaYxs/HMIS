@@ -30,10 +30,10 @@
             ,url: '/notice/noticeInfoQueryAll'
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
-                ,{field:'noticeNo', width:80, title: '公告号', sort: true, fixed: 'left'}
-                ,{field:'noticeName', width:80, title: '公告主题'}
-                ,{field:'noticeContent', width:80, title: '公告内容', sort: true}
-                ,{field:'noticeTime', width:80, title: '发布时间'}
+                ,{field:'noticeNo', width:100, title: '公告号', sort: true}
+                ,{field:'noticeName', title: '公告主题'}
+                ,{field:'noticeContent', title: '公告内容', sort: true}
+                ,{field:'noticeTime', title: '发布时间'}
                 ,{width:120, align:'center', fixed: 'right', toolbar: '#test-table-operate-barDemo'}
             ]]
             ,page: true
@@ -73,7 +73,7 @@
                 $("#noticeTime").val(data.noticeTime);
                 layer.open({
                     type: 1,
-                    title: "修改公告人员信息",
+                    title: "修改公告信息",
                     area: ['420px', '460px'],
                     offset: '10px',             //只定义top坐标，水平保持居中
                     content: $("#popUpdateTest")//引用的弹出层的页面层的方式加载修改界面表单

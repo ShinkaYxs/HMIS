@@ -64,7 +64,7 @@
         notice_content,
       </if>
       <if test="noticeTime != null">
-        notice_timr,
+        notice_time,
       </if>
       <if test="userTel != null">
         user_tel,

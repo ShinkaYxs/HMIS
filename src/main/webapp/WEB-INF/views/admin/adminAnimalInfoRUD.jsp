@@ -45,12 +45,12 @@
             ,cols: [[
                 {type:'checkbox', fixed: 'left'}
                 ,{field:'animalNo', width:80, title: 'ID', sort: true, fixed: 'left'}
-                ,{field:'userNo', width:80, title: '所属用户'}
-                ,{field:'animalType', width:80, title: '种类'}
-                ,{field:'animalName', width:80, title: '动物名'}
+                ,{field:'userNo', width:120, title: '所属用户'}
+                ,{field:'animalType', title: '种类'}
+                ,{field:'animalName', title: '动物名'}
                 ,{field:'animalSex', width:80, title: '性别', sort: true}
                 ,{field:'animalAge', width:80, title: '年龄'}
-                ,{field:'headPortrait',title: '头像路径'}
+                // ,{field:'headPortrait',title: '头像路径'}
                 ,{width:120, align:'center', fixed: 'right', toolbar: '#test-table-operate-barDemo'}
             ]]
             ,page: true

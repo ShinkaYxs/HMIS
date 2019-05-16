@@ -7,6 +7,7 @@
 package com.hmis.user.controller;
 
 import com.hmis.tools.PojoMsg;
+import com.hmis.tools.UploadUtil;
 import com.hmis.user.dto.UserInfo;
 import com.hmis.user.service.UserInfoService;
 import com.wf.captcha.utils.CaptchaUtil;
@@ -14,11 +15,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 闫喜深
@@ -105,6 +110,51 @@ public class UserInfoController {
             return pojoMsg;
         }
     }
+
+    /**
+     * 普通用户上传头像
+     * @param file
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/userUploadHeadPortrait")
+    @ResponseBody
+    public Map<String,Object> workerUploadHeadPortrait(@RequestParam MultipartFile file, HttpServletRequest request){
+        Map<String,Object> map = new HashMap<>();
+        UserInfo userInfo = new UserInfo();
+        String userNoStr = request.getParameter("userNo");
+        if(userNoStr!=null){
+            userInfo.setUserNo(Integer.valueOf(userNoStr));
+        }
+
+        try {
+            //获取的是target对应的头像图片资源存放路径
+            String path = request.getSession().getServletContext().getRealPath("\\images\\headPortrait\\");
+            String imageName = UploadUtil.uploadFile(file, path);
+            //更新数据库中的用户头像路径
+            String newHeadPortrait = "/images/headPortrait/"+imageName;
+            userInfo.setHeadPortrait(newHeadPortrait);
+            int workerChangeResult = userInfoService.updateByNoSelective(userInfo);
+            if (workerChangeResult == 1){
+                //更新session中的用户头像路径
+                HttpSession session = request.getSession();
+                userInfo = (UserInfo) session.getAttribute("userInfo");
+                userInfo.setHeadPortrait(newHeadPortrait);
+                session.setAttribute("userInfo", userInfo);
+                //设置返回数据
+                map.put("code",0);
+                map.put("imageName",imageName);
+            }else {
+                map.put("code",1);
+            }
+        }catch (Exception e){
+            map.put("code",2);
+            e.printStackTrace();
+        }
+
+        return map;
+    }
+
 
     /**
      * 普通用户注册

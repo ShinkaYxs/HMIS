@@ -15,7 +15,7 @@
 </head>
 <body>
 <video class="video-player" preload="auto" autoplay="autoplay" loop="loop">
-    <source src="/images/loginBackGround.mp4" type="video/mp4">
+    <source src="/images/video/snow.mp4" type="video/mp4">
 </video>
 <div class="video_mask"></div>
 <div class="login" style="height:320px;width:500px;padding: 20px;background-color:rgba(0,0,0,0.5);border-radius: 4px;position:absolute;left: 50%;top: 50%; margin:-180px 0 0 -260px;z-index:99;">
@@ -146,11 +146,16 @@
 
         //监听科室，下拉框从后台获取工作人员no和名称
         form.on('select(departmentNo)', function (data) {
+            //点击按钮后锁定页面防止重复点击
+            var index = layer.load(1, {
+                shade: [0.5,'#000'] //0.1透明度的背景
+            });
             var departmentNo = data.value;
             $.ajax({
                 url:'/worker/workerQueryByDeptNo?deptNo=' + departmentNo,
                 dataType: 'json',
                 success: function(result) {
+                    layer.close(index);     //解除页面的锁定
                     if (result.success) {
                         var dt=document.getElementById("workerNo");
                         dt.options.length=0;
@@ -172,6 +177,7 @@
                     }
                 },
                 error:function(result){
+                    layer.close(index);     //解除页面的锁定
                     layer.msg(result.message ,{offset: '60px',icon: 5,anim: 6,time: 3000});
                 }
 

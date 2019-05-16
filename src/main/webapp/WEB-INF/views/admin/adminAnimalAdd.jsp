@@ -15,7 +15,7 @@
 </head>
 <body>
 <video class="video-player" preload="auto" autoplay="autoplay" loop="loop">
-    <source src="/images/loginBackGround.mp4" type="video/mp4">
+    <source src="/images/video/animalAdd.mp4" type="video/mp4">
 </video>
 <div class="video_mask"></div>
 <div class="login" style="height:400px;width:500px;padding: 20px;background-color:rgba(0,0,0,0.5);border-radius: 4px;position:absolute;left: 50%;top: 50%; margin:-220px 0 0 -260px;z-index:99;">
@@ -57,7 +57,7 @@
         $(window).resize(function(){
             if($(".video-player").width() > $(window).width()){
                 // $(".video-player").css({"height":$(window).height(),"width":"auto","left":-($(".video-player").width()-$(window).width())/2});
-                $(".video-player").css({"width":$(window).width(),"height":"auto","left":0});
+                $(".video-player").css({"width":$(window).width(),"height":"auto","left":0,"top":"-60px"});
             }else{
                 //本项目所使用的背景视频尺寸较小，执行else中的语句
                 $(".video-player").css({"width":$(window).width()+200,"height":"auto","left":0});

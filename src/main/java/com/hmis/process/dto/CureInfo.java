@@ -29,9 +29,7 @@ public class CureInfo {
 
 //    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
 //    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    private Date cureTime;
-
-    private Date cureTimeFormat;
+    private String cureTime;
 
     private String cureContent;
 
@@ -75,11 +73,11 @@ public class CureInfo {
         this.animalNo = animalNo;
     }
 
-    public Date getCureTime() {
+    public String getCureTime() {
         return cureTime;
     }
 
-    public void setCureTime(Date cureTime) {
+    public void setCureTime(String cureTime) {
         this.cureTime = cureTime;
     }
 
@@ -129,13 +127,5 @@ public class CureInfo {
 
     public void setAnimalName(String animalName) {
         this.animalName = animalName;
-    }
-
-    public Date getCureTimeFormat() {
-        return cureTimeFormat;
-    }
-
-    public void setCureTimeFormat(Date cureTimeFormat) {
-        this.cureTimeFormat = cureTimeFormat;
     }
 }

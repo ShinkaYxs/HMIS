@@ -11,8 +11,8 @@
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="animal_no" jdbcType="INTEGER" property="animalNo" />
     <result column="animal_name" jdbcType="VARCHAR" property="animalName" />
-    <result column="cure_time" jdbcType="TIMESTAMP" property="cureTime" />
-    <result column="cure_time_format" jdbcType="TIMESTAMP" property="cureTimeFormat" />
+    <result column="cure_time" jdbcType="VARCHAR" property="cureTime" />
+    <!--<result column="cure_time_format" jdbcType="TIMESTAMP" property="cureTimeFormat" />-->
     <result column="cure_content" jdbcType="VARCHAR" property="cureContent" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -24,7 +24,7 @@
       user_no, animal_no, cure_time,
       cure_content)
     values (#{dto.departmentNo,jdbcType=INTEGER}, #{dto.workerNo,jdbcType=INTEGER},
-      #{dto.userNo,jdbcType=INTEGER}, #{dto.animalNo,jdbcType=INTEGER}, #{dto.cureTime,jdbcType=TIMESTAMP},
+      #{dto.userNo,jdbcType=INTEGER}, #{dto.animalNo,jdbcType=INTEGER}, #{dto.cureTime,jdbcType=VARCHAR},
       #{dto.cureContent,jdbcType=VARCHAR})
   </insert>
 
@@ -39,7 +39,7 @@
       d.department_name,
       c.worker_no,
       w.worker_name,
-      DATE_FORMAT(c.cure_time,"%Y-%m-%d") cure_time,
+      c.cure_time,
       c.cure_content
     from
       user_info u,
@@ -105,7 +105,7 @@
         #{animalNo,jdbcType=INTEGER},
       </if>
       <if test="cureTime != null">
-        #{cureTime,jdbcType=TIMESTAMP},
+        #{cureTime,jdbcType=VARCHAR},
       </if>
       <if test="cureContent != null">
         #{cureContent,jdbcType=VARCHAR},
@@ -129,7 +129,7 @@
         animal_no = #{animalNo,jdbcType=INTEGER},
       </if>
       <if test="cureTime != null">
-        cure_time = #{cureTime,jdbcType=TIMESTAMP},
+        cure_time = #{cureTime,jdbcType=VARCHAR},
       </if>
       <if test="cureContent != null">
         cure_content = #{cureContent,jdbcType=VARCHAR},
@@ -144,7 +144,7 @@
       worker_no = #{workerNo,jdbcType=INTEGER},
       user_no = #{userNo,jdbcType=INTEGER},
       animal_no = #{animalNo,jdbcType=INTEGER},
-      cure_time = #{cureTime,jdbcType=TIMESTAMP},
+      cure_time = #{cureTime,jdbcType=VARCHAR},
       cure_content = #{cureContent,jdbcType=VARCHAR}
     where cure_no = #{cureNo,jdbcType=INTEGER}
   </update>
