@@ -120,7 +120,10 @@
                 <li data-type="closeall">关闭所有</li>
             </ul>
             <div class="layui-tab-content">
-                <div class="layui-tab-item layui-show">这是管理首页里的内容</div>
+                <div class="layui-tab-item layui-show">
+                    <%--这是管理首页里的内容--%>
+                    <img src="/images/back_main.jpg" style="width: 1129px;">
+                </div>
             </div>
         </div>
     </div>
