@@ -55,26 +55,26 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <%--layui-nav-itemed控制默认展开--%>
-                <li class="layui-nav-item">
-                    <a class="" href="javascript:;">
-                        <i class="layui-icon layui-icon-friends" style="margin: 10px"></i>
-                        <cite>工作人员</cite>
-                    </a>
-                    <dl class="layui-nav-child">
-                        <dd><a data-url="/page/views/worker/workerWorkerInfoRUD" data-id="adminWorkerInfoRUD" data-title="工作人员信息" href="#"
-                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">工作人员信息</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a class="" href="javascript:;">
-                        <i class="layui-icon layui-icon-user" style="margin: 10px"></i>
-                        <cite>普通用户</cite>
-                    </a>
-                    <dl class="layui-nav-child">
-                        <dd><a data-url="/page/views/worker/workerUserInfoRUD" data-id="adminUserInfoRUD" data-title="普通用户信息" href="#"
-                               class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">普通用户信息</a></dd>
-                    </dl>
-                </li>
+                <%--<li class="layui-nav-item">--%>
+                    <%--<a class="" href="javascript:;">--%>
+                        <%--<i class="layui-icon layui-icon-friends" style="margin: 10px"></i>--%>
+                        <%--<cite>工作人员</cite>--%>
+                    <%--</a>--%>
+                    <%--<dl class="layui-nav-child">--%>
+                        <%--<dd><a data-url="/page/views/worker/workerWorkerInfoRUD" data-id="adminWorkerInfoRUD" data-title="工作人员信息" href="#"--%>
+                               <%--class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">工作人员信息</a></dd>--%>
+                    <%--</dl>--%>
+                <%--</li>--%>
+                <%--<li class="layui-nav-item">--%>
+                    <%--<a class="" href="javascript:;">--%>
+                        <%--<i class="layui-icon layui-icon-user" style="margin: 10px"></i>--%>
+                        <%--<cite>普通用户</cite>--%>
+                    <%--</a>--%>
+                    <%--<dl class="layui-nav-child">--%>
+                        <%--<dd><a data-url="/page/views/worker/workerUserInfoRUD" data-id="adminUserInfoRUD" data-title="普通用户信息" href="#"--%>
+                               <%--class="site-demo-active" data-type="tabAdd" style="padding-left: 50px">普通用户信息</a></dd>--%>
+                    <%--</dl>--%>
+                <%--</li>--%>
                 <li class="layui-nav-item">
                     <a class="" href="javascript:;">
                         <i class="layui-icon layui-icon-theme" style="margin: 10px"></i>

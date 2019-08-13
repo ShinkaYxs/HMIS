@@ -50,7 +50,7 @@
                 ,{field:'userAge', width:80, title: '年龄'}
                 ,{field:'userTel', width:120, title: '手机', sort: true}
                 ,{field:'userEmail', title: '邮箱', sort: true}
-                ,{field:'headPortrait',title: '头像路径'}
+                // ,{field:'headPortrait',title: '头像路径'}
                 ,{width:120, align:'center', fixed: 'right', toolbar: '#test-table-operate-barDemo'}
             ]]
             ,page: true
